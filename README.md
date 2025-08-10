@@ -33,6 +33,9 @@ The following content should be included in the lecture:
     - Firewall: iptables/nftables, `ufw`, `firewalld`
     - Local network DHBW?
   - Drivers
+  - Filesystem:
+    - /etc, /bin, /var, /root, /home, ...
+    - ext4, btrfs, fat, exfat, ntfs, zsh
 2. Coreutils++
   - Intro to coreutils and other useful command line tools
     - File system: cd, ls, pwd, cp, mv, rm, lsblk, mount, touch
