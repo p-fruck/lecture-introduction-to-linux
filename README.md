@@ -36,6 +36,7 @@ The following content should be included in the lecture:
   - Filesystem:
     - /etc, /bin, /var, /root, /home, ...
     - ext4, btrfs, fat, exfat, ntfs, zsh
+    - XDG_BASE_DIR (XDG_RUNTIME_DIR), ~/.config, ...
 2. Coreutils++
   - Intro to coreutils and other useful command line tools
     - File system: cd, ls, pwd, cp, mv, rm, lsblk, mount, touch
@@ -53,7 +54,10 @@ The following content should be included in the lecture:
     - SELinux Context (chcon, ls -laZ)
     - Elevation: sudo, systemd run0
   - chroot: Transition to Containers
-3. Containers
+3. Editors
+  - nano/vim
+  - helix, LSPs
+4. Containers
   - Intro to containerization
   - Process + Network Namespaces, isolation
   - OCI containers
@@ -62,7 +66,7 @@ The following content should be included in the lecture:
     - subuids, root inside and outside container
   - Containerfiles, volume mounts
   - compose files?
-4. Writing
+5. Writing
   - Markdown
   - groff/troff?
   - LaTeX
