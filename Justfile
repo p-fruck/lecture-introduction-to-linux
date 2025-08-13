@@ -14,6 +14,5 @@
         echo $file; \
         name=$(basename "${file}" | cut -d . -f 1); \
         echo "- ${name} [[html](${name}.html)][[pdf](${name}.pdf)]" >> _site/index.md; \
-        presenterm --export-pdf --output _site/${name}.pdf ${file}; \
         presenterm --export-html --output _site/${name}.html ${file}; \
     done
