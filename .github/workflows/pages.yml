@@ -30,7 +30,7 @@ jobs:
         uses: cachix/install-nix-action@v25
 
       - name: Export all slides using nix develop shell
-        run: nix --extra-experimental-features 'flakes nix-command' develop --command just export-all
+        run: script -q -c "nix --extra-experimental-features 'flakes nix-command' develop --command just export-all" /dev/null
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
