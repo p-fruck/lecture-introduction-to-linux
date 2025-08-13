@@ -29,16 +29,9 @@ jobs:
       - name: Set up Nix
         uses: cachix/install-nix-action@v25
 
-      - name: Install pandoc via nix-env
-        run: nix-env -iA nixpkgs.pandoc
+      - name: Export all slides using nix develop shell
+        run: nix --extra-experimental-features 'flakes nix-command' develop --command just export-all
 
-      - name: Use pandoc
-        run: pandoc --version
-
-      - name: Test
-        run: |
-          mkdir _site
-          echo test > _site/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
