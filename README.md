@@ -41,17 +41,17 @@ The following content should be included in the lecture:
     - ip command
     - `/etc/network/interfaces`, NetworkManager, systemd-networkd, netplan
     - Firewall: iptables/nftables, `ufw`, `firewalld`
-    - Local network DHBW?
+    - Local network setup DHBW, easyroam app?
   - Drivers
   - Filesystem:
     - /etc, /bin, /var, /root, /home, ...
-    - ext4, btrfs, fat, exfat, ntfs, zsh
+    - ext4, btrfs, fat, exfat, ntfs, zfs
     - XDG_BASE_DIR (XDG_RUNTIME_DIR), ~/.config, ...
 2. Coreutils++
   - Intro to coreutils and other useful command line tools
     - File system: cd, ls, pwd, cp, mv, rm, lsblk, mount, touch
     - Working with text: echo, more|less, head|tail, cat, grep, ripgrep, sed, base64, cut, awk
-    - System: env, whoami, date, lsblk, mount, uname, `/etc/os-release`, ps, ss/netstat
+    - System: env, whoami, date, lsblk, `/etc/os-release`, ps, ss/netstat
     - find, curl, wget, tmux, xdg-open, git
     - Archives: zip, tar, gzip, bzip, xz
     - remote servers: ssh, scp
@@ -59,7 +59,7 @@ The following content should be included in the lecture:
       - SSH forwarding: `-R/-L`
       - /etc/ssh/sshd_config
   - Working with bash, pipes & redirects, variables, nested commands
-    - for, while, if, set
+    - for, while, if, set notation
   - Permissions:
     - Ownership, users + groups (chown, chmod)
     - SELinux Context (chcon, ls -laZ)
@@ -89,4 +89,3 @@ The following content should be included in the lecture:
 - Bash scripting, pipe redirection
 - Curling a remote server, get question, post answer
 - Building custom Containerfile
-- Write something with latex/types, submissions with markdown?
