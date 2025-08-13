@@ -26,6 +26,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v25
+
+      - name: Install pandoc via nix-env
+        run: nix-env -iA nixpkgs.pandoc
+
+      - name: Use pandoc
+        run: pandoc --version
+
       - name: Test
         run: |
           mkdir _site
