@@ -7,7 +7,7 @@
 
 [group('build')]
 @export-all:
-    rm -rf _site/*
+    rm -rf _site && mkdir _site
     echo '# Introduction to Linux' > _site/index.md
     echo 'You can view or download the latest slides here:' >> _site/index.md
     for file in slides/*.md; do \
