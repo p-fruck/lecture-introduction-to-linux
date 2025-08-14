@@ -6,7 +6,7 @@
     presenterm -x {{ args }}
 
 [group('build')]
-@export-all:
+@export-all *args:
     rm -rf _site && mkdir _site
     echo '# Introduction to Linux' > _site/index.md
     echo 'You can view or download the latest slides here:' >> _site/index.md
@@ -14,5 +14,5 @@
         echo $file; \
         name=$(basename "${file}" | cut -d . -f 1); \
         echo "- ${name} [[html](${name}.html)][[pdf](${name}.pdf)]" >> _site/index.md; \
-        presenterm --export-html --output _site/${name}.html ${file}; \
+        presenterm --export-html --output _site/${name}.html ${file} {{ args }}; \
     done

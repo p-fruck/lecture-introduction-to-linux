@@ -30,8 +30,16 @@ jobs:
         uses: cachix/install-nix-action@v25
 
       - name: Export all slides using nix develop shell
-        run: script -q -c "nix --extra-experimental-features 'flakes nix-command' develop --command just export-all" /dev/null
-
+        run: |
+          # create config file
+          cat >/tmp/config.yaml <<EOL
+          export:
+            dimensions:
+              rows: 35
+              columns: 135
+          EOL
+          nix --extra-experimental-features 'flakes nix-command' develop --command just export-all -c /tmp/config.yaml
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
