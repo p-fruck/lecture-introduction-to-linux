@@ -4,6 +4,9 @@
     devShells.x86_64-linux.default =
       let
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        pythonEnv = pkgs.python3.withPackages (ps: with ps; [
+          weasyprint
+        ]);
       in
       pkgs.mkShell {
         packages = [
@@ -11,6 +14,7 @@
           pkgs.pandoc
           pkgs.presenterm
           pkgs.typst
+          pythonEnv
         ];
       };
   };
