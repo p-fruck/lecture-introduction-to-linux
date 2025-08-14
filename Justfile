@@ -14,7 +14,7 @@
         echo $file; \
         name=$(basename "${file}" | cut -d . -f 1); \
         echo "- ${name} [[html](${name}.html)][[pdf](${name}.pdf)]" >> _site/index.md; \
-        presenterm --export-pdf --output _site/${name}.pdf ${file} {{ args }}; \
-        presenterm --export-html --output _site/${name}.html ${file} {{ args }}; \
+        presenterm -x --export-pdf --output _site/${name}.pdf ${file} {{ args }}; \
+        presenterm -x --export-html --output _site/${name}.html ${file} {{ args }}; \
     done
     pandoc _site/index.md -o _site/index.html
