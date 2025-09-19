@@ -140,10 +140,51 @@ Which Linux Distros are there?
 
 ![image:width:50%](../assets/arch-bathroom.jpeg)
 
+<!-- end_slide -->
 
-
+Package Managers
+===
 
 <!-- end_slide -->
+
+Linux filesystem explained
+===
+
+
+```bash
+/
+├── bin -> usr/bin
+├── boot
+├── dev
+├── etc
+├── home  # contains user directories
+├── lib -> usr/lib
+├── lib64 -> usr/lib64
+├── media
+├── mnt
+├── opt
+├── proc
+├── root
+├── run
+├── sbin -> usr/sbin
+├── srv
+├── sys
+├── tmp
+├── usr
+└── var
+```
+
+<!-- end_slide -->
+
+Drivers on Linux
+===
+
+<!-- end_slide -->
+
+How do I install my own distro?
+===
+<!-- end_slide -->
+
 
  Thank you for your attention!
 
