@@ -47,18 +47,21 @@ Organizational
 What is Linux?
 ===
 
-<!-- column_layout: [2, 3] -->
+<!-- column_layout: [1, 2] -->
 
 
 <!-- column: 0 -->
 
-![image:width:100%](../assets/gnu-linux-meme.jpg)
+![image:width:80%](../assets/gnu-linux-meme.jpg)
 
-https://img.devrant.com/devrant/rant/r_1578772_VbG6J.jpg
 
 <!-- column: 1 -->
 
+![image:width:100%](../assets/linux-usecases.png)
 
+<!-- reset_layout -->
+
+> https://img.devrant.com/devrant/rant/r_1578772_VbG6J.jpg | Icons by flaticon.com
 
 <!-- end_slide -->
 
@@ -124,6 +127,7 @@ A couple to point out:
 - Fedora is a community driven distro that focuses on modern software and security
 - ArchLinux, community driven, focuses on customization and has bleeding edge software
 - Gentoo is a source based distro --> software is compiled locally
+- NixOS is a declaratively configurable distro
 - RedHat and SUSE offer Enterprise Linux
   - Alma and Rocky are community editions of RedHat Enterprise Linux (RHEL)
 - Kali / ParrotOS are targeted towards pentesting/security auditing (no daily-driving)
