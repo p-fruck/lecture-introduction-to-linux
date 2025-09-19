@@ -1,0 +1,146 @@
+---
+title: "Introduction to Linux: **Overview**"
+author: Philipp Fruck & Pius Walter
+---
+
+Introduction
+===
+
+<!-- column_layout: [1, 1] -->
+
+<!-- column: 0 -->
+
+# About us
+
+- Pius & Philipp
+- Studied CS back in 2019
+- First time lecture this year
+  - We need your feedback!
+
+<!-- column: 1 -->
+
+# About you
+
+Quickly introduce yourself:
+
+- Who are you?
+- Which Operating Systems did you use previously
+  - Windows, MacOS, Linux? Or only mobile devices?
+
+<!-- end_slide -->
+
+Organizational
+===
+
+- 5 lectures between 2 and 4.5 hours
+- Mostly hands-on
+  - You'll need your own Linux system
+- Introduction into Linux system components
+  - Installation
+  - Basic & advanced terminal commands
+  - Building applications and containers
+- Practical lab work submissions
+  
+
+<!-- end_slide -->
+
+What is Linux?
+===
+
+<!-- column_layout: [2, 3] -->
+
+
+<!-- column: 0 -->
+
+![image:width:100%](../assets/gnu-linux-meme.jpg)
+
+https://img.devrant.com/devrant/rant/r_1578772_VbG6J.jpg
+
+<!-- column: 1 -->
+
+
+
+<!-- end_slide -->
+
+Advantages of Linux
+===
+
+- Runs (almost) everywhere
+  - From low-power to high performance computing
+- Open Source
+- Customizable
+- Free of charge
+
+<!-- end_slide -->
+
+Components of a Linux system
+===
+
+|Component           |Example             | Description |
+|--------------------|-------             | ----------- |
+|Bootloader          |grub, systemd-boot  | Starts the system |
+|Kernel              |Linux               | Interfaces with hardware |
+|Init System         |systemd / openrc    | Launches all other programs |
+|Display Server      |X11, Wayland        | Renders the graphical |
+||                                        | user interface (GUI)|
+|Display Manager     |GDM, LightDM        | Graphical login screen |
+|Desktop Environment |Gnome, KDE, XFCE    | Defines how your GUI looks like |
+|GUI app libraries   | GTK, QT, Electron  | Allows building GUI apps with |
+||                                        | different look and feel|
+| Security Module    | SELinux, AppArmor  | Enhanced security regulation |
+
+<!-- end_slide -->
+
+What is a Linux Distribution?
+===
+
+- Windows, MacOS, etc. only have a single OS with different Versions
+  - Windows 10, Windows 11, ...
+- Linux has a much greater varierty of system components
+  - Different Desktops, different init systems, different apps
+- A Linux Distro bundles certain components together:
+  - Different kernel versions, different desktops, different package repositories
+- Distros are opinionated
+  - Software selection based on certain preferences
+  - Some distros only ship open source software components (Debian, Fedora)
+  - Some distros compile everything from source (Gentoo)
+  - Different out-of-the-box security configuration (SELinux, AppArmor, Firewall frontends)
+  - Different package managers and package formats
+  - Desktop vs Server focus
+  - etc ...
+  
+<!-- end_slide -->
+
+Which Linux Distros are there?
+===
+
+https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Distribution_Timeline.svg
+
+A couple to point out:
+
+- Slackware is one of the oldest distros, but nowadays almost obsolete
+- Debian is a very stable (mostly server) distro which focuses on free software (community driven)
+- Ubuntu is a newcomer friendly distro based on Debian, owned by Canonical
+- Fedora is a community driven distro that focuses on modern software and security
+- ArchLinux, community driven, focuses on customization and has bleeding edge software
+- Gentoo is a source based distro --> software is compiled locally
+- RedHat and SUSE offer Enterprise Linux
+  - Alma and Rocky are community editions of RedHat Enterprise Linux (RHEL)
+- Kali / ParrotOS are targeted towards pentesting/security auditing (no daily-driving)
+- Alpine is a minimal Linux distro focusing on minimal overhead (e.g. resource-constraint hardware/containers)
+
+<!-- end_slide -->
+
+Which Linux Distros are there?
+===
+
+![image:width:50%](../assets/arch-bathroom.jpeg)
+
+
+
+
+<!-- end_slide -->
+
+ Thank you for your attention!
+
+ Don't forget the feedback
