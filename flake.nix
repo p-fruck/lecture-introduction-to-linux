@@ -10,7 +10,7 @@
       in
       pkgs.mkShell {
         packages = [
-          pkgs.dejavu_fonts
+          pkgs.inconsolata
           pkgs.just
           pkgs.pandoc
           pkgs.presenterm

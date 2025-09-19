@@ -35,11 +35,11 @@ jobs:
           cat >/tmp/config.yaml <<EOL
           export:
             dimensions:
-              rows: 36
-              columns: 169
+              rows: 28
+              columns: 112
           EOL
           nix --extra-experimental-features 'flakes nix-command' develop --command just export-all -c /tmp/config.yaml
-          
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
