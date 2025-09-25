@@ -194,6 +194,18 @@ Linux filesystem explained
 Drivers on Linux
 ===
 
+- Drivers allow the **kernel** to talk to hardware
+- Most drivers are included in the Linux kernel!
+- Plug & Play is common:
+  - Network adapters, USB devices, webcams usually work out of the box
+- Exceptions:
+  - Some GPUs (e.g. Nvidia) have proprietary drivers
+  - Some Wi-Fi chipsets require extra firmware
+- Tools to check drivers:
+  - `lspci`, `lsusb` -> list devices
+  - `lsmod` -> list kernel modules (drivers)
+  - `dmesg` -> check system log for driver messages
+
 <!-- end_slide -->
 
 How do I install my own distro?
