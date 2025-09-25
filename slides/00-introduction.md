@@ -145,6 +145,21 @@ Which Linux Distros are there?
 Package Managers
 ===
 
+- A **package manager** installs, updates, and removes software
+- Keeps track of dependencies (software that other software needs)
+- Different distros use different package managers and package formats:
+
+| Distro Family     | Package Manager               | Package Format |
+| ----------------- | ----------------------------- | -------------- |
+| Debian / Ubuntu   | `apt` / `dpkg`                | `.deb`         |
+| Fedora / RHEL     | `dnf` / `yum`                 | `.rpm`         |
+| Arch Linux        | `pacman`                      | `.pkg.tar.zst` |
+| Alpine Linux      | `apk`                         | `.apk`         |
+| NixOS             | `nix`                         | store paths    |
+| Universal formats | `flatpak`, `snap`, `appimage` | portable       |
+
+> Most package managers can update the entire system with a single command!
+
 <!-- end_slide -->
 
 Linux filesystem explained
