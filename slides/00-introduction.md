@@ -166,32 +166,35 @@ Package Managers
 
 <!-- end_slide -->
 
-Linux filesystem explained
+Linux file system explained
 ===
-
 
 ```bash
 /
-├── bin -> usr/bin
-├── boot
-├── dev
-├── etc
-├── home  # contains user directories
-├── lib -> usr/lib
-├── lib64 -> usr/lib64
-├── media
-├── mnt
-├── opt
-├── proc
-├── root
-├── run
-├── sbin -> usr/sbin
-├── srv
-├── sys
-├── tmp
-├── usr
-└── var
+├── bin -> usr/bin      # Essential user commands (ls, cp, mv)
+├── boot                # Bootloader files (kernel, initramfs)
+├── dev                 # Device files (e.g. /dev/sda, /dev/tty)
+├── etc                 # System configuration files
+├── home                # User home directories (/home/alice)
+├── lib -> usr/lib      # Shared libraries for essential programs
+├── lib64 -> usr/lib64  # 64-bit libraries
+├── media               # Auto-mounted removable media (USB sticks)
+├── mnt                 # Temporary mount points (manual)
+├── opt                 # Optional / 3rd-party software
+├── proc                # Virtual filesystem with process info
+├── root                # Home directory for root user
+├── run                 # Volatile runtime data (since last boot)
+├── sbin -> usr/sbin    # System binaries (fsck, ip, systemctl)
+├── srv                 # Data served by the system (web, ftp)
+├── sys                 # Virtual filesystem for hardware devices
+├── tmp                 # Temporary files (auto-cleared)
+├── usr                 # User programs, libraries, docs
+└── var                 # Variable data (logs, cache, spool)
 ```
+
+- `/` is called the **root directory** - everything starts here
+- Some directories are **virtual** (`/proc`, `/sys`) - they exist only in memory
+- `/usr` contains most applications — `/bin` and `/sbin` are now just symlinks
 
 <!-- end_slide -->
 
