@@ -149,14 +149,18 @@ Package Managers
 - Keeps track of dependencies (software that other software needs)
 - Different distros use different package managers and package formats:
 
-| Distro Family     | Package Manager               | Package Format |
-| ----------------- | ----------------------------- | -------------- |
-| Debian / Ubuntu   | `apt` / `dpkg`                | `.deb`         |
-| Fedora / RHEL     | `dnf` / `yum`                 | `.rpm`         |
-| Arch Linux        | `pacman`                      | `.pkg.tar.zst` |
-| Alpine Linux      | `apk`                         | `.apk`         |
-| NixOS             | `nix`                         | store paths    |
-| Universal formats | `flatpak`, `snap`, `appimage` | portable       |
+| Distro Family / Type   | Package Manager               | Package Format                 |
+| ---------------------- | ----------------------------- | ------------------------------ |
+| Debian / Ubuntu        | `apt` / `dpkg`                | `.deb`                         |
+| Fedora / RHEL          | `dnf` / `yum`                 | `.rpm`                         |
+| Fedora Silverblue      | `rpm-ostree`                  | immutable `.rpm` tree          |
+| openSUSE MicroOS / ALP | `transactional-update`        | snapshot-based root filesystem |
+| Arch Linux             | `pacman`                      | `.pkg.tar.zst`                 |
+| Alpine Linux           | `apk`                         | `.apk`                         |
+| NixOS                  | `nix`                         | store paths                    |
+| Universal formats      | `flatpak`, `snap`, `appimage` | portable                       |
+
+> Some systems (e.g., rpm-ostree, transactional-update) are immutable - changes apply atomically after reboot.
 
 > Most package managers can update the entire system with a single command!
 
