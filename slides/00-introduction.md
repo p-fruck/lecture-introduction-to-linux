@@ -199,7 +199,7 @@ Drivers on Linux
 - Plug & Play is common:
   - Network adapters, USB devices, webcams usually work out of the box
 - Exceptions:
-  - Some GPUs (e.g. Nvidia) have proprietary drivers
+  - Some GPUs (e.g., Nvidia) have proprietary drivers
   - Some Wi-Fi chipsets require extra firmware
 - Tools to check drivers:
   - `lspci`, `lsusb` -> list devices
