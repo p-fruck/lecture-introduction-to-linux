@@ -239,6 +239,26 @@ Drivers on Linux
 
 How do I install my own distro?
 ===
+
+We recommend using the latest version of Fedora 42 Workstation from https://fedoraproject.org/workstation/
+
+We also recommend installing it using dual boot or, if possible, as a complete Linux system - if you want to switch fully. We do not recommend using a VM.
+
+# Preparing for Installation
+
+- **Backup all of your data**
+- Download the ISO file (and verify the checksum) or use the Fedora Media Writer
+- Create a bootable media using `dd` or the Fedora Media Writer tool
+
+# Installation
+
+- Boot from your USB stick (use UEFI if possible)
+- Fedora will boot into a live system, from where you can start the graphical installation
+  1. Select the system language and keyboard layout
+  2. Define the installation destination (the disk where you want Fedora installed). You can choose to use the entire disk or share it with an existing operating system (dual boot)
+  3. Configure storage encryption (recommended for notebooks and portable devices for better security)
+  4. Review your configuration and install Fedora 42 Workstation
+
 <!-- end_slide -->
 
 
