@@ -198,6 +198,28 @@ Linux file system explained
 
 <!-- end_slide -->
 
+Binaries & Their Locations
+===
+
+| Directory                  | Purpose                                                                                        |
+| -------------------------- | ---------------------------------------------------------------------------------------------- |
+| /bin                       | Essential user commands needed for booting and repairing the system (e.g., `ls`, `cp`, `mv`).  |
+| /sbin                      | Essential system binaries for booting and administration (e.g., `fsck`, `ip`, `mount`).        |
+| /usr/bin                   | Most user applications (non-essential, e.g., `vim`, `git`, `python`).                          |
+| /usr/sbin                  | Admin and system tools that are not essential for booting (e.g., `sshd`, `apachectl`).         |
+| /usr/local/bin             | Locally installed user applications (not managed by package manager).                          |
+| /usr/local/sbin            | Locally installed system admin tools (manual builds, custom scripts).                          |
+| /home/\<user\>/.local/bin/ | User-specific binaries installed via `pip`, `cargo`, `npm` etc. - only available to that user. |
+| /opt/                      | 3rd-party applications - often entire self-contained software bundles
+|                            | (e.g., Google Chrome, proprietary tools).                                                      |
+
+* Modern Linux: `/bin` and `/sbin` are often symlinks to `/usr/bin` and `/usr/sbin`
+* Local and user-specific dirs let you install software without touching the system
+
+> All standard directories are described in the file system hierarchy manual page - run `man hier` to read it.
+
+<!-- end_slide -->
+
 Drivers on Linux
 ===
 
