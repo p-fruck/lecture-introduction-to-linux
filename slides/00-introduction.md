@@ -153,8 +153,6 @@ Package Managers
 | ---------------------- | ----------------------------- | ------------------------------ |
 | Debian / Ubuntu        | `apt` / `dpkg`                | `.deb`                         |
 | Fedora / RHEL          | `dnf` / `yum`                 | `.rpm`                         |
-| Fedora Silverblue      | `rpm-ostree`                  | immutable `.rpm` tree          |
-| openSUSE MicroOS / ALP | `transactional-update`        | snapshot-based root filesystem |
 | Arch Linux             | `pacman`                      | `.pkg.tar.zst`                 |
 | Alpine Linux           | `apk`                         | `.apk`                         |
 | NixOS                  | `nix`                         | store paths                    |
@@ -178,7 +176,7 @@ Linux file system explained
 ├── home                # User home directories (/home/alice)
 ├── lib -> usr/lib      # Shared libraries for essential programs
 ├── lib64 -> usr/lib64  # 64-bit libraries
-├── media               # Auto-mounted removable media (USB sticks)
+├── media               # Auto-mounted removable media (legacy)
 ├── mnt                 # Temporary mount points (manual)
 ├── opt                 # Optional / 3rd-party software
 ├── proc                # Virtual filesystem with process info
@@ -194,7 +192,7 @@ Linux file system explained
 
 - `/` is called the **root directory** - everything starts here
 - Some directories are **virtual** (`/proc`, `/sys`) - they exist only in memory
-- `/usr` contains most applications — `/bin` and `/sbin` are now just symlinks
+- `/usr` contains most applications — `/bin` and `/sbin` are nowadays just symlinks
 
 <!-- end_slide -->
 
@@ -210,7 +208,7 @@ Binaries & Their Locations
 | /usr/local/bin             | Locally installed user applications (not managed by package manager).                          |
 | /usr/local/sbin            | Locally installed system admin tools (manual builds, custom scripts).                          |
 | /home/\<user\>/.local/bin/ | User-specific binaries installed via `pip`, `cargo`, `npm` etc. - only available to that user. |
-| /opt/                      | 3rd-party applications - often entire self-contained software bundles
+| /opt/                      | 3rd-party applications - often entire self-contained software bundles                          |
 |                            | (e.g., Google Chrome, proprietary tools).                                                      |
 
 * Modern Linux: `/bin` and `/sbin` are often symlinks to `/usr/bin` and `/usr/sbin`
@@ -230,6 +228,7 @@ Drivers on Linux
 - Exceptions:
   - Some GPUs (e.g., Nvidia) have proprietary drivers
   - Some Wi-Fi chipsets require extra firmware
+  - Printers: Try to use AirPrint (driverless)
 - Tools to check drivers:
   - `lspci`, `lsusb` -> list devices
   - `lsmod` -> list kernel modules (drivers)
@@ -240,7 +239,7 @@ Drivers on Linux
 How do I install my own distro?
 ===
 
-We recommend using the latest version of Fedora 42 Workstation from https://fedoraproject.org/workstation/
+We recommend using the latest version of Fedora Workstation from https://fedoraproject.org/workstation/
 
 We also recommend installing it using dual boot or, if possible, as a complete Linux system - if you want to switch fully. We do not recommend using a VM.
 
@@ -257,7 +256,7 @@ We also recommend installing it using dual boot or, if possible, as a complete L
   1. Select the system language and keyboard layout
   2. Define the installation destination (the disk where you want Fedora installed). You can choose to use the entire disk or share it with an existing operating system (dual boot)
   3. Configure storage encryption (recommended for notebooks and portable devices for better security)
-  4. Review your configuration and install Fedora 42 Workstation
+  4. Review your configuration and install Fedora Workstation
 
 <!-- end_slide -->
 
