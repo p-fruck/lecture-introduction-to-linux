@@ -94,6 +94,29 @@ Components of a Linux system
 
 <!-- end_slide -->
 
+Linux Desktop Environments
+===
+
+A **Desktop Environment (DE)** defines the look & feel of your Linux system
+
+Includes: panels/menus, settings, file manager, system tools
+
+| Desktop Environment | Characteristics                                  | Target audience                           |
+| ------------------- | ------------------------------------------------ | ----------------------------------------- |
+| **GNOME**           | Modern, minimal, keyboard-friendly               | Users who like a clean workflow           |
+| **KDE Plasma**      | Highly customizable, Windows-like, many settings | Power users, tinkerers                    |
+| **XFCE**            | Lightweight, classic interface                   | Older hardware, performance-focused       |
+| **LXQt** / **LXDE** | Extremely lightweight                            | Very resource-constrained systems         |
+| **Cinnamon**        | Traditional desktop (Windows-like)               | Linux Mint users, beginners               |
+| **MATE**            | Fork of old GNOME 2, lightweight                 | Users who want a stable, classic desktop  |
+| **Budgie**          | Modern, elegant, GNOME-based                     | Users who like simplicity + polish        |
+| **Pantheon**        | macOS-like, minimalistic                         | Users who like macOS feel (elementary OS) |
+
+- Choice of DE = personal preference → try several to find your favorite!
+- DE is **not tied to the distro** → you can install others later
+
+<!-- end_slide -->
+
 What is a Linux Distribution?
 ===
 
@@ -161,6 +184,8 @@ Package Managers
 > Some systems (e.g., rpm-ostree, transactional-update) are immutable - changes apply atomically after reboot.
 
 > Most package managers can update the entire system with a single command!
+
+> AppImage has no standardized package manager!
 
 <!-- end_slide -->
 
