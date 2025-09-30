@@ -1,6 +1,8 @@
 ---
 title: "Introduction to Linux: **Basic Commands and Shell**"
 author: Philipp Fruck & Pius Walter
+theme:
+  path: ../themes/dhbw_mannheim.yml
 ---
 
 Coreutils & Command-Line Tools

@@ -1,6 +1,8 @@
 ---
 title: "Introduction to Linux: **Overview**"
 author: Philipp Fruck & Pius Walter
+theme:
+  path: ../themes/dhbw_mannheim.yml
 ---
 
 Introduction
