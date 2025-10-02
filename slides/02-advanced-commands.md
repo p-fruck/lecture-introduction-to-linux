@@ -5,3 +5,6 @@ theme:
   path: ../themes/dhbw_mannheim.yml
 ---
 
+- tmux
+- script
+- editors?
