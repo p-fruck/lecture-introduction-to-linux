@@ -8,3 +8,4 @@ theme:
 - tmux
 - script
 - editors?
+- ssh-keygen (add form to collect pubkeys for vm)
