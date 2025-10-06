@@ -182,8 +182,6 @@ Exercise 1
 - Copy `lf` binary to your user `PATH`
 - Run `lf` to navigate your home directory
 
-💡 You have to set execute permissions to `lf` by running `chmod u+x lf` (we will take a look on permissions later!)
-
 Time: 10 minutes
 
 <!-- end_slide -->
