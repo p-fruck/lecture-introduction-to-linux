@@ -89,3 +89,11 @@ The following content should be included in the lecture:
 - Bash scripting, pipe redirection
 - Curling a remote server, get question, post answer
 - Building custom Containerfile
+
+## Considerations
+
+Useful GUI Apps:
+
+- Mission Center
+- Easy Effects
+- Zotero
