@@ -8,6 +8,16 @@ theme:
 Users and Permissions
 ===
 
+# Goal of this lecture
+  - Understand how to manage users/groups on Linux
+  - Understand how Linux handles permissions
+  - Understand potential security risks of wrong file permissions
+
+# Why?
+  - In Linux "everything is a file", so we have to care about the files permission!
+
+<!-- end_slide -->
+
 Group Management
 ===
 
@@ -152,6 +162,8 @@ Elevating Privileges
 Exercise
 ===
 
+<!-- column_layout: [1, 1] -->
+<!-- column: 0 -->
 # Create a file and experiment:
   - `touch test.txt`
   - `chmod 644 test.txt`
@@ -162,12 +174,24 @@ Exercise
   - `chmod 1777 shared`
   - Try adding/removing files as different users
 
+<!-- column: 1 -->
+
 # Check special permissions:
   - `ls -l /usr/bin/passwd`
 
 💡 Always check with `ls -l` after changing permissions!
 
-Time: 10 minutes
+# Optional
+  - Create a new user
+  - Add it to a group
+
+Check how the `/etc/shadow`, `/etc/passwd` and `/etc/groups` change!
+
+<!-- reset_layout -->
+
+<!-- column_layout: [1, 1, 1] -->
+<!-- column: 1 -->
+**Time: 10 minutes**
 
 <!-- end_slide -->
 
