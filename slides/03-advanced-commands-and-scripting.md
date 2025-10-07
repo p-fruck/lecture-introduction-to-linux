@@ -29,3 +29,14 @@ theme:
   - base64
   - jq / yq / python3 -m json.tool
 - openssl
+
+Other Handy Tools
+===
+
+| Command | Description                         | Useful Flags / Examples  |
+| ------- | ----------------------------------- | ------------------------ |
+| `date`  | Show/set system date and time       | `date +"%Y-%m-%d %H:%M"` |
+| `time`  | Measure execution time of a command | `time ls -l`             |
+| `echo`  | Print text or variables to terminal | echo "Hello, world!"     |
+
+<!-- end_slide -->
