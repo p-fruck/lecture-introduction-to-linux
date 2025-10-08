@@ -24,6 +24,7 @@ Navigating the File System
 
 | Command | Description                                 | Useful Flags / Examples                                             |
 | ------- | ------------------------------------------- | ------------------------------------------------------------------- |
+| `echo`  | Print given arguments or variables          | `echo $PATH`, `echo -n text without newline`                        |
 | `pwd`   | **P**rint current **w**orking **d**irectory |                                                                     |
 | `ls`    | **L**i**s**t directory contents             | `-l` long format, `-a` show hidden files, `-h` human-readable sizes |
 | `cd`    | **C**hange **d**irectory                    | `cd -` go back to previous directory                                |
