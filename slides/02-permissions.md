@@ -85,6 +85,8 @@ ls -l
 Changing Permissions
 ===
 
+<!-- column_layout: [1, 1] -->
+<!-- column: 0 -->
 # Symbolic Mode
 
 - `+` -> add
@@ -92,19 +94,30 @@ Changing Permissions
 - `=` -> set exactly (replacing existing permissions)
 
 ```bash
-chmod u+x file.sh    # add execute for user
-chmod g-w file.txt   # remove write for group
-chmod o=r file.log   # set read only for others
+# add execute for user
+chmod u+x file.sh
+# remove write for group
+chmod g-w file.txt
+# set read only for others
+chmod o=r file.log
 ```
 
+<!-- column: 1 -->
 # Numeric (Octal) Mode
 
-- Each permission is defined by a number: `r=4`, `w=2`, `x=1`
-- Add them up gives combined permissions:  `7=rwx`, `6=rw-`, `5=r-x`, `4=r--`, `3=-wx`, `2=-w-`, `1=--x`, `0=---`
+Each permission is defined by a number:
+
+`r=4`, `w=2`, `x=1`
+
+Add them up to combine permissions:
+
+`7=rwx`, `6=rw-`, `5=r-x`, `4=r--`, `3=-wx`, `2=-w-`, `1=--x`, `0=---`
 
 ```bash
-chmod 755 script.sh  # rwx for user, r-x for group, r-x for others
-chmod 644 file.txt   # rw- for user, r-- for group & others
+# rwx for user, r-x for group, r-x for others
+chmod 755 script.sh
+# rw- for user, r-- for group & others
+chmod 644 file.txt
 ```
 
 <!-- end_slide -->
