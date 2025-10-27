@@ -263,9 +263,6 @@ setfacl -d -m u:bob:rw project/
 Linux Capabilities
 ===
 
-<!-- column_layout: [2, 1] -->
-<!-- column: 0 -->
-
 - **Problem**: `setuid root` gives full root privileges -> too powerful
 - **Solution**: *Linux Capabilities* split root privileges into fine-grained pieces
   - Each process can get *only* the privileges it needs
@@ -278,19 +275,36 @@ Linux Capabilities
 | `CAP_SYS_TIME`         | Change the system clock                   |
 | `CAP_NET_BIND_SERVICE` | Bind to ports < 1024                      |
 
-<!-- column: 1 -->
+- Overview: The Five Capability Sets in Linux
 
-View capabilities:
+| Set             | Meaning                                                                              |
+| --------------- | ------------------------------------------------------------------------------------ |
+| Permitted (P)   | This is the list of all privileges a process is allowed to have.                     |
+|                 | Anything not on this list can never be obtained by the process.                      |
+| Effective (E)   | The privileges that are currently active. Only these are checked by the kernel when, |
+|                 | for example, a program tries to access port 80 or modify system files.               |
+| Inheritable (I) | The privileges that can be passed on to a child process (after `exec()`).            |
+|                 | This allows a program to give another program certain privileges.                    |
+| Bounding (B)    | This is the maximum limit of all possible privileges. Once a privilege is removed,   |
+|                 | it is permanently gone, even root cannot bring it back.                              |
+| Ambient (A)     | Newer addition (since kernel 4.3): privileges that are automatically retained when   |
+|                 | starting a new program, if the program is not `setuid` and the privilege is present  |
+|                 | in both `P` and `I`. Used, for example, by containers or systemd.                    |
+
+<!-- end_slide -->
+
+Linux Capabilities
+===
+
+View capabilities
 ```bash
 getcap /usr/bin/arping
 ```
 
-Set or remove capabilities:
+Set or remove capabilities
 ```bash
 sudo setcap cap_net_raw+ep /usr/bin/arping
 ```
-
-<!-- reset_layout -->
 
 - Revocation limitation
   - Once a process has a capability, the kernel cannot revoke it mid-execution
