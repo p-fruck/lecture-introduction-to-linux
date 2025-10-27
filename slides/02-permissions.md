@@ -177,19 +177,26 @@ Exercise
 
 <!-- column_layout: [1, 1] -->
 <!-- column: 0 -->
-# Create a file and experiment:
+# Create a file and experiment
   - `touch test.txt`
   - `chmod 644 test.txt`
   - `chmod u+x test.txt`
+  - Show and change the `umask`
+  - Create a new file and compare the permissions
 
-# Create a shared directory:
+# Changing ownership and umask
+  - Create a file
+  - Change the file ownership with `chown`
+  - Check which permissions are still available to your user
+
+# Create a shared directory
   - `mkdir shared`
   - `chmod 1777 shared`
   - Try adding/removing files as different users
 
 <!-- column: 1 -->
 
-# Check special permissions:
+# Check special permissions
   - `ls -l /usr/bin/passwd`
 
 💡 Always check with `ls -l` after changing permissions!
