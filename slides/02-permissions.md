@@ -295,6 +295,58 @@ setfacl -d -m u:bob:rw project/
 
 <!-- end_slide -->
 
+Exercise
+===
+
+<!-- column_layout: [1, 1] -->
+<!-- column: 0 -->
+
+# Capabilities
+
+Let's use `/usr/bin/tar` as an example:
+
+1. Check if it currently has any capabilities
+2. Give it a test capability (`CAP_DAC_READ_SEARCH`)
+```bash
+sudo setcap cap_dac_read_search+ep /usr/bin/tar
+getcap /usr/bin/tar
+```
+3. Try reading a file you normally couldn't (as non-root)
+```bash
+tar -cvf /tmp/test.tar /tmp/rootfile.txt
+```
+4. ⚠️ **Important**: Remove the capability again with `sudo setcap -r /usr/bin/tar`
+5. What could go wrong if tools like `tar` permanently kept this capability?
+
+<!-- column: 1 -->
+
+# Access Control Lists
+
+1. Create a file and set restrictive permissions
+```bash
+touch project.txt
+chmod 600 project.txt
+```
+2. Add read access for another user (replace `<user>`)
+```bash
+sudo setfacl -m u:<user>:r project.txt
+getfacl project.txt
+```
+3. Verify that `<user>` can now read the file even though group/others cannot.
+4. Remove the ACL entry again
+```bash
+sudo setfacl -x u:<user> project.txt
+```
+
+<!-- reset_layout -->
+
+<!-- column_layout: [1, 1, 1] -->
+<!-- column: 1 -->
+
+**Time: 15 minutes**
+
+<!-- end_slide -->
+
 Thank you!
 ===
 
