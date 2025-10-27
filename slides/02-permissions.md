@@ -208,6 +208,44 @@ Check how the `/etc/shadow`, `/etc/passwd` and `/etc/groups` change!
 
 <!-- end_slide -->
 
+Linux Capabilities
+===
+
+<!-- column_layout: [2, 1] -->
+<!-- column: 0 -->
+
+- **Problem**: `setuid root` gives full root privileges -> too powerful
+- **Solution**: *Linux Capabilities* split root privileges into fine-grained pieces
+  - Each process can get *only* the privileges it needs
+
+| Example Capability     | What it Allows                            |
+| ---------------------- | ----------------------------------------- |
+| `CAP_NET_ADMIN`        | Manage network interfaces, routing tables |
+| `CAP_SYS_ADMIN`        | "Catch-all" - system-wide administration  |
+| `CAP_DAC_OVERRIDE`     | Bypass file read/write permission checks  |
+| `CAP_SYS_TIME`         | Change the system clock                   |
+| `CAP_NET_BIND_SERVICE` | Bind to ports < 1024                      |
+
+<!-- column: 1 -->
+
+View capabilities:
+```bash
+getcap /usr/bin/arping
+```
+
+Set or remove capabilities:
+```bash
+sudo setcap cap_net_raw+ep /usr/bin/arping
+```
+
+<!-- reset_layout -->
+
+- Revocation limitation
+  - Once a process has a capability, the kernel cannot revoke it mid-execution
+  - You must terminate or restart the process to remove privileges
+
+<!-- end_slide -->
+
 Thank you!
 ===
 
