@@ -246,6 +246,55 @@ sudo setcap cap_net_raw+ep /usr/bin/arping
 
 <!-- end_slide -->
 
+Access Control Lists (ACLs)
+===
+
+- **Problem**: Traditional permissions only allow control for *owner*, *group*, *others*
+- **Solution**: Access Control Lists (ACLs) let you define per-user or per-group permissions
+
+<!-- column_layout: [1, 1] -->
+<!-- column: 0 -->
+
+```bash
+# Show ACLs
+getfacl secret.txt
+
+# Add a new user permission
+setfacl -m u:bob:r secret.txt
+
+# Remove an ACL entry
+setfacl -x u:bob secret.txt
+```
+
+<!-- column: 1 -->
+
+```bash
+# file: secret.txt
+# owner: alice
+# group: staff
+user::rw-
+user:bob:r--
+group::r--
+mask::r--
+other::---
+```
+
+<!-- reset_layout -->
+
+- **Default ACLs**: can be set on directories to apply to new files inside
+
+```bash
+setfacl -d -m u:bob:rw project/
+```
+
+💡 ACLs offer fine-grained control -> especially useful for multi-user servers.
+
+<!-- pause -->
+
+> More about Linux Capabilities and ACLs: https://media.ccc.de/v/why2025-192-linux-permissions-and-hardening
+
+<!-- end_slide -->
+
 Thank you!
 ===
 
