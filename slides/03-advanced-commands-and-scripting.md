@@ -9,6 +9,7 @@ ToDo!!!
 ===
 
 PIPES!!!!
+bashrc!
 
 - SELinux context: chcon, ls -Z / stat
 - diff, delta
