@@ -8,6 +8,8 @@ theme:
 ToDo!!!
 ===
 
+PIPES!!!!
+
 - SELinux context: chcon, ls -Z / stat
 - diff, delta
 - fg, bg
