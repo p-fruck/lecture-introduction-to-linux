@@ -5,47 +5,6 @@ theme:
   path: ../themes/dhbw_mannheim.yml
 ---
 
-ToDo!!!
-===
-
-PIPES!!!!
-bashrc!
-
-- SELinux context: chcon, ls -Z / stat
-- diff, delta
-- fg, bg
-- tmux
-- script
-- editors?
-- bash scripting
-  - exit codes, `$?`
-  - sed
-  - functions, loops
-  - variables, substitution
-  - command concatenation
-  - set options (set -xeu pipefail)
-  - shebang (/usr/bin/env bash), posix
-  - File descriptors
-  - `&&`, `||`
-  - `>/dev/null`, `2>&1`
-  - basename
-  - dirname
-  - sort / uniq
-  - base64
-  - jq / yq / python3 -m json.tool
-- openssl
-
-Handy Tools
-===
-
-| Command | Description                         | Useful Flags / Examples  |
-| ------- | ----------------------------------- | ------------------------ |
-| `date`  | Show/set system date and time       | `date +"%Y-%m-%d %H:%M"` |
-| `time`  | Measure execution time of a command | `time ls -l`             |
-| `echo`  | Print text or variables to terminal | echo "Hello, world!"     |
-
-<!-- end_slide -->
-
 Overview
 ===
 
@@ -175,6 +134,71 @@ EOF
 
 <!-- end_slide -->
 
+Pipes
+===
+
+<!-- column_layout: [3, 3] -->
+<!-- column: 0 -->
+
+The output of one command can be piped into another command to work with it (instead of a file):
+
+```bash +exec
+ls / | grep --only root
+```
+
+<!-- column: 1 -->
+<!-- pause -->
+
+Pipes only capture stdin:
+
+```bash +exec
+ls /root/ | grep --only Perm
+```
+<!-- pause -->
+
+File descriptors to the rescue!
+
+```bash +exec
+ls /root/ 2>&1 | grep --only Perm
+```
+
+<!-- pause -->
+<!-- reset_layout -->
+Infinite piping possible!
+
+```bash
+curl https://api.github.com/users/p-fruck/keys 2>/dev/null | jq .[0].key | tr -d '"' | ssh-keygen -lf -
+```
+> Note: `-f -` means `--file: stdin` and reads the input from the pipe
+
+<!-- end_slide -->
+
+Persisting Configuration
+===
+
+## How it works
+- Previous settings (`alias`, `umask`, etc.) are set on per-session basis
+- All shells support configuring persistent settings using configs
+- On Bash: `~/.bash_profile` and `~/.bashrc` are used
+  - They load further files from `~/.bashrc.d/*`
+  - Other shells like ZSH provide e.g. `~/.zshrc`
+- System-wide config is provided via `/etc/profile`, `/etc/bashrc` and `/etc/profile.d/*.sh`
+- Config files are just shell scripts
+- You can load them manually by running `source script.sh` or `. script.sh`
+
+<!-- pause -->
+## Differences
+
+| Feature              | `~/.bash_profile` & `/etc/profile`      | `~/.bashrc` & `/etc/bashrc` |
+| -------------------- | ----------------------------------------| -----------------------------------------|
+| **Type of Shell**    | Login shells                            | Non-login interactive shells             |
+| **When executed**    | At login (e.g., SSH, virtual terminal)  | For every new interactive terminal       |
+| **Common Use**       | Environment variables, session setup    | Aliases, functions, interactive settings |
+
+
+
+<!-- end_slide -->
+
 POSIX vs Bash
 ===
 
@@ -208,7 +232,7 @@ Bash adds arrays, `[[ ]]`, process substitution, and more.
 Shebang
 ===
 
-<!-- column_layout: [3, 3] -->
+<!-- column_layout: [3, 2] -->
 <!-- column: 0 -->
 
 # How-to
@@ -241,7 +265,7 @@ Shebang
 
 <!-- reset_layout -->
 
-> 💡 Tip: Using /usr/bin/env makes your script more portable across systems (`/bin/sh` is a special case as it is required by the POSIX standard).
+> 💡 Tip: Using `/usr/bin/env` makes your script more portable across systems (`/bin/sh` is a special case as it is required by the POSIX standard).
 
 <!-- end_slide -->
 
@@ -463,6 +487,95 @@ This ensures predictable, safe scripts and easier debugging.
 
 <!-- end_slide -->
 
+Editors
+===
+
+<!-- column_layout: [3, 3] -->
+<!-- column: 0 -->
+
+## Basics
+- Instead of graphical tools like VSCode, we can also use text-based editors
+- Today, `nano` and `vim` are the most common editors
+- `nano` is a bit simpler and shows the required keyboard shortcuts
+- `vim` is more advanced and allows faster editing, but is more complex!
+    - Command driven: `:wq` to **w**rite and **q**uit
+    - Use `/` to search (like in less)
+    - Press `i` for insert mode, `v` for visual mode, `ESC` to go back to regular mode
+
+<!-- column: 1 -->
+![image:width:100%](../assets/exit-vim.png)
+<!-- reset_layout -->
+# Advanced
+- Nowadays, there are more modern editors that support the Language Server Protocol (LSP)
+  - If you want a really advanced text editor, have a look at `helix` or `neovim`
+
+<!-- end_slide -->
+Processes and Job Control
+===
+
+# Key Commands
+| Command  | Description                              | Example Usage                          |
+| -------- | ---------------------------------------- | -------------------------------------- |
+| `&`      | Run a command in the background          | `./long_running_command &`             |
+| `Ctrl+Z` | Pause (suspend) a running process        | Press `Ctrl+Z` while running a command |
+| `bg`     | Move a stopped job to the background     | `bg %1` (background job 1)             |
+| `fg`     | Bring a background job to the foreground | `fg %3` (foreground job 3)             |
+| `jobs`   | List all background jobs                 | `jobs`                                 |
+
+# Examples
+<!-- column_layout: [3, 3] -->
+<!-- column: 0 -->
+```bash
+# Run a command in the background
+$ long_running_task &
+[1] 12345  # Job 1, PID 12345
+
+# Suspend the process with Ctrl+Z
+$ ^Z
+[2]+ Stopped              long_running_task
+
+# list background jobs
+$ jobs
+[1]-  Running                    long_running_task
+[2]+  Stopped                    long_running_task
+```
+<!-- column: 1 -->
+
+
+```bash
+# Move the suspended process to the background
+$ bg
+[1]+ 12345 long_running_task &
+
+# Bring the process to the foreground
+$ fg
+long_running_task
+
+# Bring the second background process in the foreground
+$ fg %3
+other_task
+```
+
+<!-- end_slide -->
+Useful (scripting) tools
+===
+
+| Tool           | Description                                | Example Command|
+|----------------|--------------------------------------------|-----------------------------|
+| `sed`          | Manipulate text (in place)                 | `sed -i 's/old/new/g' file.txt`|
+| `basename`     | Extracts the file name from a path.        | `basename /path/to/file.txt`|
+| `dirname`      | Extracts the directory part of a file path.| `dirname /path/to/file.txt` |
+| `sort` / `uniq`| Sorts lines and removes duplicate lines.   | `sort file.txt \| uniq`     |
+| `base64`       | Encodes and decodes data in Base64 format. | `echo "text" \| base64`     |
+| `jq` / `yq`    | Parse and format JSON/YAML data.           | `cat file.json \| jq .`     |
+| `yq`           | Parses and formats YAML data.              | `cat file.yml \| yq eval .` |
+| `date`         | Show/set system date and time.             | `date -d @1730502000`       |
+| `time`         | Measure execution time of a command        | `time ls -l`                |
+| `diff/delta`   | Show difference between two files          | `delta first.txt second.txt`|
+
+> If no `jq` is installed: `cat file.json | python3 -m json.tool` might help
+
+<!-- end_slide -->
 Thank you!
 ===
 

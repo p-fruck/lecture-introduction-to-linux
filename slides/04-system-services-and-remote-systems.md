@@ -8,3 +8,6 @@ theme:
 - tmux
 - systemd services
 - ssh (permissions)
+- openssl
+- SELinux context: chcon, ls -Z / stat
+- script
