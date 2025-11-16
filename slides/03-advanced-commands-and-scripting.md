@@ -272,12 +272,18 @@ Shebang
 Variables
 ===
 
+<!-- column_layout: [3, 2] -->
+<!-- column: 0 -->
 ```bash
 # Assign
-name="Alice"
+name=Alice
+# Use quotes to include spaces
+fullname="Bob the builder"
 
 # Use
 echo "Hello $name"
+# Brackets define the start and end of variables
+echo "${name}.lastname@example.com"
 
 # Read-only
 readonly pi=3.14
@@ -286,7 +292,25 @@ readonly pi=3.14
 export PATH="/usr/local/bin:$PATH"
 ```
 
+<!-- pause -->
+
+<!-- column: 1 -->
+
+```bash +exec
+name=Bob
+fullname="$name the builder"
+# Variables are replace in double quotes
+echo "Fullname: $fullname"
+# But not in single quotes:
+message='$name is a nice name!'
+echo $message
+```
+
+<!-- reset_layout -->
+<!-- pause -->
 > Variable scoping: local variables inside functions vs global outside.
+
+> Using `export` allows variables to be used by other processes launched from the current session.
 
 <!-- end_slide -->
 
