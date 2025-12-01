@@ -522,6 +522,33 @@ Common services: Disk mounting
 
 <!-- end_slide -->
 
+Alternative init systems
+===
+
+
+| Init System       | Service File / Directory Location       | Enable/Start Command               |
+|-------------------|-----------------------------------------|------------------------------------|
+| **SysVinit**      | `/etc/init.d/<service>` and             | `sudo update-rc.d sshd defaults`   |
+|                   |              symlinks in `/etc/rc*.d/`  | `/etc/init.d/sshd start`           |
+| **BusyBox init**  | `/etc/init.d/<service>`                 | `/etc/init.d/sshd start`           |
+| **OpenRC**        | `/etc/init.d/<service>`                 | `rc-service sshd start`            |
+|                   | `/etc/runlevels/<level>/`               |                                    |
+| **s6-rc**         | `/etc/s6-rc/source/<service>/`          | `s6-rc -u change sshd`             |
+|                   |  or `/service/<service>/`               |                                    |
+| **runit**         | `/etc/sv/<service>/` (definitions)      | `ln -s /etc/sv/sshd /var/service/` |
+|                   | `/var/service/` (active)                |                                    |
+
+- SysVinit is the traditional runlevel-based init using shell scripts
+- BusyBox init is a minimal SysV-style variant for embedded systems
+- OpenRC is a modern dependency-aware script-based init with parallel startup
+- runit is a fast three-stage init with built-in service supervision 
+- s6/s6-rc provides a highly modular, reliability-focused supervision framework ideal for minimal and containerized systems
+
+> Use `ps [aux] | grep ' 1 '` to determine your init system (PID 1)
+
+<!-- end_slide -->
+
+
 SELinux Basics
 ===
 
