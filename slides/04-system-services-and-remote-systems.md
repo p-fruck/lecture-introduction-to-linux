@@ -445,31 +445,28 @@ search example.com
 
 Common services: Scheduled Tasks
 ===
-<!-- column_layout: [1,1] -->
+<!-- column_layout: [3,4] -->
 <!-- column: 0-->
 
 # Traditional: Cron
 
-- Simple to read/write
-- Hard to gather logs
 ```bash
 crontab -e # edit
 crontab -l # list
 ```
 
 ```
-┌───────────── minute (0 - 59)
-│ ┌───────────── hour (0 - 23)
-│ │ ┌───────────── day of month (1 - 31)
-│ │ │ ┌───────────── month (1 - 12)
-│ │ │ │ ┌───────────── day of week (0 - 7)
-│ │ │ │ │                  (Sunday=0 or 7)
+┌─────── minute (0 - 59)
+│ ┌─────── hour (0 - 23)
+│ │ ┌─────── day of month (1 - 31)
+│ │ │ ┌─────── month (1 - 12)
+│ │ │ │ ┌─────── day of week (0 - 7)
+│ │ │ │ │            (Sunday=0 or 7)
 * * * * *  command_to_run
 ```
 <!-- column: 1-->
 # Modern: systemd timers
 
-Timer unit
 - Name indicates which service to start
 - e.g. `/etc/systemd/system/myservice.timer`
 
@@ -528,51 +525,83 @@ Common services: Disk mounting
 SELinux Basics
 ===
 
-<!-- column_layout: [1, 1] -->
+<!-- column_layout: [3, 4] -->
 <!-- column: 0 -->
 
-- Mandatory Access Control (MAC)
-- Adds security labels (contexts) to
-  - files
-  - processes
-  - ports
-
-Show context
+Mandatory Access Control (MAC)
+- Adds security labels (contexts) to files processes and ports
 
 ```bash
+# show context
 ls -Z
 ps -eZ
+# get/set SELinux state
+getenforce
+setenforce {0,1}
 ```
 
 <!-- column: 1 -->
 
-Change context
 
-```bash
-sudo chcon -t httpd_sys_content_t /var/www/html/index.html
-```
-
-Check allowed labels
-
+List and change file context / service port
 ```bash
 sudo semanage fcontext -l
+sudo chcon -t httpd_sys_content_t /var/www/html/index.html
+
+# -m = modify, -a = append
+sudo semanage port -m -t ssh_port_t -p tcp 2222
+sudo semanage port -l
 ```
 
 <!-- reset_layout -->
 
-> If SELinux denies access → check logs with `sudo journalctl -t setroubleshoot`
+> SELinux denies access → Check logs with `sudo journalctl -t setroubleshoot` or use `audit2allow`
+
+> If you see `setenforce 0` in installation instructions, choose a different product
 
 <!-- end_slide -->
 
-
-Recap: Legacy vs Modern Tools
+Linux Firewall Tools
 ===
 
-| Category     | Legacy Tool           | systemd Alternative       |
-| ------------ | --------------------- | ------------------------- |
-| Service mgmt | SysV init scripts     | systemctl                 |
-| Logs         | `/var/log/*`, `dmesg` | journalctl                |
-| Cronjobs     | cron                  | systemd timers            |
-| Networking   | ifupdown              | networkd / NetworkManager |
+<!-- column_layout: [2, 2] -->
 
-> systemd aims to unify the Linux ecosystem
+<!-- column: 0 -->
+# iptables
+- Traditional Linux firewall
+- Works at the packet-filtering level
+- Different commands for IPv4/IPv6
+  - Complex structure & rules
+- `iptables -L -v -n [-t {nat,mangle}]`
+- `ip6tables -L -v -n [-t {nat,mangle}]`
+- `iptables-save; ip6tables-save`
+
+# nftables
+- Successor to iptables
+- Single framework for IPv4, IPv6, ARP, and bridge filtering
+- Uses concise syntax; replaces multiple iptables commands
+- `nft list ruleset`
+
+<!-- column: 1 -->
+# ufw
+- Stands for "Uncomplicated Firewall"
+- Front-end for iptables/nftables
+- Simple CLI for managing rules
+- Mostly used on Ubuntu/Debian
+- `ufw status verbose`
+
+# firewalld
+- Dynamic firewall manager for Linux
+- Zones define network trust levels
+- Works with nftables back-end
+- More complex & capable than `ufw`
+- Common on RHEL/Fedora
+- `sudo firewall-cmd --list-all`
+
+<!-- end_slide -->
+Thank you!
+===
+
+Thank you for your attention!
+
+Don't forget the feedback in Moodle please!
