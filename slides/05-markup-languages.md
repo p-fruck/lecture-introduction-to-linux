@@ -9,6 +9,7 @@ Markup Languages
 ===
 
 # Goal of this Lecture
+- Introduce markup languages and show their importance
 - Understand how tables are written in Markdown, Typst, and LaTeX
 - Learn how bibliographies work in LaTeX (incl. Zotero & Better BibTeX)
 - Explore Pandoc and its document-conversion capabilities
@@ -63,6 +64,8 @@ Overview
 
 - Powerful scientific typesetting
 - Industry standard for math-heavy work
+
+<!-- reset_layout -->
 
 ## When To Use What?
 
@@ -573,6 +576,8 @@ Tables
 | Bob      | 21      | Mannheim |
 ```
 
+> http://markdowntable.com
+
 <!-- column: 1 -->
 
 # Typst
@@ -609,6 +614,8 @@ Tables
   \hline
 \end{tabular}
 ```
+
+> https://www.tablesgenerator.com/latex_tables
 
 <!-- reset_layout -->
 <!-- column_layout: [1, 1, 1] -->
@@ -784,7 +791,7 @@ tlmgr update --all
 <!-- end_slide -->
 
 
-pdflatex vs. XeLaTeX
+Building a LaTeX project
 ===
 
 <!-- column_layout: [1, 1] -->
@@ -799,6 +806,16 @@ pdflatex vs. XeLaTeX
 - Best for:
   - Scientific papers
   - Documents without special typography
+
+# latexmk
+
+- Wrapper around multiple LaTeX compilers
+- Automates repeated runs (e.g. bibliography, ToC)
+
+# latexdiff
+
+- Highlight diff between documents (with git)
+- `latexdiff-vc --pdf --flatten -r <commit1> [-r <commit2>] main.tex`
 
 <!-- column: 1 -->
 
@@ -825,7 +842,7 @@ pdflatex vs. XeLaTeX
 Pandoc
 ===
 
-<!-- column_layout: [1, 1, 1] -->
+<!-- column_layout: [1, 1] -->
 <!-- column: 0 -->
 
 # What Is Pandoc?
@@ -842,6 +859,7 @@ Pandoc
 - Word -> Markdown
 - Typst -> PDF
 
+<!-- column: 1 -->
 ```bash
 pandoc notes.md -o notes.pdf
 pandoc file.tex -o file.md
@@ -854,7 +872,12 @@ pandoc file.tex -o file.md
 - Works nicely in CI pipelines
 - Robust tool for long-term documentation workflows
 
-<!-- column: 1 -->
+<!-- end_slide -->
+
+Pandoc
+===
+<!-- column_layout: [1, 1] -->
+<!-- column: 0 -->
 
 # Markdown -> PDF via LaTeX
 
@@ -874,7 +897,7 @@ pandoc report.md \
 pandoc slides.md -t typst -o slides.typ
 ```
 
-<!-- column: 2 -->
+<!-- column: 1 -->
 
 # Filters & Extensions
 
