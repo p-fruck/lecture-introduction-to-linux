@@ -92,8 +92,10 @@ LaTeX is extremely powerful but more verbose
 - Verbose syntax
 - Large installation
 
-A "simple" LaTeX document snippet
+A "simple" LaTeX document snippet -->
 
+
+<!-- column: 1 -->
 ```latex
 \documentclass{article} % You can also use report, book, etc.
 
@@ -110,7 +112,12 @@ A "simple" LaTeX document snippet
 \end{document}
 ```
 
-<!-- column: 1 -->
+<!-- end_slide -->
+
+Typst and Markdown
+===
+<!-- column_layout: [1, 1] -->
+<!-- column: 0 -->
 
 # Typst: A Modern Alternative
 
@@ -132,6 +139,7 @@ A simple Typst document setup
 #set date[2025-12-02]
 ```
 
+<!-- column: 1 -->
 # Markdown
 
 - Simple syntax with minimal markup
@@ -264,7 +272,7 @@ LaTeX Structure
 
 ```latex
 \section{Level 1 Heading}
-This is an introductory paragraph under a level-1 heading.
+Introductory paragraph under a level-1 heading.
 
 \subsection{Level 2 Heading}
 More detailed section text goes here.
@@ -295,7 +303,7 @@ And finally, a nested list
 
 ```latex +render
 \section{Level 1 Heading}
-This is an introductory paragraph under a level-1 heading.
+Introductory paragraph under a level-1 heading.
 
 \subsection{Level 2 Heading}
 More detailed section text goes here.
@@ -475,9 +483,7 @@ Mathematical Formulas
 # Typst
 
 ```typst
-$
-frac(a^2, 2)
-$
+$frac(a^2, 2)$
 
 $
 vec(1, 2, delim: "[")
@@ -527,9 +533,7 @@ $
 # LaTeX
 
 ```latex
-\[
-\frac{a^{2}}{2}
-\]
+\[ \frac{a^{2}}{2} \]
 
 \[
 \begin{bmatrix}
@@ -671,8 +675,6 @@ Bibliography in LaTeX
   - `\parencite{key}` (BibLaTeX)
   - `\textcite{key}` (BibLaTeX)
 
-<!-- column: 1 -->
-
 The `.bib` file (bibliography database file)
 
 ```bib
@@ -683,6 +685,8 @@ The `.bib` file (bibliography database file)
   publisher = {Addison-Wesley Professional}
 }
 ```
+
+<!-- column: 1 -->
 
 Import the package `biblatex` and add the bibliography database file
 
