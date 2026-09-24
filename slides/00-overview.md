@@ -287,7 +287,9 @@ We also recommend installing it using dual boot or, if possible, as a complete L
 
 <!-- end_slide -->
 
+Thank you!
+===
 
- Thank you for your attention!
+Thank you for your attention!
 
- Don't forget the feedback
+Don't forget the feedback in Moodle please!
