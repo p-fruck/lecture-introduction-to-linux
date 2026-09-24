@@ -1,9 +1,32 @@
 ---
-title: "Introduction to Linux: **Advanced Commands 2**"
+title: "Introduction to Linux: **POSIX and Bash Syntax**"
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
 ---
+
+POSIX vs Bash 
+===
+
+<!-- column_layout: [3, 3] -->
+<!-- column: 0 -->
+# Goal of this lecture
+
+- Learn core Bash scripting syntax
+- Understand differences between POSIX and Bash-specific features
+
+# Why?
+
+- Scripts need to run reliably across different shells
+- Core syntax knowledge is the foundation for writing scripts
+<!-- column: 1 -->
+
+# Use Cases:
+- Portable automation scripts
+- Configuration and setup scripts
+- Writing reusable shell functions
+
+<!-- end_slide -->
 
 Shebang
 ===

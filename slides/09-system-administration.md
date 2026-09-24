@@ -1,9 +1,28 @@
 ---
-title: "Introduction to Linux: **System Services and Remote Systems 2**"
+title: "Introduction to Linux: **System Administration**"
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
 ---
+
+System Administration
+===
+
+# Goal of this Lecture
+- How to inspect and analyze system logs
+- How Linux manages networking, DNS, and scheduled tasks
+- How disks are mounted and how init systems differ
+- Basics of SELinux and Linux firewalls for enhanced security
+
+# Why?
+
+- Servers need to be monitored, debugged, and secured without a GUI
+- Understanding logs, networking, and init systems is key for:
+  - troubleshooting
+  - security hardening
+  - reliable system operation
+
+<!-- end_slide -->
 
 
 journalctl: Viewing Logs

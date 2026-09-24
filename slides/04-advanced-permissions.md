@@ -5,6 +5,20 @@ theme:
   path: ../themes/dhbw_mannheim.yml
 ---
 
+Advanced Permissions
+===
+
+# Goal of this lecture
+  - Learn how to safely elevate privileges
+  - Understand fine-grained access control beyond classic permissions (ACLs)
+  - Understand Linux Capabilities as a safer alternative to full root access
+
+# Why?
+  - Classic permissions are often not granular enough
+  - Minimizing granted privileges reduces the security impact of bugs and exploits
+
+<!-- end_slide -->
+
 Elevating Privileges
 ===
 | Command             | Description                  | Useful Flags / Examples                   |

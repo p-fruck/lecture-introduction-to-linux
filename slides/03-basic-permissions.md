@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux: **Permissions**"
+title: "Introduction to Linux: **Basic Permissions**"
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml

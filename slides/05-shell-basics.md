@@ -1,11 +1,11 @@
 ---
-title: "Introduction to Linux: **Advanced Commands**"
+title: "Introduction to Linux: **Shell Basics**"
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
 ---
 
-Overview
+Shell Basics
 ===
 
 <!-- column_layout: [3, 3] -->

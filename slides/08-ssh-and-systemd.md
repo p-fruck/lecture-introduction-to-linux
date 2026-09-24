@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux: **System Services and Remote Systems**"
+title: "Introduction to Linux: **SSH and systemd**"
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml

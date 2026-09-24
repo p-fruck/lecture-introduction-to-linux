@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux: **Basic Commands and Shell**"
+title: "Introduction to Linux: **Core Commands**"
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml

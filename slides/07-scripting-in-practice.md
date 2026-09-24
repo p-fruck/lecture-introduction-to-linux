@@ -1,9 +1,32 @@
 ---
-title: "Introduction to Linux: **Scripting**"
+title: "Introduction to Linux: **Scripting in Practice**"
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
 ---
+
+Scripting
+===
+
+<!-- column_layout: [3, 3] -->
+<!-- column: 0 -->
+# Goal of this lecture
+
+- Learn practical scripting pitfalls and best practices
+- Get familiar with editors and process/job control
+
+# Why?
+
+- Real-world scripts must handle errors and edge cases safely
+- Editors and job control are daily tools for any Linux user
+<!-- column: 1 -->
+
+# Use Cases:
+- Writing robust, production-ready scripts
+- Managing long-running or background tasks
+- Editing files directly on remote servers
+
+<!-- end_slide -->
 
 Word Splitting
 ===
