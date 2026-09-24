@@ -86,21 +86,6 @@ Utilities
 
 <!-- end_slide -->
 
-Viewing Files
-===
-
-| Command | Description                      | Useful Flags / Examples                         |
-| ------- | -------------------------------- | ----------------------------------------------- |
-| `cat`   | Show file contents               | `cat file.txt`                                  |
-| `tac`   | Reverse `cat`                    | `tac file.txt`                                  |
-| `less`  | View file page by page           | `/text` search forward, `?text` search backward |
-| `more`  | More primitive pager than `less` |                                                 |
-| `head`  | Show first lines of file         | `-n 20` show first 20 lines                     |
-| `tail`  | Show last lines of file          | `-f` follow file (useful for logs)              |
-| `wc`    | Count lines, words, or bytes     | `-l` lines, `-w` words, `-c` characters         |
-
-<!-- end_slide -->
-
 Thank you!
 ===
 
