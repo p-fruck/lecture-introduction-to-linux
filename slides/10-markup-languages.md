@@ -918,7 +918,6 @@ pandoc paper.md \
 
 <!-- end_slide -->
 
-
 Thank you!
 ===
 
