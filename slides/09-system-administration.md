@@ -60,7 +60,7 @@ sudo journalctl -ke
 # equivalent to
 # sudo cat /var/log/audit/audit.log
 sudo journalctl -t audit \
-  --no-pager --output=cat
+    --no-pager --output=cat
 ```
 
 <!-- end_slide -->

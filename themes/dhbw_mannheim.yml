@@ -80,7 +80,7 @@ headings:
   h1:
     prefix: "██"
     colors:
-      foreground: palette:blue 
+      foreground: palette:blue
   h2:
     prefix: "▓▓▓"
     colors:
@@ -164,4 +164,3 @@ palette:
     black: "2d2d2d"
     gray: "d2d2d2"
     light_gray: "f0f0f0"
-

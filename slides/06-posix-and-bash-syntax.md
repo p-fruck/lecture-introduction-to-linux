@@ -136,11 +136,11 @@ Conditionals
 ```bash
 # hint: Do not use this in prod :)
 if [ "$USER" = "root" ]; then
-  echo "Welcome, root user!"
+    echo "Welcome, root user!"
 elif [ "$USER" = "admin" ]; then
-  echo "Hello, admin."
+    echo "Hello, admin."
 else
-  echo "Access denied."
+    echo "Access denied."
 fi
 ```
 
@@ -154,19 +154,19 @@ fi
 
 ```bash
 case "$arg" in
-  start)
-    echo "Starting service..."
-    ;;
-  stop)
-    echo "Stopping service..."
-    ;;
-  restart|reload)
-    echo "Restarting service..."
-    ;;
-  *)
-    echo "Usage: $0 {start|stop|restart}"
-    exit 1
-    ;;
+    start)
+        echo "Starting service..."
+        ;;
+    stop)
+        echo "Stopping service..."
+        ;;
+    restart|reload)
+        echo "Restarting service..."
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
 esac
 ```
 
@@ -185,7 +185,7 @@ Functions in Bash
 ```bash
 # Define a function
 greet() {
-  echo "Hello, $1"
+    echo "Hello, $1"
 }
 
 # Call a function
@@ -193,8 +193,8 @@ greet "Alice"
 
 # Functions can return status codes
 check_file() {
-  # in POSIX, just run the command without [[ ]]
-  [[ -f "$1" ]]
+    # in POSIX, just run the command without [[ ]]
+    [[ -f "$1" ]]
 }
 ```
 
@@ -216,12 +216,12 @@ Loops automate repetitive tasks.
 ```bash +exec
 # Loop over files
 for file in *.md; do
-  echo "File: $file"
+    echo "File: $file"
 done
 
 # Iterate over numbers (set notation)
 for i in {1..5}; do
-  echo "Number $i"
+    echo "Number $i"
 done
 ```
 
@@ -233,8 +233,8 @@ done
 counter=1
 # POSIX uses single or no brackets, but supports less operators
 while [[ $counter -le 5 ]]; do
-  echo "Count $counter"
-  ((counter++))
+    echo "Count $counter"
+    ((counter++))
 done
 ```
 

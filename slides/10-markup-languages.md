@@ -254,11 +254,11 @@ This is an introductory paragraph under a level-1 heading.
 
 More detailed section text goes here.
 
-Here is a simple unordered list 
+Here is a simple unordered list
 - Apples
 - Bananas
 
-Here is an ordered list 
+Here is an ordered list
 1. First step
 2. Second step
 
@@ -899,10 +899,10 @@ Pandoc
 
 ```bash
 pandoc report.md \
-  --from markdown \
-  --to pdf \
-  --pdf-engine=pdflatex \
-  -o report.pdf
+    --from markdown \
+    --to pdf \
+    --pdf-engine=pdflatex \
+    -o report.pdf
 ```
 
 > Real world example using a LaTeX template!
@@ -923,9 +923,9 @@ pandoc slides.md -t typst -o slides.typ
 
 ```bash
 pandoc paper.md \
-  --citeproc \
-  --bibliography=refs.bib \
-  -o paper.pdf
+    --citeproc \
+    --bibliography=refs.bib \
+    -o paper.pdf
 ```
 
 <!-- end_slide -->
