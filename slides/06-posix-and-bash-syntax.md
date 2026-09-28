@@ -1,15 +1,17 @@
 ---
-title: "Introduction to Linux: **POSIX and Bash Syntax**"
+title: 'Introduction to Linux: **POSIX and Bash Syntax**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
 ---
 
-POSIX vs Bash 
+POSIX vs Bash
 ===
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 # Goal of this lecture
 
 - Learn core Bash scripting syntax
@@ -19,9 +21,11 @@ POSIX vs Bash
 
 - Scripts need to run reliably across different shells
 - Core syntax knowledge is the foundation for writing scripts
+
 <!-- column: 1 -->
 
 # Use Cases:
+
 - Portable automation scripts
 - Configuration and setup scripts
 - Writing reusable shell functions
@@ -32,6 +36,7 @@ Shebang
 ===
 
 <!-- column_layout: [3, 2] -->
+
 <!-- column: 0 -->
 
 # How-to
@@ -72,7 +77,9 @@ Variables
 ===
 
 <!-- column_layout: [3, 2] -->
+
 <!-- column: 0 -->
+
 ```bash
 # Assign
 name=Alice
@@ -106,7 +113,9 @@ echo $message
 ```
 
 <!-- reset_layout -->
+
 <!-- pause -->
+
 > Variable scoping: local variables inside functions vs global outside.
 
 > Using `export` allows variables to be used by other processes launched from the current session.
@@ -117,7 +126,9 @@ Conditionals
 ===
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 # If-else logic
 
 - The `if` statement runs commands conditionally based on exit status
@@ -138,6 +149,7 @@ fi
 <!-- column: 1 -->
 
 # Case statement
+
 - `case` compares a value against multiple patterns
 
 ```bash
@@ -166,6 +178,7 @@ Functions in Bash
 ===
 
 # Functions allow reusable blocks of code
+
 - Functions improve code clarity and reduce repetition.
 - Bash allows further syntax to define functions but this way is POSIX compliant, hence more portable
 
@@ -195,7 +208,9 @@ Loops: for and while
 Loops automate repetitive tasks.
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 # For Loop
 
 ```bash +exec
@@ -211,6 +226,7 @@ done
 ```
 
 <!-- column: 1 -->
+
 # While Loop
 
 ```bash +exec
@@ -222,26 +238,28 @@ while [[ $counter -le 5 ]]; do
 done
 ```
 
-
 <!-- end_slide -->
 
 Globbing
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
+
 # Globbing (Filename Expansion)
 
 - Globbing lets you match filenames using wildcards:
 
-| Pattern | Matches |
-|---------|---------|
-| `*`     | Any string, including empty |
-| `?`     | Any single character |
-| `[abc]` | Any one of the listed characters |
-| `[!abc]`| Any character not listed |
+| Pattern  | Matches                          |
+| -------- | -------------------------------- |
+| `*`      | Any string, including empty      |
+| `?`      | Any single character             |
+| `[abc]`  | Any one of the listed characters |
+| `[!abc]` | Any character not listed         |
 
 <!-- column: 1 -->
+
 # Example:
 
 ```bash
@@ -251,7 +269,7 @@ ls *.txt
 # List files starting with a or b
 ls [ab]*.txt
 ```
-  
+
 <!-- end_slide -->
 
 Thank you!

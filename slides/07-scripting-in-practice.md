@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux: **Scripting in Practice**"
+title: 'Introduction to Linux: **Scripting in Practice**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
@@ -9,7 +9,9 @@ Scripting
 ===
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 # Goal of this lecture
 
 - Learn practical scripting pitfalls and best practices
@@ -19,9 +21,11 @@ Scripting
 
 - Real-world scripts must handle errors and edge cases safely
 - Editors and job control are daily tools for any Linux user
+
 <!-- column: 1 -->
 
 # Use Cases:
+
 - Writing robust, production-ready scripts
 - Managing long-running or background tasks
 - Editing files directly on remote servers
@@ -32,7 +36,9 @@ Word Splitting
 ===
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 ```bash +exec
 files="file1.txt file2.txt file3.txt"
 
@@ -41,9 +47,9 @@ for f in $files; do
     echo "File: $f"
 done
 ```
-  
 
 <!-- column: 1 -->
+
 ```bash +exec
 files="file1.txt file2.txt file3.txt"
 
@@ -56,10 +62,10 @@ done
 <!-- reset_layout-->
 
 <!-- pause -->
+
 > Again, `shellcheck` to the rescue :)
 
 <!-- end_slide -->
-
 
 Error Handling
 ===
@@ -79,6 +85,7 @@ set -xeuo pipefail
 This ensures predictable, safe scripts and easier debugging.
 
 <!-- pause -->
+
 > This could have saved Kyoto University multiple terabytes of valuable research data: https://www.youtube.com/watch?v=Nkm8BuMc4sQ
 > 6:05 shows why the difference between `mv` and `cp` can be very important!
 
@@ -88,29 +95,37 @@ Editors
 ===
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
 
 ## Basics
+
 - Instead of graphical tools like VSCode, we can also use text-based editors
 - Today, `nano` and `vim` are the most common editors
 - `nano` is a bit simpler and shows the required keyboard shortcuts
 - `vim` is more advanced and allows faster editing, but is more complex!
-    - Command driven: `:wq` to **w**rite and **q**uit
-    - Use `/` to search (like in less)
-    - Press `i` for insert mode, `v` for visual mode, `ESC` to go back to regular mode
+  - Command driven: `:wq` to **w**rite and **q**uit
+  - Use `/` to search (like in less)
+  - Press `i` for insert mode, `v` for visual mode, `ESC` to go back to regular mode
 
 <!-- column: 1 -->
+
 ![image:width:100%](../assets/exit-vim.png)
+
 <!-- reset_layout -->
+
 # Advanced
+
 - Nowadays, there are more modern editors that support the Language Server Protocol (LSP)
   - If you want a really advanced text editor, have a look at `helix` or `neovim`
 
 <!-- end_slide -->
+
 Processes and Job Control
 ===
 
 # Key Commands
+
 | Command  | Description                              | Example Usage                          |
 | -------- | ---------------------------------------- | -------------------------------------- |
 | `&`      | Run a command in the background          | `./long_running_command &`             |
@@ -120,8 +135,11 @@ Processes and Job Control
 | `jobs`   | List all background jobs                 | `jobs`                                 |
 
 # Examples
+
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 ```bash
 # Run a command in the background
 $ long_running_task &
@@ -136,8 +154,8 @@ $ jobs
 [1]-  Running                    long_running_task
 [2]+  Stopped                    long_running_task
 ```
-<!-- column: 1 -->
 
+<!-- column: 1 -->
 
 ```bash
 # Move the suspended process to the background
@@ -154,21 +172,22 @@ other_task
 ```
 
 <!-- end_slide -->
+
 Useful (scripting) tools
 ===
 
-| Tool           | Description                                | Example Command|
-|----------------|--------------------------------------------|-----------------------------|
-| `sed`          | Manipulate text (in place)                 | `sed -i 's/old/new/g' file.txt`|
-| `basename`     | Extracts the file name from a path.        | `basename /path/to/file.txt`|
-| `dirname`      | Extracts the directory part of a file path.| `dirname /path/to/file.txt` |
-| `sort` / `uniq`| Sorts lines and removes duplicate lines.   | `sort file.txt \| uniq`     |
-| `base64`       | Encodes and decodes data in Base64 format. | `echo "text" \| base64`     |
-| `jq` / `yq`    | Parse and format JSON/YAML data.           | `cat file.json \| jq .`     |
-| `yq`           | Parses and formats YAML data.              | `cat file.yml \| yq eval .` |
-| `date`         | Show/set system date and time.             | `date -d @1730502000`       |
-| `time`         | Measure execution time of a command        | `time ls -l`                |
-| `diff/delta`   | Show difference between two files          | `delta first.txt second.txt`|
+| Tool            | Description                                 | Example Command                 |
+| --------------- | ------------------------------------------- | ------------------------------- |
+| `sed`           | Manipulate text (in place)                  | `sed -i 's/old/new/g' file.txt` |
+| `basename`      | Extracts the file name from a path.         | `basename /path/to/file.txt`    |
+| `dirname`       | Extracts the directory part of a file path. | `dirname /path/to/file.txt`     |
+| `sort` / `uniq` | Sorts lines and removes duplicate lines.    | `sort file.txt \| uniq`         |
+| `base64`        | Encodes and decodes data in Base64 format.  | `echo "text" \| base64`         |
+| `jq` / `yq`     | Parse and format JSON/YAML data.            | `cat file.json \| jq .`         |
+| `yq`            | Parses and formats YAML data.               | `cat file.yml \| yq eval .`     |
+| `date`          | Show/set system date and time.              | `date -d @1730502000`           |
+| `time`          | Measure execution time of a command         | `time ls -l`                    |
+| `diff/delta`    | Show difference between two files           | `delta first.txt second.txt`    |
 
 > If no `jq` is installed: `cat file.json | python3 -m json.tool` might help
 

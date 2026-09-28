@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux: **System Tools**"
+title: 'Introduction to Linux: **System Tools**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
@@ -9,13 +9,15 @@ System Tools
 ===
 
 # Goal of this lecture
-  - Learn how to search files and text efficiently
-  - Understand tools for inspecting system state and resource usage
-  - Get familiar with archiving, compression, and basic networking commands
+
+- Learn how to search files and text efficiently
+- Understand tools for inspecting system state and resource usage
+- Get familiar with archiving, compression, and basic networking commands
 
 # Why?
-  - These tools are essential for troubleshooting and system administration
-  - They build directly on the fundamentals from the previous lecture
+
+- These tools are essential for troubleshooting and system administration
+- They build directly on the fundamentals from the previous lecture
 
 <!-- end_slide -->
 

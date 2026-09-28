@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux: **Basic Permissions**"
+title: 'Introduction to Linux: **Basic Permissions**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
@@ -9,38 +9,40 @@ Users and Permissions
 ===
 
 # Goal of this lecture
-  - Understand how to manage users/groups on Linux
-  - Understand how Linux handles permissions
-  - Understand potential security risks of wrong file permissions
+
+- Understand how to manage users/groups on Linux
+- Understand how Linux handles permissions
+- Understand potential security risks of wrong file permissions
 
 # Why?
-  - In Linux "everything is a file", so we have to care about the files permission!
+
+- In Linux "everything is a file", so we have to care about the files permission!
 
 <!-- end_slide -->
 
 Group Management
 ===
 
-| Command                 | Description                | Useful Flags / Examples       |
-| ----------------------- | -------------------------- | ----------------------------- |
-| `id`                    | Show user/group IDs        |                               |
-| `groups`                | Show groups you belong to  |                               |
-| `groupadd` / `groupdel` | Add/delete a group         | `groupadd --system groupname` |
-| `groupmod`              | Modify a group             |                               |
+| Command                 | Description               | Useful Flags / Examples       |
+| ----------------------- | ------------------------- | ----------------------------- |
+| `id`                    | Show user/group IDs       |                               |
+| `groups`                | Show groups you belong to |                               |
+| `groupadd` / `groupdel` | Add/delete a group        | `groupadd --system groupname` |
+| `groupmod`              | Modify a group            |                               |
 
 <!-- end_slide -->
 
 User Management
 ===
 
-| Command                 | Description                     | Useful Flags / Examples             |
-| ----------------------- | ------------------------------- | ----------------------------------- |
-| `whoami`                | Show current user               |                                     |
-| `who`                   | Show logged-in users            |                                     |
-| `useradd` / `userdel`   | Add/delete a user               | `useradd --no-create-home service`  |
-| `usermod`               | Modify a user                   | `usermod -aG secondarygroup myuser` |
-|                         | (Re-authenticate after changes) | `usermod -g primarygroup myuser`    |
-| `adduser` / `deluser`   | Add/delete a user interactively | Convenience wrappers                |
+| Command               | Description                     | Useful Flags / Examples             |
+| --------------------- | ------------------------------- | ----------------------------------- |
+| `whoami`              | Show current user               |                                     |
+| `who`                 | Show logged-in users            |                                     |
+| `useradd` / `userdel` | Add/delete a user               | `useradd --no-create-home service`  |
+| `usermod`             | Modify a user                   | `usermod -aG secondarygroup myuser` |
+|                       | (Re-authenticate after changes) | `usermod -g primarygroup myuser`    |
+| `adduser` / `deluser` | Add/delete a user interactively | Convenience wrappers                |
 
 > Relevant system files:
 > `/etc/passwd`, `/etc/shadow`, `/etc/group`
@@ -86,7 +88,9 @@ Changing Permissions
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
+
 # Symbolic Mode
 
 - `+` -> add
@@ -103,6 +107,7 @@ chmod o=r file.log
 ```
 
 <!-- column: 1 -->
+
 # Numeric (Octal) Mode
 
 Each permission is defined by a number:
@@ -159,41 +164,50 @@ Exercise
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
+
 # Create a file and experiment
-  - `touch test.txt`
-  - `chmod 644 test.txt`
-  - `chmod u+x test.txt`
-  - Show and change the `umask`
-  - Create a new file and compare the permissions
+
+- `touch test.txt`
+- `chmod 644 test.txt`
+- `chmod u+x test.txt`
+- Show and change the `umask`
+- Create a new file and compare the permissions
 
 # Changing ownership and umask
-  - Create a file
-  - Change the file ownership with `chown`
-  - Check which permissions are still available to your user
+
+- Create a file
+- Change the file ownership with `chown`
+- Check which permissions are still available to your user
 
 # Create a shared directory
-  - `mkdir shared`
-  - `chmod 1777 shared`
-  - Try adding/removing files as different users
+
+- `mkdir shared`
+- `chmod 1777 shared`
+- Try adding/removing files as different users
 
 <!-- column: 1 -->
 
 # Check special permissions
-  - `ls -l /usr/bin/passwd`
+
+- `ls -l /usr/bin/passwd`
 
 💡 Always check with `ls -l` after changing permissions!
 
 # Optional
-  - Create a new user
-  - Add it to a group
+
+- Create a new user
+- Add it to a group
 
 Check how the `/etc/shadow`, `/etc/passwd` and `/etc/groups` change!
 
 <!-- reset_layout -->
 
 <!-- column_layout: [1, 1, 1] -->
+
 <!-- column: 1 -->
+
 **Time: 10 minutes**
 
 <!-- end_slide -->
