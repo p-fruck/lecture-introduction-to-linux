@@ -1,0 +1,24 @@
+name: Lint
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v25
+
+      - name: Run pre-commit hooks via prek
+        run: |
+          nix --extra-experimental-features 'flakes nix-command' develop --command prek run --all-files

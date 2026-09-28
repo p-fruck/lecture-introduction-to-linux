@@ -3,7 +3,9 @@
   outputs = { self, nixpkgs }: {
     devShells.x86_64-linux.default =
       let
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+        };
         pythonEnv = pkgs.python3.withPackages (ps: with ps; [
           weasyprint
         ]);
@@ -15,6 +17,7 @@
           pkgs.pandoc
           pkgs.presenterm
           pkgs.typst
+          pkgs.prek
           pythonEnv
         ];
       };
