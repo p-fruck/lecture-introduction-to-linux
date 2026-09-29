@@ -1,15 +1,17 @@
 ---
-title: "Introduction to Linux: **POSIX and Bash Syntax**"
+title: 'Introduction to Linux: **POSIX and Bash Syntax**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
 ---
 
-POSIX vs Bash 
+POSIX vs Bash
 ===
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 # Goal of this lecture
 
 - Learn core Bash scripting syntax
@@ -19,9 +21,11 @@ POSIX vs Bash
 
 - Scripts need to run reliably across different shells
 - Core syntax knowledge is the foundation for writing scripts
+
 <!-- column: 1 -->
 
 # Use Cases:
+
 - Portable automation scripts
 - Configuration and setup scripts
 - Writing reusable shell functions
@@ -32,6 +36,7 @@ Shebang
 ===
 
 <!-- column_layout: [3, 2] -->
+
 <!-- column: 0 -->
 
 # How-to
@@ -72,7 +77,9 @@ Variables
 ===
 
 <!-- column_layout: [3, 2] -->
+
 <!-- column: 0 -->
+
 ```bash
 # Assign
 name=Alice
@@ -106,7 +113,9 @@ echo $message
 ```
 
 <!-- reset_layout -->
+
 <!-- pause -->
+
 > Variable scoping: local variables inside functions vs global outside.
 
 > Using `export` allows variables to be used by other processes launched from the current session.
@@ -117,7 +126,9 @@ Conditionals
 ===
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 # If-else logic
 
 - The `if` statement runs commands conditionally based on exit status
@@ -125,11 +136,11 @@ Conditionals
 ```bash
 # hint: Do not use this in prod :)
 if [ "$USER" = "root" ]; then
-  echo "Welcome, root user!"
+    echo "Welcome, root user!"
 elif [ "$USER" = "admin" ]; then
-  echo "Hello, admin."
+    echo "Hello, admin."
 else
-  echo "Access denied."
+    echo "Access denied."
 fi
 ```
 
@@ -138,23 +149,24 @@ fi
 <!-- column: 1 -->
 
 # Case statement
+
 - `case` compares a value against multiple patterns
 
 ```bash
 case "$arg" in
-  start)
-    echo "Starting service..."
-    ;;
-  stop)
-    echo "Stopping service..."
-    ;;
-  restart|reload)
-    echo "Restarting service..."
-    ;;
-  *)
-    echo "Usage: $0 {start|stop|restart}"
-    exit 1
-    ;;
+    start)
+        echo "Starting service..."
+        ;;
+    stop)
+        echo "Stopping service..."
+        ;;
+    restart|reload)
+        echo "Restarting service..."
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
 esac
 ```
 
@@ -166,13 +178,14 @@ Functions in Bash
 ===
 
 # Functions allow reusable blocks of code
+
 - Functions improve code clarity and reduce repetition.
 - Bash allows further syntax to define functions but this way is POSIX compliant, hence more portable
 
 ```bash
 # Define a function
 greet() {
-  echo "Hello, $1"
+    echo "Hello, $1"
 }
 
 # Call a function
@@ -180,8 +193,8 @@ greet "Alice"
 
 # Functions can return status codes
 check_file() {
-  # in POSIX, just run the command without [[ ]]
-  [[ -f "$1" ]]
+    # in POSIX, just run the command without [[ ]]
+    [[ -f "$1" ]]
 }
 ```
 
@@ -195,33 +208,35 @@ Loops: for and while
 Loops automate repetitive tasks.
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 # For Loop
 
 ```bash +exec
 # Loop over files
 for file in *.md; do
-  echo "File: $file"
+    echo "File: $file"
 done
 
 # Iterate over numbers (set notation)
 for i in {1..5}; do
-  echo "Number $i"
+    echo "Number $i"
 done
 ```
 
 <!-- column: 1 -->
+
 # While Loop
 
 ```bash +exec
 counter=1
 # POSIX uses single or no brackets, but supports less operators
 while [[ $counter -le 5 ]]; do
-  echo "Count $counter"
-  ((counter++))
+    echo "Count $counter"
+    ((counter++))
 done
 ```
-
 
 <!-- end_slide -->
 
@@ -229,19 +244,22 @@ Globbing
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
+
 # Globbing (Filename Expansion)
 
 - Globbing lets you match filenames using wildcards:
 
-| Pattern | Matches |
-|---------|---------|
-| `*`     | Any string, including empty |
-| `?`     | Any single character |
-| `[abc]` | Any one of the listed characters |
-| `[!abc]`| Any character not listed |
+| Pattern  | Matches                          |
+| -------- | -------------------------------- |
+| `*`      | Any string, including empty      |
+| `?`      | Any single character             |
+| `[abc]`  | Any one of the listed characters |
+| `[!abc]` | Any character not listed         |
 
 <!-- column: 1 -->
+
 # Example:
 
 ```bash
@@ -251,7 +269,7 @@ ls *.txt
 # List files starting with a or b
 ls [ab]*.txt
 ```
-  
+
 <!-- end_slide -->
 
 Thank you!

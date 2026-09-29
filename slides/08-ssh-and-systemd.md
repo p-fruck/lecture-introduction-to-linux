@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux: **SSH and systemd**"
+title: 'Introduction to Linux: **SSH and systemd**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
@@ -9,6 +9,7 @@ System Services and Remote Systems
 ===
 
 # Goal of this Lecture
+
 - How to securely connect to remote systems
 - How to run persistent and background services
 - How to inspect logs, analyze failures & perform troubleshooting
@@ -25,7 +26,6 @@ System Services and Remote Systems
   - disaster recovery
 
 <!-- end_slide -->
-
 
 SSH: Secure Remote Access
 ===
@@ -52,12 +52,13 @@ ssh -i ~/.ssh/id_ed25519 host # use specific key
 
 <!-- end_slide -->
 
-
 SSH Server Configuration
 ===
 
 Config file: `/etc/ssh/sshd_config`
+
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 Common security-relevant options
@@ -72,6 +73,7 @@ Port 22
 ```
 
 <!-- column: 1 -->
+
 Apply config changes
 
 ```bash
@@ -90,11 +92,11 @@ sudo systemctl status sshd
 
 <!-- end_slide -->
 
-
 SSH Key Authentication
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 Generate key pair
@@ -130,7 +132,6 @@ chmod 600 ~/.ssh/*
 
 <!-- end_slide -->
 
-
 SSH Jumphosts (ProxyJump)
 ===
 
@@ -156,7 +157,6 @@ ssh internal
 
 <!-- end_slide -->
 
-
 SSH Port Forwarding
 ===
 
@@ -180,11 +180,11 @@ ssh -D 1080 user@host
 
 <!-- end_slide -->
 
-
-tmux:  Terminal Multiplexing
+tmux: Terminal Multiplexing
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 - Persistent sessions which survive disconnects
@@ -203,26 +203,26 @@ tmux attach -t <id>  # reattach
 
 Basic keys (press `Ctrl+B` first)
 
-| Action              | Keys  |
-| ------------------- | ----- |
-| Split vertically    | `%`   |
-| Split horizontally  | `"`   |
-| New window          | `c`   |
-| Switch windows      | `0-9` |
-| Detach session      | `d`   |
+| Action             | Keys  |
+| ------------------ | ----- |
+| Split vertically   | `%`   |
+| Split horizontally | `"`   |
+| New window         | `c`   |
+| Switch windows     | `0-9` |
+| Detach session     | `d`   |
 
 <!-- reset_layout -->
 
 Activate mouse mode by pressing `Ctrl+B` and `:` then entering `set -g mouse on`.
-<!-- end_slide -->
 
+<!-- end_slide -->
 
 systemd: Service Management
 ===
 
 <!-- column_layout: [1, 1] -->
-<!-- column: 0 -->
 
+<!-- column: 0 -->
 
 Start/Stop/Enable
 
@@ -241,7 +241,7 @@ Shotcuts:
 # combine start and enable
 systemctl [enable|disable] --now ...
 # show logs (new since systemd 258)
-systemctl [start|stop|restart] -v ... 
+systemctl [start|stop|restart] -v ...
 ```
 
 <!-- column: 1 -->
@@ -269,12 +269,13 @@ systemd-analyze critical-chain
 
 <!-- end_slide -->
 
-
 systemd: Service Unit Basics
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
+
 Example: `/etc/systemd/system/example.service`
 
 ```dotenv
@@ -294,6 +295,7 @@ WantedBy=default.target      # GUI or CLI
 ```
 
 <!-- column: 1 -->
+
 # User vs System scope
 
 - system: `/etc/systemd/system/`

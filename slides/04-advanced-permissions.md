@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux: **Advanced Permissions**"
+title: 'Introduction to Linux: **Advanced Permissions**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
@@ -9,24 +9,27 @@ Advanced Permissions
 ===
 
 # Goal of this lecture
-  - Learn how to safely elevate privileges
-  - Understand fine-grained access control beyond classic permissions (ACLs)
-  - Understand Linux Capabilities as a safer alternative to full root access
+
+- Learn how to safely elevate privileges
+- Understand fine-grained access control beyond classic permissions (ACLs)
+- Understand Linux Capabilities as a safer alternative to full root access
 
 # Why?
-  - Classic permissions are often not granular enough
-  - Minimizing granted privileges reduces the security impact of bugs and exploits
+
+- Classic permissions are often not granular enough
+- Minimizing granted privileges reduces the security impact of bugs and exploits
 
 <!-- end_slide -->
 
 Elevating Privileges
 ===
-| Command             | Description                  | Useful Flags / Examples                   |
-| ------------------- | ---------------------------- | ----------------------------------------- |
-| `su`                | Switch shell to another user |                                           |
-| `sudo` / `sudo-rs`  | Run command as root          | `sudo -i` open interactive root shell     |
-|                     |                              | `sudo !!` runs the last command with sudo |
-| `run0`              | Like `sudo` but uses Polkit  |                                           |
+
+| Command            | Description                  | Useful Flags / Examples                   |
+| ------------------ | ---------------------------- | ----------------------------------------- |
+| `su`               | Switch shell to another user |                                           |
+| `sudo` / `sudo-rs` | Run command as root          | `sudo -i` open interactive root shell     |
+|                    |                              | `sudo !!` runs the last command with sudo |
+| `run0`             | Like `sudo` but uses Polkit  |                                           |
 
 > The `/etc/sudoers` file contains the configuration and the behaviour of the `sudo` command
 > Use `sudo visudo` to make changes (syntax check and lock of the sudoers file)
@@ -43,6 +46,7 @@ Access Control Lists (ACLs)
 - **Solution**: Access Control Lists (ACLs) let you define per-user or per-group permissions
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 ```bash
@@ -118,11 +122,13 @@ Linux Capabilities
 ===
 
 View capabilities
+
 ```bash
 getcap /usr/bin/arping
 ```
 
 Set or remove capabilities
+
 ```bash
 sudo setcap cap_net_raw+ep /usr/bin/arping
 ```
@@ -141,6 +147,7 @@ Exercise
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 # Capabilities
@@ -149,14 +156,18 @@ Let's use `/usr/bin/tar` as an example:
 
 1. Check if it currently has any capabilities
 2. Give it a test capability (`CAP_DAC_READ_SEARCH`)
+
 ```bash
 sudo setcap cap_dac_read_search+ep /usr/bin/tar
 getcap /usr/bin/tar
 ```
+
 3. Try reading a file you normally couldn't (as non-root)
+
 ```bash
 tar -cvf /tmp/test.tar /tmp/rootfile.txt
 ```
+
 4. ⚠️ **Important**: Remove the capability again with `sudo setcap -r /usr/bin/tar`
 5. What could go wrong if tools like `tar` permanently kept this capability?
 
@@ -165,17 +176,22 @@ tar -cvf /tmp/test.tar /tmp/rootfile.txt
 # Access Control Lists
 
 1. Create a file and set restrictive permissions
+
 ```bash
 touch project.txt
 chmod 600 project.txt
 ```
+
 2. Add read access for another user (replace `<user>`)
+
 ```bash
 sudo setfacl -m u:<user>:r project.txt
 getfacl project.txt
 ```
+
 3. Verify that `<user>` can now read the file even though group/others cannot.
 4. Remove the ACL entry again
+
 ```bash
 sudo setfacl -x u:<user> project.txt
 ```
@@ -183,6 +199,7 @@ sudo setfacl -x u:<user> project.txt
 <!-- reset_layout -->
 
 <!-- column_layout: [1, 1, 1] -->
+
 <!-- column: 1 -->
 
 **Time: 15 minutes**

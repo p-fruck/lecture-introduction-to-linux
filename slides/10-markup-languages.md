@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux: **Markup Languages**"
+title: 'Introduction to Linux: **Markup Languages**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
@@ -9,6 +9,7 @@ Markup Languages
 ===
 
 # Goal of this Lecture
+
 - Introduce markup languages and show their importance
 - Understand how tables are written in Markdown, Typst, and LaTeX
 - Learn how bibliographies work in LaTeX (incl. Zotero & Better BibTeX)
@@ -25,11 +26,11 @@ Markup Languages
 
 <!-- end_slide -->
 
-
 Overview
 ===
 
 <!-- column_layout: [3, 2] -->
+
 <!-- column: 0 -->
 
 # What Are Markup Languages?
@@ -50,7 +51,7 @@ Overview
 
 <!-- column: 1 -->
 
-# Markdown  
+# Markdown
 
 - Simple & lightweight
 - Great for documentation, READMEs, notes
@@ -75,11 +76,11 @@ Overview
 
 <!-- end_slide -->
 
-
 LaTeX vs. Typst
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 # LaTeX: Classic Typesetting
@@ -94,8 +95,8 @@ LaTeX is extremely powerful but more verbose
 
 A "simple" LaTeX document snippet -->
 
-
 <!-- column: 1 -->
+
 ```latex
 \documentclass{article} % You can also use report, book, etc.
 
@@ -116,7 +117,9 @@ A "simple" LaTeX document snippet -->
 
 Typst and Markdown
 ===
+
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 # Typst: A Modern Alternative
@@ -140,6 +143,7 @@ A simple Typst document setup
 ```
 
 <!-- column: 1 -->
+
 # Markdown
 
 - Simple syntax with minimal markup
@@ -151,11 +155,11 @@ A simple Typst document setup
 
 <!-- end_slide -->
 
-
 Markdown Structure
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 ```markdown
@@ -192,25 +196,28 @@ This is an introductory paragraph under a level-1 heading.
 More detailed section text goes here.
 
 Here is a simple unordered list
+
 - Apples
 - Bananas
 
 Here is an ordered list
+
 1. First step
 2. Second step
 
 And finally, a nested list
+
 - Programming languages
   - Rust
   - Python
 
 <!-- end_slide -->
 
-
 Typst Structure
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 ```markdown
@@ -247,11 +254,11 @@ This is an introductory paragraph under a level-1 heading.
 
 More detailed section text goes here.
 
-Here is a simple unordered list 
+Here is a simple unordered list
 - Apples
 - Bananas
 
-Here is an ordered list 
+Here is an ordered list
 1. First step
 2. Second step
 
@@ -263,11 +270,11 @@ And finally, a nested list
 
 <!-- end_slide -->
 
-
 LaTeX Structure
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 ```latex
@@ -332,11 +339,11 @@ And finally, a nested list
 
 <!-- end_slide -->
 
-
 Markdown Formatting
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 ```markdown
@@ -371,15 +378,15 @@ _Also italic text_
 
 ~~Strikethrough~~
 
-\<u\>Underlined text\</u\>
+\<u>Underlined text\</u>
 
-\<!-- Not standard, but supported in many Markdown renderers --\>
+\<!-- Not standard, but supported in many Markdown renderers -->
 
 [Link example](https://example.com)
 
-Line\<br\>break
+Line\<br>break
 
-\<!-- Not standard, but supported in many Markdown renderers --\>
+\<!-- Not standard, but supported in many Markdown renderers -->
 
 <!-- reset_layout -->
 
@@ -387,11 +394,11 @@ Line\<br\>break
 
 <!-- end_slide -->
 
-
 Typst Formatting
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 ```typst
@@ -428,11 +435,11 @@ Line\ break
 
 <!-- end_slide -->
 
-
 LaTeX Formatting
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 ```latex
@@ -473,11 +480,11 @@ Line\\break
 
 <!-- end_slide -->
 
-
 Mathematical Formulas
 ===
 
 <!-- column_layout: [2, 1, 2] -->
+
 <!-- column: 0 -->
 
 # Typst
@@ -560,18 +567,18 @@ $
 
 <!-- end_slide -->
 
-
 Tables
 ===
 
 <!-- column_layout: [1, 1, 1] -->
+
 <!-- column: 0 -->
 
 # Markdown
 
-* Very simple table syntax
-* Limited styling in pure Markdown
-* Extended features depend on renderer (GitHub, Pandoc, etc.)
+- Very simple table syntax
+- Limited styling in pure Markdown
+- Extended features depend on renderer (GitHub, Pandoc, etc.)
 
 ```markdown
 | **Name** | **Age** | **City** |
@@ -586,9 +593,9 @@ Tables
 
 # Typst
 
-* Built-in table type
-* Very clean syntax
-* Supports alignment, styling, table headers
+- Built-in table type
+- Very clean syntax
+- Supports alignment, styling, table headers
 
 ```typst
 #table(
@@ -604,9 +611,9 @@ Tables
 
 # LaTeX
 
-* Very flexible
-* Requires the `tabular` environment
-* Use `booktabs` for nicer tables
+- Very flexible
+- Requires the `tabular` environment
+- Use `booktabs` for nicer tables
 
 ```latex
 \begin{tabular}{l c r}
@@ -622,13 +629,15 @@ Tables
 > https://www.tablesgenerator.com/latex_tables
 
 <!-- reset_layout -->
+
 <!-- column_layout: [1, 1, 1] -->
+
 <!-- column: 0 -->
 
 | **Name** | **Age** | **City** |
-|:---------|:-------:|---------:|
-| Alice    | 23      | Ulm      |
-| Bob      | 21      | Mannheim |
+| :------- | :-----: | -------: |
+| Alice    |   23    |      Ulm |
+| Bob      |   21    | Mannheim |
 
 <!-- column: 1 -->
 
@@ -657,11 +666,11 @@ Tables
 
 <!-- end_slide -->
 
-
 Bibliography in LaTeX
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 # Basics
@@ -703,11 +712,11 @@ According to \textcite{knuth1998}, ...
 
 <!-- end_slide -->
 
-
 Managing the Bibliography
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 # Zotero
@@ -736,11 +745,11 @@ Why use it?
 
 <!-- end_slide -->
 
-
 LaTeX Distributions
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 # What Is a LaTeX Distribution?
@@ -794,11 +803,11 @@ tlmgr update --all
 
 <!-- end_slide -->
 
-
 Building a LaTeX project
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 # pdfLaTeX
@@ -842,11 +851,11 @@ Building a LaTeX project
 
 <!-- end_slide -->
 
-
 Pandoc
 ===
 
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 # What Is Pandoc?
@@ -864,6 +873,7 @@ Pandoc
 - Typst -> PDF
 
 <!-- column: 1 -->
+
 ```bash
 pandoc notes.md -o notes.pdf
 pandoc file.tex -o file.md
@@ -880,17 +890,19 @@ pandoc file.tex -o file.md
 
 Pandoc
 ===
+
 <!-- column_layout: [1, 1] -->
+
 <!-- column: 0 -->
 
 # Markdown -> PDF via LaTeX
 
 ```bash
 pandoc report.md \
-  --from markdown \
-  --to pdf \
-  --pdf-engine=pdflatex \
-  -o report.pdf
+    --from markdown \
+    --to pdf \
+    --pdf-engine=pdflatex \
+    -o report.pdf
 ```
 
 > Real world example using a LaTeX template!
@@ -911,9 +923,9 @@ pandoc slides.md -t typst -o slides.typ
 
 ```bash
 pandoc paper.md \
-  --citeproc \
-  --bibliography=refs.bib \
-  -o paper.pdf
+    --citeproc \
+    --bibliography=refs.bib \
+    -o paper.pdf
 ```
 
 <!-- end_slide -->

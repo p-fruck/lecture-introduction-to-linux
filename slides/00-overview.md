@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux: **Overview**"
+title: 'Introduction to Linux: **Overview**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
@@ -42,7 +42,6 @@ Organizational
   - Basic & advanced terminal commands
   - Building applications and containers
 - Practical lab work submissions
-  
 
 <!-- end_slide -->
 
@@ -51,11 +50,9 @@ What is Linux?
 
 <!-- column_layout: [1, 2] -->
 
-
 <!-- column: 0 -->
 
 ![image:width:80%](../assets/gnu-linux-meme.jpg)
-
 
 <!-- column: 1 -->
 
@@ -81,18 +78,18 @@ Advantages of Linux
 Components of a Linux system
 ===
 
-|Component           |Example             | Description |
-|--------------------|-------             | ----------- |
-|Bootloader          |grub, systemd-boot  | Starts the system |
-|Kernel              |Linux               | Interfaces with hardware |
-|Init System         |systemd / openrc    | Launches all other programs |
-|Display Server      |X11, Wayland        | Renders the graphical |
-||                                        | user interface (GUI)|
-|Display Manager     |GDM, LightDM        | Graphical login screen |
-|Desktop Environment |Gnome, KDE, XFCE    | Defines how your GUI looks like |
-|GUI app libraries   | GTK, QT, Electron  | Allows building GUI apps with |
-||                                        | different look and feel|
-| Security Module    | SELinux, AppArmor  | Enhanced security regulation |
+| Component           | Example            | Description                     |
+| ------------------- | ------------------ | ------------------------------- |
+| Bootloader          | grub, systemd-boot | Starts the system               |
+| Kernel              | Linux              | Interfaces with hardware        |
+| Init System         | systemd / openrc   | Launches all other programs     |
+| Display Server      | X11, Wayland       | Renders the graphical           |
+|                     |                    | user interface (GUI)            |
+| Display Manager     | GDM, LightDM       | Graphical login screen          |
+| Desktop Environment | Gnome, KDE, XFCE   | Defines how your GUI looks like |
+| GUI app libraries   | GTK, QT, Electron  | Allows building GUI apps with   |
+|                     |                    | different look and feel         |
+| Security Module     | SELinux, AppArmor  | Enhanced security regulation    |
 
 <!-- end_slide -->
 
@@ -136,7 +133,7 @@ What is a Linux Distribution?
   - Different package managers and package formats
   - Desktop vs Server focus
   - etc ...
-  
+
 <!-- end_slide -->
 
 Which Linux Distros are there?
@@ -174,14 +171,14 @@ Package Managers
 - Keeps track of dependencies (software that other software needs)
 - Different distros use different package managers and package formats:
 
-| Distro Family / Type   | Package Manager               | Package Format                 |
-| ---------------------- | ----------------------------- | ------------------------------ |
-| Debian / Ubuntu        | `apt` / `dpkg`                | `.deb`                         |
-| Fedora / RHEL          | `dnf` / `yum`                 | `.rpm`                         |
-| Arch Linux             | `pacman`                      | `.pkg.tar.zst`                 |
-| Alpine Linux           | `apk`                         | `.apk`                         |
-| NixOS                  | `nix`                         | store paths                    |
-| Universal formats      | `flatpak`, `snap`, `appimage` | portable                       |
+| Distro Family / Type | Package Manager               | Package Format |
+| -------------------- | ----------------------------- | -------------- |
+| Debian / Ubuntu      | `apt` / `dpkg`                | `.deb`         |
+| Fedora / RHEL        | `dnf` / `yum`                 | `.rpm`         |
+| Arch Linux           | `pacman`                      | `.pkg.tar.zst` |
+| Alpine Linux         | `apk`                         | `.apk`         |
+| NixOS                | `nix`                         | store paths    |
+| Universal formats    | `flatpak`, `snap`, `appimage` | portable       |
 
 > Some systems (e.g., rpm-ostree, transactional-update) are immutable - changes apply atomically after reboot.
 
@@ -226,20 +223,20 @@ Linux file system explained
 Binaries & Their Locations
 ===
 
-| Directory                  | Purpose                                                                                        |
-| -------------------------- | ---------------------------------------------------------------------------------------------- |
-| /bin                       | Essential user commands needed for booting and repairing the system (e.g., `ls`, `cp`, `mv`).  |
-| /sbin                      | Essential system binaries for booting and administration (e.g., `fsck`, `ip`, `mount`).        |
-| /usr/bin                   | Most user applications (non-essential, e.g., `vim`, `git`, `python`).                          |
-| /usr/sbin                  | Admin and system tools that are not essential for booting (e.g., `sshd`, `apachectl`).         |
-| /usr/local/bin             | Locally installed user applications (not managed by package manager).                          |
-| /usr/local/sbin            | Locally installed system admin tools (manual builds, custom scripts).                          |
-| /home/\<user\>/.local/bin/ | User-specific binaries installed via `pip`, `cargo`, `npm` etc. - only available to that user. |
-| /opt/                      | 3rd-party applications - often entire self-contained software bundles                          |
-|                            | (e.g., Google Chrome, proprietary tools).                                                      |
+| Directory                 | Purpose                                                                                        |
+| ------------------------- | ---------------------------------------------------------------------------------------------- |
+| /bin                      | Essential user commands needed for booting and repairing the system (e.g., `ls`, `cp`, `mv`).  |
+| /sbin                     | Essential system binaries for booting and administration (e.g., `fsck`, `ip`, `mount`).        |
+| /usr/bin                  | Most user applications (non-essential, e.g., `vim`, `git`, `python`).                          |
+| /usr/sbin                 | Admin and system tools that are not essential for booting (e.g., `sshd`, `apachectl`).         |
+| /usr/local/bin            | Locally installed user applications (not managed by package manager).                          |
+| /usr/local/sbin           | Locally installed system admin tools (manual builds, custom scripts).                          |
+| /home/\<user>/.local/bin/ | User-specific binaries installed via `pip`, `cargo`, `npm` etc. - only available to that user. |
+| /opt/                     | 3rd-party applications - often entire self-contained software bundles                          |
+|                           | (e.g., Google Chrome, proprietary tools).                                                      |
 
-* Modern Linux: `/bin` and `/sbin` are often symlinks to `/usr/bin` and `/usr/sbin`
-* Local and user-specific dirs let you install software without touching the system
+- Modern Linux: `/bin` and `/sbin` are often symlinks to `/usr/bin` and `/usr/sbin`
+- Local and user-specific dirs let you install software without touching the system
 
 > All standard directories are described in the file system hierarchy manual page - run `man hier` to read it.
 

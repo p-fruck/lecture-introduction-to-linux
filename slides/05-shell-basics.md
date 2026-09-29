@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux: **Shell Basics**"
+title: 'Introduction to Linux: **Shell Basics**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim.yml
@@ -9,7 +9,9 @@ Shell Basics
 ===
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 # Goal of this lecture
 
 - Introduction to shell scripting
@@ -18,14 +20,15 @@ Shell Basics
 
 - Automate repetitive tasks
 - Improve/speedup personal workflow
+
 <!-- column: 1 -->
 
 # Use Cases:
+
 - Backup scripts
 - Deployment automation
 - Log parsing and monitoring
 - System maintenance tasks
-
 
 <!-- end_slide -->
 
@@ -33,7 +36,9 @@ Concatenating Commands
 ===
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 The POSIX standard allows chaining commands in multiple ways:
 
 ```bash +exec
@@ -52,13 +57,16 @@ true && (false; echo Hello 5)
 ```
 
 <!-- pause -->
+
 ```bash
 # Command substition: Cat all files in current directory recursively
 cat $(find . -type f)
 ```
 
 <!-- column: 1 -->
+
 <!-- pause -->
+
 Every command in Bash returns an **exit code** (`$?`) indicating success or failure.
 
 ```bash
@@ -70,6 +78,7 @@ echo "Exit code of grep: $?"
 ```
 
 <!-- pause -->
+
 ```bash +exec
 true
 echo Output of true: $?
@@ -84,7 +93,9 @@ File Descriptors
 ===
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
+
 # File descriptors (FDs) are used to manage input/output streams:
 
 ```bash
@@ -115,6 +126,7 @@ diff <(ls first) <(ls second)
 - Custom FDs start at 3.
 
 <!-- column: 1 -->
+
 <!-- pause -->
 
 # Writing to a file without an editor
@@ -138,6 +150,7 @@ Pipes
 ===
 
 <!-- column_layout: [3, 3] -->
+
 <!-- column: 0 -->
 
 The output of one command can be piped into another command to work with it (instead of a file):
@@ -147,6 +160,7 @@ ls / | grep --only root
 ```
 
 <!-- column: 1 -->
+
 <!-- pause -->
 
 Pipes only capture stdin:
@@ -154,6 +168,7 @@ Pipes only capture stdin:
 ```bash +exec
 ls /root/ | grep --only Perm
 ```
+
 <!-- pause -->
 
 File descriptors to the rescue!
@@ -163,12 +178,15 @@ ls /root/ 2>&1 | grep --only Perm
 ```
 
 <!-- pause -->
+
 <!-- reset_layout -->
+
 Infinite piping possible!
 
 ```bash
 curl https://api.github.com/users/p-fruck/keys 2>/dev/null | jq .[0].key | tr -d '"' | ssh-keygen -lf -
 ```
+
 > Note: `-f -` means `--file: stdin` and reads the input from the pipe
 
 <!-- end_slide -->
@@ -177,6 +195,7 @@ Persisting Configuration
 ===
 
 ## How it works
+
 - Previous settings (`alias`, `umask`, etc.) are set on per-session basis
 - All shells support configuring persistent settings using configs
 - On Bash: `~/.bash_profile` and `~/.bashrc` are used
@@ -187,15 +206,14 @@ Persisting Configuration
 - You can load them manually by running `source script.sh` or `. script.sh`
 
 <!-- pause -->
+
 ## Differences
 
-| Feature              | `~/.bash_profile` & `/etc/profile`      | `~/.bashrc` & `/etc/bashrc` |
-| -------------------- | ----------------------------------------| -----------------------------------------|
-| **Type of Shell**    | Login shells                            | Non-login interactive shells             |
-| **When executed**    | At login (e.g., SSH, virtual terminal)  | For every new interactive terminal       |
-| **Common Use**       | Environment variables, session setup    | Aliases, functions, interactive settings |
-
-
+| Feature           | `~/.bash_profile` & `/etc/profile`     | `~/.bashrc` & `/etc/bashrc`              |
+| ----------------- | -------------------------------------- | ---------------------------------------- |
+| **Type of Shell** | Login shells                           | Non-login interactive shells             |
+| **When executed** | At login (e.g., SSH, virtual terminal) | For every new interactive terminal       |
+| **Common Use**    | Environment variables, session setup   | Aliases, functions, interactive settings |
 
 <!-- end_slide -->
 
