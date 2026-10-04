@@ -2,7 +2,7 @@
 title: 'Introduction to Linux: **Core Commands**'
 author: Philipp Fruck & Pius Walter
 theme:
-  path: ../themes/dhbw_mannheim.yml
+  path: ../themes/dhbw_mannheim_dark.yml
 ---
 
 Coreutils & Command-Line Tools

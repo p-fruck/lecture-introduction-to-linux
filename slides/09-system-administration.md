@@ -2,7 +2,7 @@
 title: 'Introduction to Linux: **System Administration**'
 author: Philipp Fruck & Pius Walter
 theme:
-  path: ../themes/dhbw_mannheim.yml
+  path: ../themes/dhbw_mannheim_dark.yml
 ---
 
 System Administration

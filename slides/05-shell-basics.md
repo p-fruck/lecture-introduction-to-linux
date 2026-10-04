@@ -2,7 +2,7 @@
 title: 'Introduction to Linux: **Shell Basics**'
 author: Philipp Fruck & Pius Walter
 theme:
-  path: ../themes/dhbw_mannheim.yml
+  path: ../themes/dhbw_mannheim_dark.yml
 ---
 
 Shell Basics

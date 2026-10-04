@@ -2,7 +2,7 @@
 title: 'Introduction to Linux: **Scripting in Practice**'
 author: Philipp Fruck & Pius Walter
 theme:
-  path: ../themes/dhbw_mannheim.yml
+  path: ../themes/dhbw_mannheim_dark.yml
 ---
 
 Scripting
