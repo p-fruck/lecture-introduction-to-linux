@@ -2,7 +2,7 @@
 title: 'Introduction to Linux: **Basic Permissions**'
 author: Philipp Fruck & Pius Walter
 theme:
-  path: ../themes/dhbw_mannheim.yml
+  path: ../themes/dhbw_mannheim_dark.yml
 ---
 
 Users and Permissions

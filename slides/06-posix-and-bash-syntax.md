@@ -2,7 +2,7 @@
 title: 'Introduction to Linux: **POSIX and Bash Syntax**'
 author: Philipp Fruck & Pius Walter
 theme:
-  path: ../themes/dhbw_mannheim.yml
+  path: ../themes/dhbw_mannheim_dark.yml
 ---
 
 POSIX vs Bash

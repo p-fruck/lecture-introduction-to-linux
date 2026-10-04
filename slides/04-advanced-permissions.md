@@ -2,7 +2,7 @@
 title: 'Introduction to Linux: **Advanced Permissions**'
 author: Philipp Fruck & Pius Walter
 theme:
-  path: ../themes/dhbw_mannheim.yml
+  path: ../themes/dhbw_mannheim_dark.yml
 ---
 
 Advanced Permissions

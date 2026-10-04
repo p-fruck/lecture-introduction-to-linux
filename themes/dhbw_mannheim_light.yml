@@ -3,8 +3,8 @@ default:
   margin:
     percent: 8
   colors:
-    foreground: palette:white
-    background: "040312"
+    background: "ffffff"
+    foreground: "040312"
 
 slide_title:
   alignment: center
@@ -20,7 +20,7 @@ code:
   minimum_size: 50
   minimum_margin:
     percent: 8
-  theme_name: base16-eighties.dark
+  theme_name: base16-eighties.dark # GitHub has white codeblocks
   padding:
     horizontal: 2
     vertical: 1
@@ -44,8 +44,8 @@ execution_output:
 
 inline_code:
   colors:
-    foreground: "04de20"
-    background: "455045"
+    foreground: "de0404"
+    background: "baafba"
 
 intro_slide:
   title:
@@ -72,7 +72,7 @@ intro_slide:
   author:
     alignment: center
     colors:
-      foreground: "b6eada"
+      foreground: "palette:black"
     positioning: page_bottom
   footer: false
 
@@ -134,7 +134,7 @@ typst:
 footer:
   style: template
   left:
-    image: ../themes/dhbw_logo.png
+    image: ../themes/dhbw_logo_light.png
   center: "{title}"
   right: "{current_slide} / {total_slides}"
   height: 4
@@ -145,7 +145,7 @@ modals:
 
 mermaid:
   background: transparent
-  theme: dark
+  theme: neutral
 
 d2:
   theme: 200

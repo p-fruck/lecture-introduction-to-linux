@@ -2,7 +2,7 @@
 title: 'Introduction to Linux: **SSH and systemd**'
 author: Philipp Fruck & Pius Walter
 theme:
-  path: ../themes/dhbw_mannheim.yml
+  path: ../themes/dhbw_mannheim_dark.yml
 ---
 
 System Services and Remote Systems

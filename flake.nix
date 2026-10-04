@@ -14,7 +14,6 @@
         packages = [
           pkgs.inconsolata
           pkgs.just
-          pkgs.pandoc
           pkgs.presenterm
           pkgs.typst
           pkgs.prek

@@ -21,4 +21,4 @@ jobs:
 
       - name: Run pre-commit hooks via prek
         run: |
-          nix --extra-experimental-features 'flakes nix-command' develop --command prek run --all-files
+          nix develop --command prek run --all-files
