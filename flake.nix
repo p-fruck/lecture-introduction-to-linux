@@ -14,9 +14,10 @@
         packages = [
           pkgs.inconsolata
           pkgs.just
+          pkgs.pandoc
+          pkgs.prek
           pkgs.presenterm
           pkgs.typst
-          pkgs.prek
           pythonEnv
         ];
       };
