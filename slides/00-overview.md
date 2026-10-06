@@ -347,7 +347,7 @@ Different distros use different package managers and package formats:
 Linux file system explained
 ===
 
-In Windows, different disks have different letters.
+In Windows, different disk partitions have different letters.
 
 In Linux, there is the filesystem tree. Directories in the tree are separated via `/`.
 
