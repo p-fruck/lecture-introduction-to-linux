@@ -37,7 +37,7 @@ Quickly introduce yourself:
 Organizational
 ===
 
-- 10 lectures, each 1.5 hours
+- 11 lectures, each 1.5 hours
 - Mostly hands-on
   - You'll need your own Linux system
 - Introduction into Linux system components
@@ -105,7 +105,7 @@ Advantages of Linux
   - All source code is publicly available
   - Can be analized and modified to your liking
   - Great for academia
-- Customizable / Configurable
+- Customizable/Configurable
 - Free of charge\*
 
 <!-- end_slide -->
@@ -163,9 +163,9 @@ Includes: panels/menus, settings, file manager, system tools
 
 ______________________________________________________________________
 
-> Choice of DE = personal preference → try several to find your favorite!
+> Choice of DE = personal preference -> try several to find your favorite!
 
-> DE is **not tied to the distro** → you can install others later
+> DE is **not tied to the distro** -> you can install others later
 
 <!-- end_slide -->
 
@@ -216,7 +216,7 @@ A couple to point out:
 <!-- pause -->
 
 - **ArchLinux**, community driven, focuses on customization and has bleeding edge software
-- **Gentoo** is a source based distro --> software is compiled locally
+- **Gentoo** is a source based distro -> software is compiled locally
 - **NixOS** is a declaratively configurable distro
 
 <!-- pause -->
@@ -230,8 +230,8 @@ A couple to point out:
 
 <!-- pause -->
 
-- **Kali** / **ParrotOS** are targeted towards pentesting/security auditing (no daily-driving)
-- **Alpine** is a minimal Linux distro focusing on minimal overhead (e.g. resource-constraint hardware/containers)
+- **Kali**/**ParrotOS** are targeted towards pentesting/security auditing (no daily-driving)
+- **Alpine** is a minimal Linux distro focusing on minimal overhead (e.g., resource-constraint hardware/containers)
 
 <!-- end_slide -->
 
@@ -300,7 +300,7 @@ Installing Software
 
 ## Traditional
 
-- Package managers:
+- Package managers
   - Every application is installed via system package manager
   - Each distro provides its own repositories with different packages and versions
 - Shared libraries are packaged as dependencies
@@ -325,7 +325,7 @@ Package Managers
 A **package manager**
 
 - installs, updates, and removes software
-- keeps track of dependencies (e.g. libraries required by applications)
+- keeps track of dependencies (e.g., libraries required by applications)
 
 Different distros use different package managers and package formats:
 
