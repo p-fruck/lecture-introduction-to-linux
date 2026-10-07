@@ -1,0 +1,16 @@
+AirPrint
+AppArmor
+coreutils
+init
+LightDM
+LXDE
+LXQt
+NixOS
+openrc
+RedHat
+rpm-ostree
+SLES
+systemd
+systemd-boot
+Toolpak
+Winget
