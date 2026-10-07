@@ -30,7 +30,7 @@ Quickly introduce yourself:
 
 - Who are you?
 - Which Operating Systems did you use previously
-  - Windows, MacOS, Linux? Or only mobile devices?
+  - Windows, macOS, Linux? Or only mobile devices?
 
 <!-- end_slide -->
 
@@ -103,7 +103,7 @@ Advantages of Linux
   - From low-power to high performance computing (https://top500.org)
 - Open Source
   - All source code is publicly available
-  - Can be analized and modified to your liking
+  - Can be analyzed and modified to your liking
   - Great for academia
 - Customizable/Configurable
 - Free of charge\*
@@ -172,12 +172,12 @@ ______________________________________________________________________
 What is a Linux Distribution?
 ===
 
-- Windows, MacOS, etc. only have a single OS with different Versions
+- Windows, macOS, etc. only have a single OS with different Versions
   - Windows 10, Windows 11, ...
 
 <!-- pause -->
 
-- Linux has a much greater varierty of system components
+- Linux has a much greater variety of system components
   - Different Desktops, different init systems, different apps
 
 <!-- pause -->
@@ -215,9 +215,9 @@ A couple to point out:
 
 <!-- pause -->
 
-- **ArchLinux**, community driven, focuses on customization and has bleeding edge software
+- **Arch Linux**, community driven, focuses on customization and has bleeding edge software
 - **Gentoo** is a source based distro -> software is compiled locally
-- **NixOS** is a declaratively configurable distro
+- **NixOS** is a declarative configurable distro
 
 <!-- pause -->
 
@@ -230,7 +230,7 @@ A couple to point out:
 
 <!-- pause -->
 
-- **Kali**/**ParrotOS** are targeted towards pentesting/security auditing (no daily-driving)
+- **Kali**/**Parrot OS** are targeted towards pentesting/security auditing (no daily-driving)
 - **Alpine** is a minimal Linux distro focusing on minimal overhead (e.g., resource-constraint hardware/containers)
 
 <!-- end_slide -->
@@ -349,7 +349,7 @@ Linux file system explained
 
 In Windows, different disk partitions have different letters.
 
-In Linux, there is the filesystem tree. Directories in the tree are separated via `/`.
+In Linux, there is the file system tree. Directories in the tree are separated via `/`.
 
 Each disk can be _mounted_ at any path in the tree.
 
@@ -414,7 +414,7 @@ Binaries & Their Locations
 ______________________________________________________________________
 
 - Modern Linux: `/bin` and `/sbin` are often symlinks to `/usr/bin` and `/usr/sbin`
-- Local and user-specific dirs let you install software without touching the system
+- Local and user-specific directories let you install software without touching the system
 
 <!-- pause -->
 
@@ -458,7 +458,7 @@ How do I install my own distro?
 
 We recommend using the latest version of Fedora Workstation from https://fedoraproject.org/workstation/
 
-We also recommend installing it using dual boot or, if possible, as a complete Linux system - if you want to switch fully. We do not recommend using a VM.
+Installing Fedora as dedicated Linux system or via dual boot (if you want to keep Windows) is recommended. We do not recommend using a VM.
 
 <!-- pause -->
 
