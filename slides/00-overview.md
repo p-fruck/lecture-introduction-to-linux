@@ -76,7 +76,7 @@ What is Linux?
 
 <!-- pause -->
 
-- In 1991, Linux Torvalds developed his own kernel
+- In 1991, Linus Torvalds developed his own kernel
   - Started as a hobby project
   - Similar to proprietary Unix, but open source
 
