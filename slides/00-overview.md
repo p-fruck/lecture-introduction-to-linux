@@ -51,9 +51,9 @@ Organizational
 What is Linux?
 ===
 
-> https://img.devrant.com/devrant/rant/r_1578772_VbG6J.jpg | Icons by flaticon.com
-
 ![image](../assets/linux-usecases.png)
+
+> Icons by flaticon.com
 
 <!-- end_slide -->
 
@@ -65,6 +65,8 @@ What is Linux?
 <!-- column: 0 -->
 
 ![image:width:80%](../assets/gnu-linux-meme.jpg)
+
+> https://img.devrant.com/devrant/rant/r_1578772_VbG6J.jpg
 
 <!-- column: 1 -->
 
