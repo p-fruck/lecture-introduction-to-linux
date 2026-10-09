@@ -155,7 +155,7 @@ Includes: panels/menus, settings, file manager, system tools
 | **KDE Plasma**      | Highly customizable, Windows-like, many settings | Power users, tinkerers                    |
 | **COSMIC**          | Gnome-inspired, written in Rust, supports tiling | Power users who like simplicity           |
 | **XFCE**            | Lightweight, classic interface                   | Older hardware, performance-focused       |
-| **LXQt** / **LXDE** | Extremely lightweight                            | Very resource-constrained   systems       |
+| **LXQt** / **LXDE** | Extremely lightweight                            | Very resource-constrained systems         |
 | **Cinnamon**        | Traditional desktop (Windows-like)               | Linux Mint users, beginners               |
 | **MATE**            | Fork of old GNOME 2, lightweight                 | Users who want a stable, classic desktop  |
 | **Budgie**          | Modern, elegant, GNOME-based                     | Users who like simplicity + polish        |
