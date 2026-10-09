@@ -315,7 +315,7 @@ Installing Software
 ## Modern
 
 - AppImage: Self-contained binary (no package manager)
-- Snap: Package manager for self-contained applications (GUI + CLI), proprietary store operated by canonical
+- Snap: Package manager for self-contained applications (GUI + CLI), proprietary store operated by Canonical
 - Flatpak: Package manager (decentralized) for sandboxed, self-contained GUI applications
 - Toolpak: Supposed to be flatpak for CLI
 
