@@ -29,7 +29,7 @@ Introduction
 Quickly introduce yourself:
 
 - Who are you?
-- Which Operating Systems did you use previously
+- Which operating systems did you use previously
   - Windows, macOS, Linux? Or only mobile devices?
 
 <!-- end_slide -->
@@ -251,7 +251,7 @@ Linux distro release cycles
 | ------------------- | ------------------------ | ------------------------------------------------------------- |
 | **Slackware**       | Fixed / irregular        | No fixed cadence; long-lived releases                         |
 | **Debian**          | Fixed                    | ~2 yr; ~5 yr support                                          |
-| **Ubuntu**          | Fixed                    | Each April and October; 1 yr support                          |
+| **Ubuntu**          | Fixed                    | Each April and October; 9 mo support                          |
 | **Ubuntu LTS**      | Fixed                    | ~2 yr; ~5 yr support (10 yr when paid)                        |
 | **Linux Mint**      | Fixed                    | ~2 yr; follows Ubuntu LTS                                     |
 | **Fedora**          | Fixed                    | ~6 mo; ~1 yr support                                          |
@@ -466,7 +466,7 @@ Installing Fedora as dedicated Linux system or via dual boot (if you want to kee
 
 # Preparing for Installation
 
-- **Backup all of your data**
+- **Back up all of your data**
 - Download the ISO file (and verify the checksum) or use the Fedora Media Writer
 - Create a bootable media using `dd` or the Fedora Media Writer tool
 
