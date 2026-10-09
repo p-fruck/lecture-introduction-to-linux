@@ -29,7 +29,7 @@ Introduction
 Quickly introduce yourself:
 
 - Who are you?
-- Which Operating Systems did you use previously
+- Which operating systems did you use previously
   - Windows, macOS, Linux? Or only mobile devices?
 
 <!-- end_slide -->
@@ -155,7 +155,7 @@ Includes: panels/menus, settings, file manager, system tools
 | **KDE Plasma**      | Highly customizable, Windows-like, many settings | Power users, tinkerers                    |
 | **COSMIC**          | Gnome-inspired, written in Rust, supports tiling | Power users who like simplicity           |
 | **XFCE**            | Lightweight, classic interface                   | Older hardware, performance-focused       |
-| **LXQt** / **LXDE** | Extremely lightweight                            | Very resource-constrained systems         |
+| **LXQt** / **LXDE** | Extremely lightweight                            | Very resource-constrained   systems       |
 | **Cinnamon**        | Traditional desktop (Windows-like)               | Linux Mint users, beginners               |
 | **MATE**            | Fork of old GNOME 2, lightweight                 | Users who want a stable, classic desktop  |
 | **Budgie**          | Modern, elegant, GNOME-based                     | Users who like simplicity + polish        |
@@ -251,7 +251,7 @@ Linux distro release cycles
 | ------------------- | ------------------------ | ------------------------------------------------------------- |
 | **Slackware**       | Fixed / irregular        | No fixed cadence; long-lived releases                         |
 | **Debian**          | Fixed                    | ~2 yr; ~5 yr support                                          |
-| **Ubuntu**          | Fixed                    | Each April and October; 1 yr support                          |
+| **Ubuntu**          | Fixed                    | Each April and October; 9 mo support                          |
 | **Ubuntu LTS**      | Fixed                    | ~2 yr; ~5 yr support (10 yr when paid)                        |
 | **Linux Mint**      | Fixed                    | ~2 yr; follows Ubuntu LTS                                     |
 | **Fedora**          | Fixed                    | ~6 mo; ~1 yr support                                          |
@@ -466,7 +466,7 @@ Installing Fedora as dedicated Linux system or via dual boot (if you want to kee
 
 # Preparing for Installation
 
-- **Backup all of your data**
+- **Back up all of your data**
 - Download the ISO file (and verify the checksum) or use the Fedora Media Writer
 - Create a bootable media using `dd` or the Fedora Media Writer tool
 
