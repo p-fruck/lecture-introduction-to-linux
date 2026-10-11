@@ -136,7 +136,7 @@ Most distros do not ship/configure a security framework by default
 
 - AppArmor is shipped/enabled by default on Debian/Ubuntu
 - SELinux is shipped/enabled by default on the RedHat distro family (including Fedora)
-- SUSE provides both AppArmor and SELinux
+- SUSE provides configuration for both AppArmor and SELinux
 
 <!-- end_slide -->
 

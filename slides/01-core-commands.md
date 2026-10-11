@@ -65,9 +65,9 @@ Running a command can be as simple as executing `mycmd`
 Example in C
 ===
 
-Let's build our own executable and run `mycmd arg1 arg2`
+Let's build our own executable and run it as `/tmp/mycmd arg1 arg2`
 
-```c +exec
+```c +exec:mycmd
 #include <stdio.h>
 int main(int argc, char *argv[]) {
     for (int i = 0; i < argc; i++) {
@@ -75,6 +75,10 @@ int main(int argc, char *argv[]) {
     }
 }
 ```
+
+<!-- pause -->
+
+For flags, use libraries like `getopt` (or something more modern)
 
 <!-- end_slide -->
 
@@ -85,6 +89,10 @@ Don't confuse absolute and relative paths!
 
 - `/bin`: Is the global bin folder
 - `bin`: The `bin` folder relative your current directory (e.g. `/home/user`)
+
+Paths are case-sensitive
+
+- `foobar` and `FooBar` are different files that can co-exist
 
 <!-- pause -->
 
@@ -214,7 +222,7 @@ Improve Your Workflow
 | `history` | Show command history                | `!42` rerun command #42 |
 | `!!`      | Run the same command again          |                         |
 | key: `↑`  | Select last commands                |                         |
-| key: `⇥`  | Autocomplete command/directory/file |                         |
+| key: `⇥`  | Autocomplete command/directory/file | note: case-sensitive    |
 | key: `^r` | Reverse Search                      |                         |
 
 > `^r` is the terminal notation for Ctrl+r

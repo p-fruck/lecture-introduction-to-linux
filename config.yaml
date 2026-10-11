@@ -5,8 +5,24 @@ export:
 snippet:
   exec:
     custom:
+      # https://github.com/mfontanini/presenterm/blob/master/executors.yaml
       c:
-        filename: "/tmp/snippet.c"
+        # default C executor
+        filename: snippet.c
         commands:
-          - ["gcc", "/tmp/snippet.c", "-o", "/tmp/mycmd"]
-          - ["/tmp/mycmd", "arg1", "arg2"]
+          - [
+              "gcc",
+              "$pwd/snippet.c",
+              "-fdiagnostics-color=always",
+              "-o",
+              "$pwd/snippet",
+            ]
+          - ["$pwd/snippet"]
+        hidden_line_prefix: "/// "
+        # custom alternative snippet executor
+        alternative:
+          mycmd:
+            filename: "/tmp/mycmd-args.c"
+            commands:
+              - ["gcc", "/tmp/mycmd-args.c", "-o", "/tmp/mycmd"]
+              - ["/tmp/mycmd", "arg1", "arg2"]
