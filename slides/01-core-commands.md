@@ -90,6 +90,10 @@ Don't confuse absolute and relative paths!
 - `/bin`: Is the global bin folder
 - `bin`: The `bin` folder relative your current directory (e.g. `/home/user`)
 
+Paths are case-sensitive
+
+- `foobar` and `FooBar` are different files that can co-exist
+
 <!-- pause -->
 
 `~` is a shortcut for your home directory
@@ -218,7 +222,7 @@ Improve Your Workflow
 | `history` | Show command history                | `!42` rerun command #42 |
 | `!!`      | Run the same command again          |                         |
 | key: `↑`  | Select last commands                |                         |
-| key: `⇥`  | Autocomplete command/directory/file |                         |
+| key: `⇥`  | Autocomplete command/directory/file | note: case-sensitive    |
 | key: `^r` | Reverse Search                      |                         |
 
 > `^r` is the terminal notation for Ctrl+r
