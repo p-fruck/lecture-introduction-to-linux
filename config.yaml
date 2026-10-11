@@ -2,3 +2,11 @@ export:
   dimensions:
     rows: 36
     columns: 147
+snippet:
+  exec:
+    custom:
+      c:
+        filename: "/tmp/snippet.c"
+        commands:
+          - ["gcc", "/tmp/snippet.c", "-o", "/tmp/mycmd"]
+          - ["/tmp/mycmd", "arg1", "arg2"]

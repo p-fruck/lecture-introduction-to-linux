@@ -3,7 +3,7 @@
 
 # show some slides. E.g.: just present slides/cli.md [additional args]
 @present *args:
-    presenterm -x {{ args }}
+    presenterm -c config.yaml -x {{ args }}
 
 [group('build')]
 @export-all *args:

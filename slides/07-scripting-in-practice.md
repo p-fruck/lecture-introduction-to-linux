@@ -91,36 +91,6 @@ This ensures predictable, safe scripts and easier debugging.
 
 <!-- end_slide -->
 
-Editors
-===
-
-<!-- column_layout: [3, 3] -->
-
-<!-- column: 0 -->
-
-## Basics
-
-- Instead of graphical tools like VSCode, we can also use text-based editors
-- Today, `nano` and `vim` are the most common editors
-- `nano` is a bit simpler and shows the required keyboard shortcuts
-- `vim` is more advanced and allows faster editing, but is more complex!
-  - Command driven: `:wq` to **w**rite and **q**uit
-  - Use `/` to search (like in less)
-  - Press `i` for insert mode, `v` for visual mode, `ESC` to go back to regular mode
-
-<!-- column: 1 -->
-
-![image:width:100%](../assets/exit-vim.png)
-
-<!-- reset_layout -->
-
-# Advanced
-
-- Nowadays, there are more modern editors that support the Language Server Protocol (LSP)
-  - If you want a really advanced text editor, have a look at `helix` or `neovim`
-
-<!-- end_slide -->
-
 Processes and Job Control
 ===
 

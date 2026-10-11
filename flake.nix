@@ -12,6 +12,7 @@
       in
       pkgs.mkShell {
         packages = [
+          pkgs.gcc
           pkgs.inconsolata
           pkgs.just
           pkgs.pandoc
