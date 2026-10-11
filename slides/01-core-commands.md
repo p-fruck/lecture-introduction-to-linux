@@ -65,9 +65,9 @@ Running a command can be as simple as executing `mycmd`
 Example in C
 ===
 
-Let's build our own executable and run `mycmd arg1 arg2`
+Let's build our own executable and run it as `/tmp/mycmd arg1 arg2`
 
-```c +exec
+```c +exec:mycmd
 #include <stdio.h>
 int main(int argc, char *argv[]) {
     for (int i = 0; i < argc; i++) {
@@ -75,6 +75,10 @@ int main(int argc, char *argv[]) {
     }
 }
 ```
+
+<!-- pause -->
+
+For flags, use libraries like `getopt` (or something more modern)
 
 <!-- end_slide -->
 
