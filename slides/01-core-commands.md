@@ -121,19 +121,20 @@ Files starting with `.` are hidden by default
 
 <!-- end_slide -->
 
-Navigating the File System
+Getting started
 ===
 
-| Command | Description                                 | Useful Flags / Examples                      |
-| ------- | ------------------------------------------- | -------------------------------------------- |
-| `pwd`   | **P**rint current **w**orking **d**irectory |                                              |
-| `ls`    | **L**i**s**t directory contents             | `-l` long format, `-a` show hidden files,    |
-|         |                                             | `-h` human-readable sizes                    |
-| `cd`    | **C**hange **d**irectory                    | `cd -` go back to previous directory         |
-|         |                                             | `cd` without parameters goes back to home    |
-| `tree`  | Show directory structure                    | `-L 2` limit depth, `-a` show hidden files   |
-| `echo`  | Print given arguments or variables          | `echo $PATH`, `echo -n text without newline` |
-| `which` | Show full path of command                   | `-a` shows all matches                       |
+| Command | Description                                 | Useful Flags / Examples                         |
+| ------- | ------------------------------------------- | ----------------------------------------------- |
+| `pwd`   | **P**rint current **w**orking **d**irectory |                                                 |
+| `ls`    | **L**i**s**t directory contents             | `-l` long format, `-a` show hidden files,       |
+|         |                                             | `-h` human-readable sizes                       |
+| `cd`    | **C**hange **d**irectory                    | `cd -` go back to previous directory            |
+|         |                                             | `cd` without parameters goes back to home       |
+| `tree`  | Show directory structure                    | `-L 2` limit depth, `-a` show hidden files      |
+| `echo`  | Print given arguments or variables          | `echo $PATH`, `echo -n text without newline`    |
+| `clear` | Clear the current terminal screen           | Similar to `Ctrl+l` which scrolls to new screen |
+| `which` | Show full path of command                   | `-a` shows all matches                          |
 
 <!-- pause -->
 
