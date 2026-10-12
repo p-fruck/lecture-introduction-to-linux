@@ -27,31 +27,6 @@ System Services and Remote Systems
 
 <!-- end_slide -->
 
-SSH: Secure Remote Access
-===
-
-- Stands for **s**ecure **sh**ell
-- Encrypted remote shell & file transfer
-- Works on all major platforms
-- Uses client-server model
-  - Server: `sshd`
-  - Client: `ssh`
-
-Basic usage
-
-```bash
-ssh <user>@<host>
-```
-
-Common options
-
-```bash
-ssh -p 2222 user@host         # custom port
-ssh -i ~/.ssh/id_ed25519 host # use specific key
-```
-
-<!-- end_slide -->
-
 SSH Server Configuration
 ===
 
