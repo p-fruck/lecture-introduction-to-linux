@@ -24,13 +24,11 @@ echo '# Introduction to Linux
 You can view or download the latest slides here.
 ' > _site/index.md
 
-echo "## Compact" >> _site/index.md
-echo "Single page per slide" >> _site/index.md
+echo -e "## Compact\nSingle page per slide\n" >> _site/index.md
 export_all compact
 git restore slides
 
-echo "## Extended" >> _site/index.md
-echo "One page for each animation" >> _site/index.md
+echo -e "## Extended\nOne page for each animation\n" >> _site/index.md
 yq -yi '.export.pauses = "new_slide"' config.yaml
 export_all extended
 
