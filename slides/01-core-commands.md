@@ -121,19 +121,20 @@ Files starting with `.` are hidden by default
 
 <!-- end_slide -->
 
-Navigating the File System
+Getting started
 ===
 
-| Command | Description                                 | Useful Flags / Examples                      |
-| ------- | ------------------------------------------- | -------------------------------------------- |
-| `pwd`   | **P**rint current **w**orking **d**irectory |                                              |
-| `ls`    | **L**i**s**t directory contents             | `-l` long format, `-a` show hidden files,    |
-|         |                                             | `-h` human-readable sizes                    |
-| `cd`    | **C**hange **d**irectory                    | `cd -` go back to previous directory         |
-|         |                                             | `cd` without parameters goes back to home    |
-| `tree`  | Show directory structure                    | `-L 2` limit depth, `-a` show hidden files   |
-| `echo`  | Print given arguments or variables          | `echo $PATH`, `echo -n text without newline` |
-| `which` | Show full path of command                   | `-a` shows all matches                       |
+| Command | Description                                 | Useful Flags / Examples                         |
+| ------- | ------------------------------------------- | ----------------------------------------------- |
+| `pwd`   | **P**rint current **w**orking **d**irectory |                                                 |
+| `ls`    | **L**i**s**t directory contents             | `-l` long format, `-a` show hidden files,       |
+|         |                                             | `-sh` human-readable sizes                      |
+| `cd`    | **C**hange **d**irectory                    | `cd -` go back to previous directory            |
+|         |                                             | `cd` without parameters goes back to home       |
+| `tree`  | Show directory structure                    | `-L 2` limit depth, `-a` show hidden files      |
+| `echo`  | Print given arguments or variables          | `echo $PATH`, `echo -n text without newline`    |
+| `clear` | Clear the current terminal screen           | Similar to `Ctrl+l` which scrolls to new screen |
+| `which` | Show full path of command                   | `-a` shows all matches                          |
 
 <!-- pause -->
 
@@ -185,18 +186,15 @@ Editing Files
 - Today, `nano` and `vim` are the most common editors
 - `nano` is a bit simpler and shows the required keyboard shortcuts
   - `^` is the `Ctrl` key
-- `vim` is more advanced and allows faster editing, but is more complex!
 
 <!--pause-->
 
-- Command driven editor with different modes
-- `i` for insert mode, `v` for visual mode
-- `:` for command mode, `Esc` to go back to regular mode
-
-<!-- pause -->
-
-- From insert mode: `Esc`, `:wq` to **w**rite and **q**uit
-- From regular mode: Use `/` to search (like in less)
+- `vim` is more advanced and allows faster editing, but is more complex!
+  - Command driven editor with different modes
+  - `i` for insert mode, `v` for visual mode
+  - `:` for command mode, `Esc` to go back to regular mode
+  - From insert mode: `Esc`, `:wq` to **w**rite and **q**uit
+  - From regular mode: Use `/` to search (like in less)
 
 <!-- end_slide -->
 
