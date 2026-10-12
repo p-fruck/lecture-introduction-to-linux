@@ -185,18 +185,15 @@ Editing Files
 - Today, `nano` and `vim` are the most common editors
 - `nano` is a bit simpler and shows the required keyboard shortcuts
   - `^` is the `Ctrl` key
-- `vim` is more advanced and allows faster editing, but is more complex!
 
 <!--pause-->
 
-- Command driven editor with different modes
-- `i` for insert mode, `v` for visual mode
-- `:` for command mode, `Esc` to go back to regular mode
-
-<!-- pause -->
-
-- From insert mode: `Esc`, `:wq` to **w**rite and **q**uit
-- From regular mode: Use `/` to search (like in less)
+- `vim` is more advanced and allows faster editing, but is more complex!
+  - Command driven editor with different modes
+  - `i` for insert mode, `v` for visual mode
+  - `:` for command mode, `Esc` to go back to regular mode
+  - From insert mode: `Esc`, `:wq` to **w**rite and **q**uit
+  - From regular mode: Use `/` to search (like in less)
 
 <!-- end_slide -->
 
