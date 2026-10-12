@@ -28,6 +28,7 @@
           pkgs.prek
           pkgs.presenterm
           pkgs.typst
+          pkgs.yq
           pythonEnv
         ];
       };

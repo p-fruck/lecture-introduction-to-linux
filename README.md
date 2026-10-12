@@ -6,12 +6,13 @@ This lecture covers 24 SWS which evaluates to 22 lecture hours (each 45 min) or 
 ## Slides
 
 All slides are located in the [slides](slides) folder and written using [presenterm](https://github.com/mfontanini/presenterm).
-To rendern the slides, install presenterm.
+The latest slides are provided in HTML and PDF format [here](https://p-fruck.github.io/lecture-introduction-to-linux/).
+To render the slides locally, install presenterm (or use `nix develop`).
 For slides containing images, a terminal emulator like [kitty or foot](https://mfontanini.github.io/presenterm/features/images.html) must be used.
 Typst and pandoc are required if typst and LaTeX should be rendered, [see docs](https://mfontanini.github.io/presenterm/features/code/latex.html).
 
 Code blocks can be executed using `ctrl+e` if the `-x` flag is passed to presenterm.
-`just` adds this flag by default, so you can run `just present slides/cli.md` to show the slide.
+`just` adds this flag by default, so you can run `just present slides/<slide>.md` to show the slide.
 
 ## Development
 
