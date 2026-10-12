@@ -237,30 +237,6 @@ Your history is persisted in `~/.bash_history`.
 
 <!-- end_slide -->
 
-Utilities
-===
-
-| Command   | Description                              | Useful Flags / Examples |
-| --------- | ---------------------------------------- | ----------------------- |
-| `man`     | Show **man**ual pages                    | `man ls`, `man hier`    |
-| `tldr`    | Shorter command descriptions             | `tldr ls`               |
-|           | (**t**oo **l**ong **d**idn't **r**ead)   |                         |
-| `alias`   | Define shortcuts                         | `alias ll="ls -l"`      |
-| `unalias` | Removes defined shortcuts                | `unalias ll`            |
-| `command` | Executes a command without aliases, etc. | `command ls`            |
-| `watch`   | Repeat a command periodically            | `watch -n .5 ls -l`     |
-
-<!-- pause -->
-
-> `alias` only applies to the current shell session. We will learn how to persist it later.
-
-<!-- pause -->
-
-> `watch` cannot resolve aliases
-> To fix: `alias watch="watch "` or `watch -n .5 bash -ic ls`
-
-<!-- end_slide -->
-
 Thank you!
 ===
 
