@@ -128,7 +128,7 @@ Getting started
 | ------- | ------------------------------------------- | ----------------------------------------------- |
 | `pwd`   | **P**rint current **w**orking **d**irectory |                                                 |
 | `ls`    | **L**i**s**t directory contents             | `-l` long format, `-a` show hidden files,       |
-|         |                                             | `-h` human-readable sizes                       |
+|         |                                             | `-sh` human-readable sizes                      |
 | `cd`    | **C**hange **d**irectory                    | `cd -` go back to previous directory            |
 |         |                                             | `cd` without parameters goes back to home       |
 | `tree`  | Show directory structure                    | `-L 2` limit depth, `-a` show hidden files      |
