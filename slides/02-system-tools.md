@@ -34,6 +34,7 @@ Utilities
 | `unalias` | Removes defined shortcuts                | `unalias ll`            |
 | `command` | Executes a command without aliases, etc. | `command ls`            |
 | `watch`   | Repeat a command periodically            | `watch -n .5 ls -l`     |
+|           |                                          | `-c` to add **c**olor   |
 
 <!-- pause -->
 
@@ -42,7 +43,7 @@ Utilities
 <!-- pause -->
 
 > `watch` cannot resolve aliases
-> To fix: `alias watch="watch "` or `watch -n .5 bash -ic ls`
+> To fix: `alias watch="watch "` or `watch -n .5 bash -ic ll`
 
 <!-- end_slide -->
 
@@ -81,6 +82,8 @@ System Info
 > `btop` and bottom (`btm`) are advanced terminal task managers
 
 > "Mission Center" is a great GUI app!
+
+> 💡 100 % CPU utilization = 1 CPU core fully utilized -> 4-core CPU can have 400 % CPU load
 
 <!-- end_slide -->
 
@@ -140,33 +143,37 @@ Unix philosophy: One tool should only do one thing
 
 - e.g. `tar` archives, `gzip` compresses, `gunzip` decompresses
 - `tar` has `-z` for `gzip`, `gzip` has `--decompress` for `gunzip`
-- `zip` comes from the Windows world
+- `zip` comes from the Windows world -> Does archiving + compression
+  - Unix filesystem attributes **can** be supported (but don't have to).
 
 <!-- end_slide -->
 
 Networking Basics
 ===
 
-| Command              | Description               | Useful Flags / Examples                 |
-| -------------------- | ------------------------- | --------------------------------------- |
-| `ping`               | Test connectivity         | `ping -c 4 dhbw.de`                     |
-| `mtr` / `traceroute` | Print route packets trace | `mtr dhbw.de`                           |
-| `curl`               | Transfer data from URLs   | `-I` headers only, `-L` follow redirect |
-|                      |                           | `-X` change HTTP method, `-O` save file |
-| `wget`               | Download files from web   | `-r` recursive download                 |
-| `ss` / `netstat`     | Show network connections  | `ss -tulpn` show listening ports        |
-| `dig` / `nslookup`   | DNS queries               | `dig A example.com`                     |
+| Command              | Description               | Useful Flags / Examples                           |
+| -------------------- | ------------------------- | ------------------------------------------------- |
+| `curl`               | Transfer data from URLs   | `-I` headers only, `-L` follow redirect           |
+|                      |                           | `-X` change HTTP method, `-o` **o**utput file     |
+| `wget`               | Download files from web   | `-r` **r**ecursive download, `-o` **o**utput file |
+| `ping`               | Test connectivity         | `ping -c 4 dhbw.de`: **c**ount 4 replies          |
+| `mtr` / `traceroute` | Print route packets trace | `mtr dhbw.de`                                     |
+| `ss` / `netstat`     | Show network connections  | `ss -tulpn` show listening ports                  |
+|                      |                           | `-t` = TCP, `-u` = UDP                            |
+| `dig` / `nslookup`   | DNS queries               | `dig A example.com`                               |
 
 <!-- end_slide -->
 
 Exercise
 ===
 
-Installation of `lf` (https://github.com/gokcehan/lf) within the Terminal
+To navigate the filesystem more efficiently we want to install a terminal-based file manager (manually).
 
-- Download latest `lf-linux-amd64.tar.gz` via `wget`/`curl`
+Task: Install `lf` (https://github.com/gokcehan/lf) within the terminal.
+
+- Download latest `lf-linux-amd64.tar.gz` via `wget`/`curl` from the GitHub releases
 - Extract the archive
-- Copy `lf` binary to your user `PATH`
+- Copy `lf` binary to your users `PATH`
   - Choose a path in the home directory
   - Create the directory if necessary
 - Run `lf` to navigate your home directory
@@ -201,6 +208,8 @@ There are multiple authentication methods:
     - Optional (recommended): Set a password to store it encrypted
     - `~/.ssh/id_ed25519`: Private key - don't share with anyone
     - `~/.ssh/id_ed25519.pub`: Public key - upload via moodle
+
+> If you run the command a second time, make sure to choose a different name for the SSH key. Don't override your existing key. Choose a path inside `~/.ssh/` for now.
 
 <!-- pause -->
 
