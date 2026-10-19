@@ -10,6 +10,7 @@ System Tools
 
 # Goal of this lecture
 
+- Better understanding of your local system
 - Learn how to search files and text efficiently
 - Understand tools for inspecting system state and resource usage
 - Get familiar with archiving, compression, and basic networking commands
@@ -18,6 +19,30 @@ System Tools
 
 - These tools are essential for troubleshooting and system administration
 - They build directly on the fundamentals from the previous lecture
+
+<!-- end_slide -->
+
+Utilities
+===
+
+| Command   | Description                              | Useful Flags / Examples |
+| --------- | ---------------------------------------- | ----------------------- |
+| `man`     | Show **man**ual pages                    | `man ls`, `man hier`    |
+| `tldr`    | Shorter command descriptions             | `tldr ls`               |
+|           | (**t**oo **l**ong **d**idn't **r**ead)   |                         |
+| `alias`   | Define shortcuts                         | `alias ll="ls -l"`      |
+| `unalias` | Removes defined shortcuts                | `unalias ll`            |
+| `command` | Executes a command without aliases, etc. | `command ls`            |
+| `watch`   | Repeat a command periodically            | `watch -n .5 ls -l`     |
+
+<!-- pause -->
+
+> `alias` only applies to the current shell session. We will learn how to persist it later.
+
+<!-- pause -->
+
+> `watch` cannot resolve aliases
+> To fix: `alias watch="watch "` or `watch -n .5 bash -ic ls`
 
 <!-- end_slide -->
 
@@ -43,6 +68,8 @@ System Info
 | `uname`        | Show system info              | `-a` all details                     |
 | `uptime`       | Show uptime & load average    |                                      |
 | `lsblk`        | List block devices            | `--fs` shows file system type        |
+| `mount`        | Mount a filesystem            | `mount /dev/sda1 /mnt`               |
+| `umount`       | Unmount a filesystem          | `umount /dev/sda1`, `umount /mnt`    |
 | `df`           | Show disk usage               | `-h` human-readable sizes            |
 | `du`           | Show space used by files/dirs | `-sh` summarize directory size       |
 | `free`         | Show memory usage             | `-h` human-readable                  |
@@ -57,23 +84,63 @@ System Info
 
 <!-- end_slide -->
 
-Archiving & Compression
+Archiving
 ===
 
-| Command             | Description         | Useful Flags / Examples                                                           |
-| ------------------- | ------------------- | --------------------------------------------------------------------------------- |
-| `tar`               | Archive files       | `tar -czvf file.tar.gz dir/` (**c**reate + g**z**ip + ***v***erbose + ***f***ile) |
-|                     |                     | `tar -xzvf file.tar.gz` (e**x**tract + g**z**ip + ***v***erbose + ***f***ile)     |
-| `gzip` / `gunzip`   | Compress/decompress | `gunzip --keep archive.gz`                                                        |
-| `bzip2` / `bunzip2` | Compress/decompress | `bunzip2 --keep archive.bz2`                                                      |
-| `xz` / `unxz`       | Compress/decompress | `unxz --keep archive.xz`                                                          |
-| `zip` / `unzip`     | Compress/decompress | `unzip archive.zip`                                                               |
+On Linux, archives are created using `tar`
+
+- **C**reate an archive and write it to a **f**ile:
+  - `tar -cf file.tar file1 dir1/ dir2/`
+- Lis**t** the contents of a tar **f**ile **v**erbosely:
+  - `tar -tvf path/to/source.tar`
+- **C**reate a g**z**ipped archive **v**erbosely and write to **f**ile
+  - `tar -czvf file.tar.gz dir/`
+- E**x**tract an archive **f**ile into the target directory:
+  - `tar -xf file.tar --directory output/`
+- E**x**tract a g**z**ipped **f**ile **v**erbosely
+  - `tar -xzfv file.tar.gz`
 
 <!-- pause -->
 
-![xkcd 1168](../assets/xkdc-1168.png)
+<!-- column_layout: [1,2] -->
+
+<!-- column: 0 -->
+
+For tar `-` is optional
+
+`tar xzf` works too
+
+<!-- pause -->
+
+<!-- column: 1 -->
+
+![xkcd 1168](../assets/xkcd-1168.png)
 
 > https://xkcd.com/1168/
+
+<!-- end_slide -->
+
+Compression
+===
+
+| Command             | Compression of        | Useful Flags / Examples                  |
+| ------------------- | --------------------- | ---------------------------------------- |
+| `gzip` / `gunzip`   | Single file           | `gzip --keep /path/to/file`              |
+|                     |                       | `gunzip --keep archive.gz`               |
+| `bzip2` / `bunzip2` | Single file           | `bzip2 --keep /path/to/file`             |
+|                     |                       | `bunzip2 --keep archive.bz2`             |
+| `xz` / `unxz`       | Single file           | `xz --keep /path/to/file`                |
+|                     |                       | `unxz --keep archive.xz`                 |
+| `zip` / `unzip`     | Files and directories | `zip --recurse-paths my.zip dir1/ dir2/` |
+|                     |                       | `unzip archive.zip`                      |
+
+<!-- pause -->
+
+Unix philosophy: One tool should only do one thing
+
+- e.g. `tar` archives, `gzip` compresses, `gunzip` decompresses
+- `tar` has `-z` for `gzip`, `gzip` has `--decompress` for `gunzip`
+- `zip` comes from the Windows world
 
 <!-- end_slide -->
 
@@ -95,14 +162,72 @@ Networking Basics
 Exercise
 ===
 
-# Installation of `lf` (https://github.com/gokcehan/lf) within the Terminal
+Installation of `lf` (https://github.com/gokcehan/lf) within the Terminal
 
-- Download latest `lf-linux-amd64.tar.gz` via wget/curl
+- Download latest `lf-linux-amd64.tar.gz` via `wget`/`curl`
 - Extract the archive
 - Copy `lf` binary to your user `PATH`
+  - Choose a path in the home directory
+  - Create the directory if necessary
 - Run `lf` to navigate your home directory
 
 Time: 10 minutes
+
+<!-- end_slide -->
+
+SSH: Secure Remote Access
+===
+
+Lets you connect to a remote system
+
+- Stands for **s**ecure **sh**ell
+- Encrypted remote shell & file transfer
+- Works on all major platforms
+  - You can use Windows / macOS as well
+- Uses client-server model
+  - Server: `sshd`
+  - Client: `ssh`
+
+<!-- end_slide -->
+
+SSH: Secure Remote Access
+===
+
+There are multiple authentication methods:
+
+- username/password: "Weak" authentication (password strength matters)
+- SSH key/certificate based: "Strong" authentication via cryptographic methods
+  - Running `ssh-keygen -t ed25519` will create an ssh key pair
+    - Optional (recommended): Set a password to store it encrypted
+    - `~/.ssh/id_ed25519`: Private key - don't share with anyone
+    - `~/.ssh/id_ed25519.pub`: Public key - upload via moodle
+
+<!-- pause -->
+
+<!-- column_layout: [1,2] -->
+
+<!-- column: 0 -->
+
+# Basic usage
+
+```bash
+ssh <user>@<host>
+```
+
+e.g. `ssh s123456@dhbw`
+
+<!-- pause -->
+
+<!-- column: 1 -->
+
+# Common options
+
+```bash
+# custom port, default is 22
+ssh -p 2222 <user>@<host>
+# use specific key ("identity")
+ssh -i ~/.ssh/id_ed25519 <host>
+```
 
 <!-- end_slide -->
 
