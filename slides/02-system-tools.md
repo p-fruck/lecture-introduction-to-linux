@@ -68,6 +68,8 @@ System Info
 | `uname`        | Show system info              | `-a` all details                     |
 | `uptime`       | Show uptime & load average    |                                      |
 | `lsblk`        | List block devices            | `--fs` shows file system type        |
+| `mount`        | Mount a filesystem            | `mount /dev/sda1 /mnt`               |
+| `umount`       | Unmount a filesystem          | `umount /dev/sda1`, `umount /mnt`    |
 | `df`           | Show disk usage               | `-h` human-readable sizes            |
 | `du`           | Show space used by files/dirs | `-sh` summarize directory size       |
 | `free`         | Show memory usage             | `-h` human-readable                  |
