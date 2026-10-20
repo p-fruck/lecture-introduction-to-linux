@@ -70,7 +70,7 @@ done
 Error Handling
 ===
 
-Bash scripts often need strict error handling:
+Shell scripts often need strict error handling:
 
 ```bash
 #!/usr/bin/env bash
@@ -79,7 +79,7 @@ set -xeuo pipefail
 # -x : show commands as executed
 # -e : exit immediately on error
 # -u : error on unset variables
-# -o pipefail : pipeline fails if any command fails
+# -o pipefail : pipeline fails if any command fails (only exists in bash)
 ```
 
 This ensures predictable, safe scripts and easier debugging.

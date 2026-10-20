@@ -35,37 +35,40 @@ POSIX vs Bash
 POSIX vs Bash
 ===
 
+POSIX is a standard, Bash is a shell implementation
+
 - `/bin/sh` → POSIX-compliant shell
 - `/bin/bash` → Bash-specific features, not always POSIX
 
+<!-- pause -->
+
 > On Fedora, `/bin/sh` is a symlink to `/bin/bash`, but other distros like Debian ship more minimal shells like `dash`
 
-```bash
-# POSIX (works in /bin/sh)
-echo "Hello"
-
-# Bash extension (won't work in pure POSIX sh)
-[[ -f file.txt ]] && echo "Exists"
-```
+<!-- pause -->
 
 **POSIX standard includes:**
 
-- Basic syntax (`if`, `while`, `for`, `case`)
+- Standard shell syntax (`if`, `while`, `for`, `case`)
+- Conditionals (`[ ... ]`, with `=`, `-f`, `-n`, etc.)
 - Variables and expansions
 - Redirection
 - Command substitution
 
-Bash adds arrays, `[[ ]]`, process substitution, and more.
+<!-- pause -->
+
+Bash adds arrays, enhanced conditionals (`[[ ... ]]`) and some more syntax.
+
+<!-- pause -->
 
 > The `shellcheck` utility allows linting your shell script.
-> It determines the correct shell syntax using the shebang
+> It determines the correct shell syntax using the **shebang**.
 
 <!-- end_slide -->
 
 Shebang
 ===
 
-<!-- column_layout: [3, 2] -->
+<!-- column_layout: [4, 2] -->
 
 <!-- column: 0 -->
 
@@ -76,6 +79,7 @@ Shebang
 - Starts with `#!` followed by the interpreter path
 - Allows running `./script` instead of `bash ./script`
   - Ensures correct interpreter is used even if no file extension is present
+  - Don't forget to `chmod +x ./scripts` (details in the permissions lecture)
 
 <!-- column: 1 -->
 
@@ -99,11 +103,13 @@ Shebang
 
 <!-- reset_layout -->
 
-> 💡 Tip: Using `/usr/bin/env` makes your script more portable across systems (`/bin/sh` is a special case as it is required by the POSIX standard).
+<!-- pause -->
+
+> 💡 Tip: Using `/usr/bin/env` makes your script more portable across systems (`/bin/sh` is a special case as it is required by the POSIX standard). Use of `#!/bin/bash`, `#!/usr/bin/python` etc. are discouraged.
 
 <!-- end_slide -->
 
-Variables
+POSIX Variables
 ===
 
 <!-- column_layout: [3, 2] -->
@@ -124,22 +130,28 @@ echo "${name}.lastname@example.com"
 # Read-only
 readonly pi=3.14
 
-# Environment variable
+# Environment variable: Add another directory to your PATH
 export PATH="/usr/local/bin:$PATH"
 ```
+
+> Note: Every variable is a string
+
+> Be careful with special variables like `PATH` and `PS1`
 
 <!-- pause -->
 
 <!-- column: 1 -->
 
-```bash +exec
-name=Bob
+```bash +exec +line_numbers
+readonly name=Bob
 fullname="$name the builder"
-# Variables are replace in double quotes
+# Variables are replaced in double quotes
 echo "Fullname: $fullname"
 # But not in single quotes:
 message='$name is a nice name!'
 echo $message
+# readonly cannot be changed
+name="Beep 🤖"
 ```
 
 <!-- reset_layout -->
@@ -152,7 +164,7 @@ echo $message
 
 <!-- end_slide -->
 
-Conditionals
+POSIX Conditionals
 ===
 
 <!-- column_layout: [3, 3] -->
@@ -161,7 +173,7 @@ Conditionals
 
 # If-else logic
 
-- The `if` statement runs commands conditionally based on exit status
+The `if` statement runs commands conditionally based on exit status. Do not forget spaces around `[` and `]`.
 
 ```bash
 # hint: Do not use this in prod :)
@@ -172,15 +184,163 @@ elif [ "$USER" = "admin" ]; then
 else
     echo "Access denied."
 fi
+
+# negation works with != or ! in beginning
+if [ ! "$USER" = "root" ]; then echo "No!"; fi
 ```
 
-> Tip: Prefer `[[ ... ]]` for Bash-specific scripting, it is safer for strings.
+<!-- pause -->
+
+Concatenation (`if ...; then` is optional)
+
+```bash
+[ "$USER" = "root" ] || [ "$USER" = "admin" ] && echo "Woohoo"
+```
 
 <!-- column: 1 -->
 
-# Case statement
+<!-- pause -->
 
-- `case` compares a value against multiple patterns
+# Common test conditions
+
+| Operator | Meaning                       | Example             |
+| -------- | ----------------------------- | ------------------- |
+| `-e`     | Path exists                   | `[ -e "$file" ]`    |
+| `-f`     | Regular file exists           | `[ -f "$file" ]`    |
+| `-d`     | Directory exists              | `[ -d "$dir" ]`     |
+| `-r`     | Path is readable              | `[ -r "$file" ]`    |
+| `-w`     | Path is writable              | `[ -w "$file" ]`    |
+| `-x`     | Path is executable/searchable | `[ -x "$file" ]`    |
+| `-s`     | File exists and is non-empty  | `[ -s "$file" ]`    |
+| `-L`     | Path is a symbolic link       | `[ -L "$file" ]`    |
+| `-z`     | String is empty               | `[ -z "$var" ]`     |
+| `-n`     | String is non-empty           | `[ -n "$var" ]`     |
+| `=`      | Strings are equal             | `[ "$a" = "$b" ]`   |
+| `!=`     | Strings are different         | `[ "$a" != "$b" ]`  |
+| `-eq`    | Integers are equal            | `[ "$a" -eq "$b" ]` |
+| `-ne`    | Integers are not equal        | `[ "$a" -ne "$b" ]` |
+| `-lt`    | Less than                     | `[ "$a" -lt "$b" ]` |
+| `-le`    | Less than or equal            | `[ "$a" -le "$b" ]` |
+| `-gt`    | Greater than                  | `[ "$a" -gt "$b" ]` |
+| `-ge`    | Greater than or equal         | `[ "$a" -ge "$b" ]` |
+
+See `man test` for more details
+
+<!-- end_slide -->
+
+Bash-Specific Conditionals
+===
+
+<!-- column_layout: [3, 2] -->
+
+<!-- column: 0 -->
+
+# Safer comparison
+
+Bash's `[[ ... ]` supports safer string comparisons (`==`) that prevent word splitting or path name expansion and logical operators.
+
+```bash
+if [[ "$USER" == "root" ]]; then
+    echo "Welcome, root user!"
+elif [[ "$USER" == admin* ]]; then
+    echo "Hello, admin."
+else
+    echo "Access denied."
+fi
+
+[[ "$USER" != "admin" ]] && echo "no!"
+```
+
+<!-- pause -->
+
+Combine tests using `&&` and `||`:
+
+```bash
+if [[ -f "$file" && -r "$file" ]]; then
+    echo "File exists and is readable."
+fi
+```
+
+<!-- column: 1 -->
+
+<!-- pause -->
+
+## Regex matching
+
+Use `=~` to match a POSIX extended regular expression (`man 7 regex`).
+
+`BASH_REMATCH` contains the matched text and capture groups.
+
+```bash +exec
+input=abc123
+if [[ "$input" =~ [0-9]+ ]]; then
+    echo "Found number: $BASH_REMATCH"
+else
+    echo "Invalid input."
+fi
+```
+
+<!-- end_slide -->
+
+Arithmetic
+===
+
+<!-- column_layout: [3, 2] -->
+
+<!-- column: 0 -->
+
+Bash supports `(( ... ))` for arithmetic comparisons.
+
+A nonzero arithmetic result means success.
+
+```bash +exec
+count="50"
+if (( count > 10 && count < 100 )); then
+    echo "Count is in range."
+fi
+
+if (( count % 2 == 0 )); then
+    echo "Even number."
+fi
+
+(( "1" > "2" )) || echo false
+```
+
+<!-- pause -->
+
+<!-- column: 1 -->
+
+POSIX only supports arithmetic via `$(( ... ))`.
+
+Results are passed as string (no exit code).
+
+```bash +exec
+echo $(( "1" + 2 ))
+echo -n $(( 1 > 2 )) && echo '->yes'
+echo -n $(( 1 < 2 )) && echo '->yes'
+
+counter=0
+# POSIX-compliant increment
+counter=$(( counter + 1 ))
+# Bash-only increment
+(( counter++ ))
+echo Counter: $counter
+```
+
+<!-- reset_layout -->
+
+<!-- end_slide -->
+
+Selections
+===
+
+<!-- column_layout: [3, 3] -->
+
+<!-- column: 0 -->
+
+# POSIX Case statement
+
+`case` compares a value against multiple patterns
 
 ```bash
 case "$arg" in
@@ -200,42 +360,95 @@ case "$arg" in
 esac
 ```
 
-<!-- reset_layout -->
+<!-- column: 1 -->
+
+<!-- pause -->
+
+# Bash Select
+
+```bash
+select choice in "foo" "bar" "foobar"; do
+    echo "choice: $choice, reply: $REPLY"
+    break
+done
+```
+
+<!-- pause -->
+
+## Combining select and case
+
+```bash
+PS3="Choose an option: "
+select choice in "Date" "List" "Quit"; do
+    case $REPLY in
+        1) date ;;
+        2) ls -l ;;
+        3) echo "Goodbye!"; break ;;
+        *) echo "Invalid choice." ;;
+    esac
+done
+```
+
+> Choice uses `PS3` instead of `PS1`.
+
+<!--     reset_layout -->
 
 <!-- end_slide -->
 
 Functions in Bash
 ===
 
+<!-- column_layout: [3, 2] -->
+
+<!-- column: 0 -->
+
 # Functions allow reusable blocks of code
 
 - Functions improve code clarity and reduce repetition.
-- Bash allows further syntax to define functions, but this way is POSIX compliant, hence more portable
+- Parameters passed to a function or script are accessed via `$1`, `$2`, ...
+  - `$0` is the invoked executable (remember C's `argv[0]`?)
+  - `$#` shows the parameter count
+  - `$@` shows all parameters
+  - `shift` drops the first n parameters (by default 1)
 
-```bash
-# Define a function
-greet() {
-    echo "Hello, $1"
+```bash +exec
+#!/bin/sh
+myfunc() {
+    echo "Hello from $0"
+    echo "$# args: $@"
+    echo "First: $1" ; shift ; echo "New first: $1"
 }
-
-# Call a function
-greet "Alice"
-
-# Functions can return status codes
-check_file() {
-    # in POSIX, just run the command without [[ ]]
-    [[ -f "$1" ]]
-}
+myfunc foo bar
 ```
 
-> `$1` is the first parameter passed to a function or shell script
+<!-- column: 1 -->
+
+<!-- pause -->
+
+```bash +exec +line_numbers
+#!/usr/bin/env bash
+
+# the function keyword only exists in bash
+function add() {
+    echo $(( 1 + 2))
+}
+
+# Functions can return plaintext
+sum=$(add 1 2)
+echo "Sum = $sum"
+
+# And functions can return status codes
+check_file() {
+    [ -f "$1" ]
+}
+
+check_file ../README.md && echo Exists!
+```
 
 <!-- end_slide -->
 
 Loops: for and while
 ===
-
-Loops automate repetitive tasks.
 
 <!-- column_layout: [3, 3] -->
 
@@ -244,60 +457,29 @@ Loops automate repetitive tasks.
 # For Loop
 
 ```bash +exec
-# Loop over files
+# Iterate over numbers (set notation)
+for i in {1..10}; do
+    echo -n "$i "
+done
+echo
+# Loop over files (pipe output into head)
 for file in *.md; do
     echo "File: $file"
-done
-
-# Iterate over numbers (set notation)
-for i in {1..5}; do
-    echo "Number $i"
-done
+done | head -n 5
 ```
 
 <!-- column: 1 -->
+
+<!-- pause -->
 
 # While Loop
 
 ```bash +exec
 counter=1
-# POSIX uses single or no brackets, but supports less operators
-while [[ $counter -le 5 ]]; do
+while [ $counter -le 5 ]; do
     echo "Count $counter"
-    ((counter++))
+    ((counter++)) # Only works in Bash
 done
-```
-
-<!-- end_slide -->
-
-Globbing
-===
-
-<!-- column_layout: [1, 1] -->
-
-<!-- column: 0 -->
-
-# Globbing (Filename Expansion)
-
-- Globbing lets you match filenames using wildcards:
-
-| Pattern  | Matches                          |
-| -------- | -------------------------------- |
-| `*`      | Any string, including empty      |
-| `?`      | Any single character             |
-| `[abc]`  | Any one of the listed characters |
-| `[!abc]` | Any character not listed         |
-
-<!-- column: 1 -->
-
-# Example:
-
-```bash
-# List all .txt files
-ls *.txt
-
-# List files starting with a or b
-ls [ab]*.txt
 ```
 
 <!-- end_slide -->
