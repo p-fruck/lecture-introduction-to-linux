@@ -48,21 +48,68 @@ Useful (scripting) tools
 | `time`          | Measure execution time of a command         | `time ls -l`                    |
 | `diff/delta`    | Show difference between two files           | `delta first.txt second.txt`    |
 
+<!-- pause -->
+
 > If no `jq` is installed: `cat file.json | python3 -m json.tool` might help
+
+<!-- pause -->
+
+> ⚠️ `uniq` only works with sorted input, always use `<command> | sort | uniq` to avoid mistakes
+
+<!-- end_slide -->
+
+Exit Codes
+===
+
+On Linux, every command returns an **exit code** (`$?`) indicating success or failure.
+
+An exit code is always in the range `0-255`.
+
+Only 0 indicates success, every other exit code indicates a failure.
+
+<!-- column_layout: [3, 3] -->
+
+<!-- column: 0 -->
+
+```bash +exec
+true
+echo Output of true: $?
+
+false
+echo Output of false: $?
+```
+
+<!-- column: 1 -->
+
+<!-- pause -->
+
+```bash
+ls /tmp
+echo "Exit code of ls: $?"
+
+grep "foo" file.txt
+echo "Exit code of grep: $?"
+```
+
+<!-- pause -->
+
+> The `exit` command can be used to quit an interactive shell
+
+> See `man errno` or `man sysexits.h` for common C exit codes
 
 <!-- end_slide -->
 
 Concatenating Commands
 ===
 
-<!-- column_layout: [3, 3] -->
+<!-- column_layout: [3, 2] -->
 
 <!-- column: 0 -->
 
 The POSIX standard allows chaining commands in multiple ways:
 
-```bash +exec
-# Sequential execution: next command runs regardless of previous
+```bash +exec +id:chaining
+# Sequential execution: commands runs regardless of result
 false; echo Hello 1
 true; echo Hello 2
 
@@ -76,36 +123,16 @@ false || echo Hello 4
 true && (false; echo Hello 5)
 ```
 
-<!-- pause -->
-
-```bash
+```bash  +exec +id:wc
 # Command substition: Cat all files in current directory recursively
-cat $(find . -type f)
+wc -l $(find . -type f)
 ```
 
 <!-- column: 1 -->
 
-<!-- pause -->
+<!-- snippet_output: chaining -->
 
-Every command in Bash returns an **exit code** (`$?`) indicating success or failure.
-
-```bash
-ls /tmp
-echo "Exit code of ls: $?"
-
-grep "foo" file.txt
-echo "Exit code of grep: $?"
-```
-
-<!-- pause -->
-
-```bash +exec
-true
-echo Output of true: $?
-
-false
-echo Output of false: $?
-```
+<!-- snippet_output: wc -->
 
 <!-- end_slide -->
 
@@ -140,12 +167,14 @@ exec 3>&- # Close the FD
 diff <(ls first) <(ls second)
 ```
 
+<!-- column: 1 -->
+
+# File descriptor IDs
+
 - `0` → stdin
 - `1` → stdout
 - `2` → stderr
 - Custom FDs start at 3.
-
-<!-- column: 1 -->
 
 <!-- pause -->
 
@@ -169,17 +198,15 @@ EOF
 Pipes
 ===
 
-<!-- column_layout: [3, 3] -->
+<!-- column_layout: [2, 3] -->
 
 <!-- column: 0 -->
 
 The output of one command can be piped into another command to work with it (instead of a file):
 
 ```bash +exec
-ls / | grep --only root
+ls / | grep bin
 ```
-
-<!-- column: 1 -->
 
 <!-- pause -->
 
@@ -188,6 +215,8 @@ Pipes only capture stdin:
 ```bash +exec
 ls /root/ | grep --only Perm
 ```
+
+<!-- column: 1 -->
 
 <!-- pause -->
 
@@ -199,26 +228,25 @@ ls /root/ 2>&1 | grep --only Perm
 
 <!-- pause -->
 
-<!-- reset_layout -->
-
 Infinite piping possible!
 
 ```bash
 curl https://api.github.com/users/p-fruck/keys 2>/dev/null | jq .[0].key | tr -d '"' | ssh-keygen -lf -
 ```
 
+> Note: `-f -` means `--file: stdin` and reads the input from the pipe
+
 ```bash
+# spying on our students on the remote system
 last | grep '^s26' | cut -d ' ' -f 1 | sort | uniq | wc -l
 ```
-
-> Note: `-f -` means `--file: stdin` and reads the input from the pipe
 
 <!-- end_slide -->
 
 Persisting Configuration
 ===
 
-## How it works
+# How it works
 
 - Previous settings like `alias` are set on per-session basis
 - All shells support configuring persistent settings using configs
