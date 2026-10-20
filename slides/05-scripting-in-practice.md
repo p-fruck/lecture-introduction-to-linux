@@ -143,26 +143,6 @@ other_task
 
 <!-- end_slide -->
 
-Useful (scripting) tools
-===
-
-| Tool            | Description                                 | Example Command                 |
-| --------------- | ------------------------------------------- | ------------------------------- |
-| `sed`           | Manipulate text (in place)                  | `sed -i 's/old/new/g' file.txt` |
-| `basename`      | Extracts the file name from a path.         | `basename /path/to/file.txt`    |
-| `dirname`       | Extracts the directory part of a file path. | `dirname /path/to/file.txt`     |
-| `sort` / `uniq` | Sorts lines and removes duplicate lines.    | `sort file.txt \| uniq`         |
-| `base64`        | Encodes and decodes data in Base64 format.  | `echo "text" \| base64`         |
-| `jq` / `yq`     | Parse and format JSON/YAML data.            | `cat file.json \| jq .`         |
-| `yq`            | Parses and formats YAML data.               | `cat file.yml \| yq eval .`     |
-| `date`          | Show/set system date and time.              | `date -d @1730502000`           |
-| `time`          | Measure execution time of a command         | `time ls -l`                    |
-| `diff/delta`    | Show difference between two files           | `delta first.txt second.txt`    |
-
-> If no `jq` is installed: `cat file.json | python3 -m json.tool` might help
-
-<!-- end_slide -->
-
 Thank you!
 ===
 

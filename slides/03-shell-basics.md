@@ -32,6 +32,26 @@ Shell Basics
 
 <!-- end_slide -->
 
+Useful (scripting) tools
+===
+
+| Tool            | Description                                 | Example Command                 |
+| --------------- | ------------------------------------------- | ------------------------------- |
+| `sed`           | Manipulate text (in place)                  | `sed -i 's/old/new/g' file.txt` |
+| `basename`      | Extracts the file name from a path.         | `basename /path/to/file.txt`    |
+| `dirname`       | Extracts the directory part of a file path. | `dirname /path/to/file.txt`     |
+| `sort` / `uniq` | Sorts lines and removes duplicate lines.    | `sort file.txt \| uniq`         |
+| `base64`        | Encodes and decodes data in Base64 format.  | `echo "text" \| base64`         |
+| `jq` / `yq`     | Parse and format JSON/YAML data.            | `cat file.json \| jq .`         |
+| `yq`            | Parses and formats YAML data.               | `cat file.yml \| yq eval .`     |
+| `date`          | Show/set system date and time.              | `date -d @1730502000`           |
+| `time`          | Measure execution time of a command         | `time ls -l`                    |
+| `diff/delta`    | Show difference between two files           | `delta first.txt second.txt`    |
+
+> If no `jq` is installed: `cat file.json | python3 -m json.tool` might help
+
+<!-- end_slide -->
+
 Concatenating Commands
 ===
 
@@ -187,6 +207,10 @@ Infinite piping possible!
 curl https://api.github.com/users/p-fruck/keys 2>/dev/null | jq .[0].key | tr -d '"' | ssh-keygen -lf -
 ```
 
+```bash
+last | grep '^s26' | cut -d ' ' -f 1 | sort | uniq | wc -l
+```
+
 > Note: `-f -` means `--file: stdin` and reads the input from the pipe
 
 <!-- end_slide -->
@@ -196,7 +220,7 @@ Persisting Configuration
 
 ## How it works
 
-- Previous settings (`alias`, `umask`, etc.) are set on per-session basis
+- Previous settings like `alias` are set on per-session basis
 - All shells support configuring persistent settings using configs
 - On Bash: `~/.bash_profile` and `~/.bashrc` are used
   - They load further files from `~/.bashrc.d/*`
@@ -214,36 +238,6 @@ Persisting Configuration
 | **Type of Shell** | Login shells                           | Non-login interactive shells             |
 | **When executed** | At login (e.g., SSH, virtual terminal) | For every new interactive terminal       |
 | **Common Use**    | Environment variables, session setup   | Aliases, functions, interactive settings |
-
-<!-- end_slide -->
-
-POSIX vs Bash
-===
-
-- `/bin/sh` → POSIX-compliant shell
-- `/bin/bash` → Bash-specific features, not always POSIX
-
-> On Fedora, `/bin/sh` is a symlink to `/bin/bash`, but other distros like Debian ship more minimal shells like `dash`
-
-```bash
-# POSIX (works in /bin/sh)
-echo "Hello"
-
-# Bash extension (won't work in pure POSIX sh)
-[[ -f file.txt ]] && echo "Exists"
-```
-
-**POSIX standard includes:**
-
-- Basic syntax (`if`, `while`, `for`, `case`)
-- Variables and expansions
-- Redirection
-- Command substitution
-
-Bash adds arrays, `[[ ]]`, process substitution, and more.
-
-> The `shellcheck` utility allows linting your shell script.
-> It determines the correct shell syntax using the shebang
 
 <!-- end_slide -->
 

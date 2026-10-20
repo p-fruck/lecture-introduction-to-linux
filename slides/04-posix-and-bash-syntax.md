@@ -32,6 +32,36 @@ POSIX vs Bash
 
 <!-- end_slide -->
 
+POSIX vs Bash
+===
+
+- `/bin/sh` → POSIX-compliant shell
+- `/bin/bash` → Bash-specific features, not always POSIX
+
+> On Fedora, `/bin/sh` is a symlink to `/bin/bash`, but other distros like Debian ship more minimal shells like `dash`
+
+```bash
+# POSIX (works in /bin/sh)
+echo "Hello"
+
+# Bash extension (won't work in pure POSIX sh)
+[[ -f file.txt ]] && echo "Exists"
+```
+
+**POSIX standard includes:**
+
+- Basic syntax (`if`, `while`, `for`, `case`)
+- Variables and expansions
+- Redirection
+- Command substitution
+
+Bash adds arrays, `[[ ]]`, process substitution, and more.
+
+> The `shellcheck` utility allows linting your shell script.
+> It determines the correct shell syntax using the shebang
+
+<!-- end_slide -->
+
 Shebang
 ===
 
@@ -43,7 +73,7 @@ Shebang
 
 - The **shebang** line tells the system *which interpreter* should execute the script.
 - Must appear as the first line of the script
-- Starts with #! followed by the interpreter path
+- Starts with `#!` followed by the interpreter path
 - Allows running `./script` instead of `bash ./script`
   - Ensures correct interpreter is used even if no file extension is present
 
@@ -180,7 +210,7 @@ Functions in Bash
 # Functions allow reusable blocks of code
 
 - Functions improve code clarity and reduce repetition.
-- Bash allows further syntax to define functions but this way is POSIX compliant, hence more portable
+- Bash allows further syntax to define functions, but this way is POSIX compliant, hence more portable
 
 ```bash
 # Define a function
