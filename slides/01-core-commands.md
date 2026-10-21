@@ -151,7 +151,7 @@ File Manipulation
 |         |                                      | `-i` **i**nteractive (confirm overwrite)                 |
 | `mv`    | **M**o**v**e/rename files            | `-i` **i**nteractive (confirm overwrite)                 |
 | `rm`    | **R**e**m**ove files                 | `-r` **r**ecursive, `-i` **i**nteractive, `-f` **f**orce |
-| `rmdr`  | **R**e**m**ove empty **dir**ectories | `-p` remove empty **p**arent dirs                        |
+| `rmdir`  | **R**e**m**ove empty **dir**ectories | `-p` remove empty **p**arent dirs                        |
 | `mkdir` | Create (**m**a**k**e) **dir**ectory  | `-p` create **p**arent dirs if missing                   |
 | `touch` | Create empty file / update timestamp | `-d` specify a custom **d**ate                           |
 | `shred` | Override a file to hide its contents | `-u` removes the file after shredding                    |
