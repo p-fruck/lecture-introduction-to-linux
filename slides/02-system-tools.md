@@ -195,6 +195,13 @@ Lets you connect to a remote system
   - Server: `sshd`
   - Client: `ssh`
 
+<!-- pause -->
+
+- SSH client stores fingerprints of the remote system
+  - Upon first connection you will be prompted to accept the remote fingerprint
+  - Type "yes" if you trust the connection (verify the fingerprint)
+  - If the fingerprint changes (e.g. the system has been reinstalled or compromised), SSH will refuse future connection
+
 <!-- end_slide -->
 
 SSH: Secure Remote Access
