@@ -303,6 +303,9 @@ if (( count % 2 == 0 )); then
     echo "Even number."
 fi
 
+((count++))
+echo Count: $count
+
 (( "1" > "2" )) || echo false
 ```
 
@@ -314,16 +317,15 @@ POSIX only supports arithmetic via `$(( ... ))`.
 
 Results are passed as string (no exit code).
 
-```bash +exec
-echo $(( "1" + 2 ))
+```sh +exec
+# in POSIX, numbers must be quoted!
+echo $(( 1 + 2 ))
 echo -n $(( 1 > 2 )) && echo '->yes'
 echo -n $(( 1 < 2 )) && echo '->yes'
 
 counter=0
 # POSIX-compliant increment
 counter=$(( counter + 1 ))
-# Bash-only increment
-(( counter++ ))
 echo Counter: $counter
 ```
 
@@ -425,7 +427,7 @@ myfunc foo bar
 
 <!-- pause -->
 
-```bash +exec +line_numbers
+```bash {3-10|13-17} +exec +line_numbers
 #!/usr/bin/env bash
 
 # the function keyword only exists in bash
@@ -454,11 +456,11 @@ Loops: for and while
 
 <!-- column: 0 -->
 
-# For Loop
+# POSIX for loop
 
-```bash +exec
+```sh +exec
 # Iterate over numbers (set notation)
-for i in {1..10}; do
+for i in 0 1 2 3 4 5 6 7 8 9 10; do
     echo -n "$i "
 done
 echo
@@ -470,15 +472,48 @@ done | head -n 5
 
 <!-- column: 1 -->
 
-<!-- pause -->
+# Bash set notation
 
-# While Loop
+While not strictly related to for loops `bash` also supports set notation:
 
 ```bash +exec
+echo {1..10}
+echo {A..C}{1..3}
+for i in {1..10}; do echo -n $i,; done
+```
+
+<!-- pause -->
+
+<!-- end_slide -->
+
+While Loop
+===
+
+<!-- column_layout: [3, 3] -->
+
+<!-- column: 0 -->
+
+# POSIX compliant
+
+```sh +exec
+#!/bin/sh
 counter=1
 while [ $counter -le 5 ]; do
     echo "Count $counter"
-    ((counter++)) # Only works in Bash
+    counter=$((counter+1))
+done
+```
+
+<!-- column: 1 -->
+
+# Bash specific
+
+```bash +exec
+#!/usr/bin/env bash
+counter=1
+while ((counter <= 5)); do
+    echo "Count $counter"
+    ((counter++))
 done
 ```
 
@@ -491,7 +526,7 @@ Word Splitting
 
 <!-- column: 0 -->
 
-```bash +exec
+```sh +exec
 files="file1.txt file2.txt file3.txt"
 
 # Unquoted: splits into words
@@ -504,7 +539,7 @@ done
 
 <!-- pause -->
 
-```bash +exec
+```sh +exec
 files="file1.txt file2.txt file3.txt"
 
 # Quoted: treated as single string
