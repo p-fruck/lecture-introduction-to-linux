@@ -389,7 +389,7 @@ select choice in "Date" "List" "Quit"; do
 done
 ```
 
-> Choice uses `PS3` instead of `PS1`.
+> `select` uses `PS3` instead of `PS1`.
 
 <!--     reset_layout -->
 
@@ -481,6 +481,75 @@ while [ $counter -le 5 ]; do
     ((counter++)) # Only works in Bash
 done
 ```
+
+<!-- end_slide -->
+
+Word Splitting
+===
+
+<!-- column_layout: [3, 3] -->
+
+<!-- column: 0 -->
+
+```bash +exec
+files="file1.txt file2.txt file3.txt"
+
+# Unquoted: splits into words
+for f in $files; do
+    echo "File: $f"
+done
+```
+
+<!-- column: 1 -->
+
+<!-- pause -->
+
+```bash +exec
+files="file1.txt file2.txt file3.txt"
+
+# Quoted: treated as single string
+for f in "$files"; do
+    echo "File: $f"
+done
+```
+
+<!-- reset_layout-->
+
+<!-- pause -->
+
+> Again, `shellcheck` to the rescue :)
+
+<!-- end_slide -->
+
+Error Handling
+===
+
+Shell scripts often need strict error handling:
+
+<!-- column_layout: [2, 3] -->
+
+<!-- column: 0 -->
+
+```bash
+#!/usr/bin/env bash
+set -xeuo pipefail
+```
+
+This ensures predictable, safe scripts and easier debugging.
+
+<!-- column: 1 -->
+
+- `-x` : optional: show commands as e**x**ecuted, great for pipelines, debugging, ...
+- `-e` : **e**xit immediately on error
+- `-u` : error on **u**nset variables
+- `-o pipefail` : **pipe**line **fail**s if any command fails (only exists in bash)
+
+<!-- reset_layout-->
+
+<!-- pause -->
+
+> This could have saved Kyoto University multiple terabytes of valuable research data: https://www.youtube.com/watch?v=Nkm8BuMc4sQ
+> 6:05 shows why the difference between `mv` and `cp` can be very important!
 
 <!-- end_slide -->
 

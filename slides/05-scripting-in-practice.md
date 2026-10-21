@@ -32,65 +32,6 @@ Scripting
 
 <!-- end_slide -->
 
-Word Splitting
-===
-
-<!-- column_layout: [3, 3] -->
-
-<!-- column: 0 -->
-
-```bash +exec
-files="file1.txt file2.txt file3.txt"
-
-# Unquoted: splits into words
-for f in $files; do
-    echo "File: $f"
-done
-```
-
-<!-- column: 1 -->
-
-```bash +exec
-files="file1.txt file2.txt file3.txt"
-
-# Quoted: treated as single string
-for f in "$files"; do
-    echo "File: $f"
-done
-```
-
-<!-- reset_layout-->
-
-<!-- pause -->
-
-> Again, `shellcheck` to the rescue :)
-
-<!-- end_slide -->
-
-Error Handling
-===
-
-Shell scripts often need strict error handling:
-
-```bash
-#!/usr/bin/env bash
-set -xeuo pipefail
-
-# -x : show commands as executed
-# -e : exit immediately on error
-# -u : error on unset variables
-# -o pipefail : pipeline fails if any command fails (only exists in bash)
-```
-
-This ensures predictable, safe scripts and easier debugging.
-
-<!-- pause -->
-
-> This could have saved Kyoto University multiple terabytes of valuable research data: https://www.youtube.com/watch?v=Nkm8BuMc4sQ
-> 6:05 shows why the difference between `mv` and `cp` can be very important!
-
-<!-- end_slide -->
-
 Processes and Job Control
 ===
 
