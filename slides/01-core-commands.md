@@ -127,14 +127,14 @@ Getting started
 | Command | Description                                 | Useful Flags / Examples                         |
 | ------- | ------------------------------------------- | ----------------------------------------------- |
 | `pwd`   | **P**rint current **w**orking **d**irectory |                                                 |
-| `ls`    | **L**i**s**t directory contents             | `-l` long format, `-a` show hidden files,       |
-|         |                                             | `-sh` human-readable sizes                      |
+| `ls`    | **L**i**s**t directory contents             | `-l` **l**ong format, `-a` show **a**ll files,  |
+|         |                                             | `-sh` **s**ize (**h**uman-readable) of files    |
 | `cd`    | **C**hange **d**irectory                    | `cd -` go back to previous directory            |
 |         |                                             | `cd` without parameters goes back to home       |
-| `tree`  | Show directory structure                    | `-L 2` limit depth, `-a` show hidden files      |
+| `tree`  | Show directory structure                    | `-L 2` **l**imit depth, `-a` show **a**ll files |
 | `echo`  | Print given arguments or variables          | `echo $PATH`, `echo -n text without newline`    |
 | `clear` | Clear the current terminal screen           | Similar to `Ctrl+l` which scrolls to new screen |
-| `which` | Show full path of command                   | `-a` shows all matches                          |
+| `which` | Show full path of command                   | `-a` shows **a**ll matches                      |
 
 <!-- pause -->
 
@@ -145,31 +145,37 @@ Getting started
 File Manipulation
 ===
 
-| Command | Description                          | Useful Flags / Examples                  |
-| ------- | ------------------------------------ | ---------------------------------------- |
-| `cp`    | **C**o**p**y files/directories       | `-r` recursive,                          |
-|         |                                      | `-i` interactive (confirm overwrite)     |
-| `mv`    | **M**o**v**e/rename files            | `-i` confirm overwrite                   |
-| `rm`    | **R**e**m**ove files                 | `-r` recursive, `-i` confirm, `-f` force |
-| `mkdir` | Create (**m**a**k**e) **dir**ectory  | `-p` create parent dirs if missing       |
-| `touch` | Create empty file / update timestamp |                                          |
+| Command | Description                          | Useful Flags / Examples                                  |
+| ------- | ------------------------------------ | -------------------------------------------------------- |
+| `cp`    | **C**o**p**y files/directories       | `-r` **r**ecursive,                                      |
+|         |                                      | `-i` **i**nteractive (confirm overwrite)                 |
+| `mv`    | **M**o**v**e/rename files            | `-i` **i**nteractive (confirm overwrite)                 |
+| `rm`    | **R**e**m**ove files                 | `-r` **r**ecursive, `-i` **i**nteractive, `-f` **f**orce |
+| `rmdir`  | **R**e**m**ove empty **dir**ectories | `-p` remove empty **p**arent dirs                        |
+| `mkdir` | Create (**m**a**k**e) **dir**ectory  | `-p` create **p**arent dirs if missing                   |
+| `touch` | Create empty file / update timestamp | `-d` specify a custom **d**ate                           |
+| `shred` | Override a file to hide its contents | `-u` removes the file after shredding                    |
 
-⚠️ **Danger Zone:** `rm -rf /` will erase **everything** - don't run this!
+<!-- pause -->
+
+> `rm` does not use a trash can. If you remove something, it's gone
+
+> ⚠️ **Danger Zone:** `rm -rf /` will erase **everything** - don't run this!
 
 <!-- end_slide -->
 
 Viewing Files
 ===
 
-| Command | Description                      | Useful Flags / Examples                         |
-| ------- | -------------------------------- | ----------------------------------------------- |
-| `cat`   | Show file contents               | `cat file.txt`                                  |
-| `tac`   | Reverse `cat`                    | `tac file.txt`                                  |
-| `less`  | View file page by page           | `/text` search forward, `?text` search backward |
-| `more`  | More primitive pager than `less` |                                                 |
-| `head`  | Show first lines of file         | `-n 20` show first 20 lines                     |
-| `tail`  | Show last lines of file          | `-f` follow file (useful for logs)              |
-| `wc`    | Count lines, words, or bytes     | `-l` lines, `-w` words, `-c` characters         |
+| Command | Description                      | Useful Flags / Examples                             |
+| ------- | -------------------------------- | --------------------------------------------------- |
+| `cat`   | Show file contents               | `cat file.txt`                                      |
+| `tac`   | Reverse `cat`                    | `tac file.txt`                                      |
+| `less`  | View file page by page           | `/text` search forward, `?text` search backward     |
+| `more`  | More primitive pager than `less` |                                                     |
+| `head`  | Show first lines of file         | `-n 20` show first 20 lines                         |
+| `tail`  | Show last lines of file          | `-f` **f**ollow file (useful for logs)              |
+| `wc`    | Count lines, words, or bytes     | `-l` **l**ines, `-w` **w**ords, `-c` **c**haracters |
 
 <!-- pause -->
 
@@ -230,6 +236,10 @@ Improve Your Workflow
 In `bash` your history is not shared across sessions.
 
 Your history is persisted in `~/.bash_history`.
+
+<!-- pause -->
+
+______________________________________________________________________
 
 `HISTSIZE`: maximum number of commands kept in the current shell session's history.
 
