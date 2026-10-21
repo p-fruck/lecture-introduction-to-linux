@@ -20,9 +20,10 @@
       pkgs.mkShell {
         FONTCONFIG_FILE = fontsConf;
         packages = [
+          pkgs.dash
+          pkgs.dejavu_fonts
           pkgs.gcc
           pkgs.inconsolata
-          pkgs.dejavu_fonts
           pkgs.just
           pkgs.pandoc
           pkgs.prek
