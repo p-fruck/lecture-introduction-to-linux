@@ -289,7 +289,7 @@ Persisting Configuration
   - Other shells like ZSH provide e.g. `~/.zshrc`
 - System-wide config is provided via `/etc/profile`, `/etc/bashrc` and `/etc/profile.d/*.sh`
 - Config files are just shell scripts
-- You can load them manually by running `source script.sh` or `. script.sh`
+- You can load them manually by running `source script.sh` (Bash) or `. script.sh` (POSIX)
 
 <!-- pause -->
 
