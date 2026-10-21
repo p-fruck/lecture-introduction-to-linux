@@ -39,7 +39,7 @@ Useful (scripting) tools
 | --------------- | ------------------------------------------- | ------------------------------------- |
 | `tr`            | Translate or delete characters              | `echo $PATH \| tr : '\n'`             |
 | `sed`           | Manipulate text (in place)                  | `sed -i 's/old/new/g' file.txt`       |
-| `cut`/`awk`     | Text selection, e.g. print first word       | `cut -d ' ' -f 1`, `awk '{print $1}'` |
+| `cut` / `awk`   | Text selection, e.g. print first word       | `cut -d ' ' -f 1`, `awk '{print $1}'` |
 | `basename`      | Extracts the file name from a path.         | `basename /path/to/file.txt`          |
 | `dirname`       | Extracts the directory part of a file path. | `dirname /path/to/file.txt`           |
 | `sort` / `uniq` | Sorts lines and removes duplicate lines.    | `sort file.txt \| uniq`               |
