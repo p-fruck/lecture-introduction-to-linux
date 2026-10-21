@@ -44,8 +44,8 @@ Useful (scripting) tools
 | `dirname`       | Extracts the directory part of a file path. | `dirname /path/to/file.txt`           |
 | `sort` / `uniq` | Sorts lines and removes duplicate lines.    | `sort file.txt \| uniq`               |
 | `base64`        | Encodes and decodes data in Base64 format.  | `echo "text" \| base64`               |
-| `jq` / `yq`     | Parse and format JSON/YAML data.            | `cat file.json \| jq .`               |
-| `yq`            | Parses and formats YAML data.               | `cat file.yml \| yq eval .`           |
+| `jq`            | Parse and format JSON data.                 | `cat file.json \| jq .`               |
+| `yq`            | Parses and formats YAML data.               | `cat file.yml \| yq .`                |
 | `date`          | Show/set system date and time.              | `date -d @1730502000`                 |
 | `time`          | Measure execution time of a command         | `time ls -l`                          |
 | `sleep`         | Wait for `n` seconds                        | `sleep 10`                            |
