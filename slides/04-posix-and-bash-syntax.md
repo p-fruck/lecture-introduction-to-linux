@@ -79,7 +79,7 @@ Shebang
 - Starts with `#!` followed by the interpreter path
 - Allows running `./script` instead of `bash ./script`
   - Ensures correct interpreter is used even if no file extension is present
-  - Don't forget to `chmod +x ./scripts` (details in the permissions lecture)
+  - Don't forget to `chmod +x ./script` (details in the permissions lecture)
 
 <!-- column: 1 -->
 
@@ -318,7 +318,7 @@ POSIX only supports arithmetic via `$(( ... ))`.
 Results are passed as string (no exit code).
 
 ```sh +exec
-# in POSIX, numbers must be quoted!
+# in POSIX, numbers must not be quoted!
 echo $(( 1 + 2 ))
 echo -n $(( 1 > 2 )) && echo '->yes'
 echo -n $(( 1 < 2 )) && echo '->yes'
@@ -459,7 +459,7 @@ Loops: for and while
 # POSIX for loop
 
 ```sh +exec
-# Iterate over numbers (set notation)
+# Iterate over numbers
 for i in 0 1 2 3 4 5 6 7 8 9 10; do
     echo -n "$i "
 done
