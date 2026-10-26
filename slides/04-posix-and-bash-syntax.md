@@ -116,21 +116,20 @@ POSIX Variables
 
 <!-- column: 0 -->
 
-```bash
-# Assign
+```bash {1-3|5-7|10|12-14} +line_numbers
+# Assign a variable. Use quotes to include spaces
 name=Alice
-# Use quotes to include spaces
 fullname="Bob the builder"
 
-# Use
+# Use a variable with $ or use brackets define the start and end of variables
 echo "Hello $name"
-# Brackets define the start and end of variables
 echo "${name}.lastname@example.com"
 
 # Read-only
 readonly pi=3.14
 
-# Environment variable: Add another directory to your PATH
+# Per command vs global environment variables
+foo=bar mylocalscript
 export PATH="/usr/local/bin:$PATH"
 ```
 
@@ -142,7 +141,7 @@ export PATH="/usr/local/bin:$PATH"
 
 <!-- column: 1 -->
 
-```bash +exec +line_numbers
+```sh +exec +line_numbers
 readonly name=Bob
 fullname="$name the builder"
 # Variables are replaced in double quotes
@@ -187,6 +186,7 @@ fi
 
 # negation works with != or ! in beginning
 if [ ! "$USER" = "root" ]; then echo "No!"; fi
+if ! grep MyText myfile.txt; then echo Nope; fi
 ```
 
 <!-- pause -->
@@ -226,6 +226,8 @@ Concatenation (`if ...; then` is optional)
 
 See `man test` for more details
 
+Instead of a test condition, you can also just check the return code of any command
+
 <!-- end_slide -->
 
 Bash-Specific Conditionals
@@ -237,7 +239,7 @@ Bash-Specific Conditionals
 
 # Safer comparison
 
-Bash's `[[ ... ]` supports safer string comparisons (`==`) that prevent word splitting or path name expansion and logical operators.
+Bash's `[[ ... ]]` supports safer string comparisons (`==`) that prevent word splitting or path name expansion and logical operators.
 
 ```bash
 if [[ "$USER" == "root" ]]; then
@@ -289,6 +291,8 @@ Arithmetic
 
 <!-- column: 0 -->
 
+# Bash
+
 Bash supports `(( ... ))` for arithmetic comparisons.
 
 A nonzero arithmetic result means success.
@@ -306,12 +310,14 @@ fi
 ((count++))
 echo Count: $count
 
-(( "1" > "2" )) || echo false
+(( "1" > 2 )) || echo false
 ```
 
 <!-- pause -->
 
 <!-- column: 1 -->
+
+# POSIX
 
 POSIX only supports arithmetic via `$(( ... ))`.
 
@@ -328,6 +334,8 @@ counter=0
 counter=$(( counter + 1 ))
 echo Counter: $counter
 ```
+
+> ❓ How do we check `$(( 1 > 2 ))` in POSIX?
 
 <!-- reset_layout -->
 
@@ -413,7 +421,7 @@ Functions in Bash
   - `$@` shows all parameters
   - `shift` drops the first n parameters (by default 1)
 
-```bash +exec
+```sh +exec
 #!/bin/sh
 myfunc() {
     echo "Hello from $0"
@@ -427,16 +435,16 @@ myfunc foo bar
 
 <!-- pause -->
 
-```bash {3-10|13-17} +exec +line_numbers
+```bash {3-10|13-17|1-99} +exec +line_numbers
 #!/usr/bin/env bash
 
 # the function keyword only exists in bash
 function add() {
-    echo $(( 1 + 2))
+    echo $(( $1 + $2 ))
 }
 
 # Functions can return plaintext
-sum=$(add 1 2)
+sum=$(add 3 5)
 echo "Sum = $sum"
 
 # And functions can return status codes
@@ -471,6 +479,8 @@ done | head -n 5
 ```
 
 <!-- column: 1 -->
+
+<!-- pause -->
 
 # Bash set notation
 
@@ -511,7 +521,7 @@ done
 ```bash +exec
 #!/usr/bin/env bash
 counter=1
-while ((counter <= 5)); do
+while (( counter <= 5 )); do
     echo "Count $counter"
     ((counter++))
 done
@@ -575,9 +585,11 @@ This ensures predictable, safe scripts and easier debugging.
 <!-- column: 1 -->
 
 - `-x` : optional: show commands as e**x**ecuted, great for pipelines, debugging, ...
+  - Uses `PS4` environment variable as prompt
 - `-e` : **e**xit immediately on error
 - `-u` : error on **u**nset variables
-- `-o pipefail` : **pipe**line **fail**s if any command fails (only exists in bash)
+- `-o pipefail` : **pipe**line **fail**s if any command in the chain fails
+  - only exists in bash
 
 <!-- reset_layout-->
 
