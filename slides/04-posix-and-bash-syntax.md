@@ -37,8 +37,8 @@ POSIX vs Bash
 
 POSIX is a standard, Bash is a shell implementation
 
-- `/bin/sh` → POSIX-compliant shell
-- `/bin/bash` → Bash-specific features, not always POSIX
+- `/bin/sh` -> POSIX-compliant shell
+- `/bin/bash` -> Bash-specific features, not always POSIX
 
 <!-- pause -->
 
@@ -79,7 +79,7 @@ Shebang
 - Starts with `#!` followed by the interpreter path
 - Allows running `./script` instead of `bash ./script`
   - Ensures correct interpreter is used even if no file extension is present
-  - Don't forget to `chmod +x ./scripts` (details in the permissions lecture)
+  - Don't forget to `chmod +x ./script` (details in the permissions lecture)
 
 <!-- column: 1 -->
 
@@ -105,7 +105,7 @@ Shebang
 
 <!-- pause -->
 
-> 💡 Tip: Using `/usr/bin/env` makes your script more portable across systems (`/bin/sh` is a special case as it is required by the POSIX standard). Use of `#!/bin/bash`, `#!/usr/bin/python` etc. are discouraged.
+> 💡 Tip: Using `/usr/bin/env` makes your script more portable across systems (`/bin/sh` is a special case as it is required by the POSIX standard). Use of `#!/bin/bash`, `#!/usr/bin/python` etc. is discouraged.
 
 <!-- end_slide -->
 
@@ -116,21 +116,20 @@ POSIX Variables
 
 <!-- column: 0 -->
 
-```bash
-# Assign
+```bash {1-3|5-7|10|12-14} +line_numbers
+# Assign a variable. Use quotes to include spaces
 name=Alice
-# Use quotes to include spaces
 fullname="Bob the builder"
 
-# Use
+# Use a variable with $ or use brackets to define the start and end of variables
 echo "Hello $name"
-# Brackets define the start and end of variables
 echo "${name}.lastname@example.com"
 
 # Read-only
 readonly pi=3.14
 
-# Environment variable: Add another directory to your PATH
+# Per command vs global environment variables
+foo=bar mylocalscript
 export PATH="/usr/local/bin:$PATH"
 ```
 
@@ -142,7 +141,7 @@ export PATH="/usr/local/bin:$PATH"
 
 <!-- column: 1 -->
 
-```bash +exec +line_numbers
+```sh +exec +line_numbers
 readonly name=Bob
 fullname="$name the builder"
 # Variables are replaced in double quotes
@@ -187,6 +186,7 @@ fi
 
 # negation works with != or ! in beginning
 if [ ! "$USER" = "root" ]; then echo "No!"; fi
+if ! grep MyText myfile.txt; then echo Nope; fi
 ```
 
 <!-- pause -->
@@ -226,6 +226,8 @@ Concatenation (`if ...; then` is optional)
 
 See `man test` for more details
 
+Instead of a test condition, you can also just check the return code of any command
+
 <!-- end_slide -->
 
 Bash-Specific Conditionals
@@ -237,7 +239,7 @@ Bash-Specific Conditionals
 
 # Safer comparison
 
-Bash's `[[ ... ]` supports safer string comparisons (`==`) that prevent word splitting or path name expansion and logical operators.
+Bash's `[[ ... ]]` supports safer string comparisons (`==`) that prevent word splitting or path name expansion and logical operators.
 
 ```bash
 if [[ "$USER" == "root" ]]; then
@@ -269,7 +271,7 @@ fi
 
 Use `=~` to match a POSIX extended regular expression (`man 7 regex`).
 
-`BASH_REMATCH` contains the matched text and capture groups.
+`BASH_REMATCH` is an array: `[0]` holds the whole match, `[1]`, `[2]`, ... the capture groups.
 
 ```bash +exec
 input=abc123
@@ -289,6 +291,8 @@ Arithmetic
 
 <!-- column: 0 -->
 
+# Bash
+
 Bash supports `(( ... ))` for arithmetic comparisons.
 
 A nonzero arithmetic result means success.
@@ -303,29 +307,35 @@ if (( count % 2 == 0 )); then
     echo "Even number."
 fi
 
-(( "1" > "2" )) || echo false
+((count++))
+echo Count: $count
+
+(( "1" > 2 )) || echo false
 ```
 
 <!-- pause -->
 
 <!-- column: 1 -->
 
+# POSIX
+
 POSIX only supports arithmetic via `$(( ... ))`.
 
 Results are passed as string (no exit code).
 
-```bash +exec
-echo $(( "1" + 2 ))
+```sh +exec
+# in POSIX, numbers must not be quoted!
+echo $(( 1 + 2 ))
 echo -n $(( 1 > 2 )) && echo '->yes'
 echo -n $(( 1 < 2 )) && echo '->yes'
 
 counter=0
 # POSIX-compliant increment
 counter=$(( counter + 1 ))
-# Bash-only increment
-(( counter++ ))
 echo Counter: $counter
 ```
+
+> ❓ How do we check `$(( 1 > 2 ))` in POSIX?
 
 <!-- reset_layout -->
 
@@ -411,7 +421,7 @@ Functions in Bash
   - `$@` shows all parameters
   - `shift` drops the first n parameters (by default 1)
 
-```bash +exec
+```sh +exec
 #!/bin/sh
 myfunc() {
     echo "Hello from $0"
@@ -425,16 +435,16 @@ myfunc foo bar
 
 <!-- pause -->
 
-```bash +exec +line_numbers
+```bash {3-10|13-17|1-99} +exec +line_numbers
 #!/usr/bin/env bash
 
 # the function keyword only exists in bash
 function add() {
-    echo $(( 1 + 2))
+    echo $(( $1 + $2 ))
 }
 
 # Functions can return plaintext
-sum=$(add 1 2)
+sum=$(add 3 5)
 echo "Sum = $sum"
 
 # And functions can return status codes
@@ -454,11 +464,11 @@ Loops: for and while
 
 <!-- column: 0 -->
 
-# For Loop
+# POSIX for loop
 
-```bash +exec
-# Iterate over numbers (set notation)
-for i in {1..10}; do
+```sh +exec
+# Iterate over numbers
+for i in 0 1 2 3 4 5 6 7 8 9 10; do
     echo -n "$i "
 done
 echo
@@ -472,13 +482,48 @@ done | head -n 5
 
 <!-- pause -->
 
-# While Loop
+# Bash set notation
+
+While not strictly related to for loops `bash` also supports set notation:
 
 ```bash +exec
+echo {1..10}
+echo {A..C}{1..3}
+for i in {1..10}; do echo -n $i,; done
+```
+
+<!-- pause -->
+
+<!-- end_slide -->
+
+While Loop
+===
+
+<!-- column_layout: [3, 3] -->
+
+<!-- column: 0 -->
+
+# POSIX compliant
+
+```sh +exec
+#!/bin/sh
 counter=1
 while [ $counter -le 5 ]; do
     echo "Count $counter"
-    ((counter++)) # Only works in Bash
+    counter=$((counter+1))
+done
+```
+
+<!-- column: 1 -->
+
+# Bash specific
+
+```bash +exec
+#!/usr/bin/env bash
+counter=1
+while (( counter <= 5 )); do
+    echo "Count $counter"
+    ((counter++))
 done
 ```
 
@@ -491,7 +536,7 @@ Word Splitting
 
 <!-- column: 0 -->
 
-```bash +exec
+```sh +exec
 files="file1.txt file2.txt file3.txt"
 
 # Unquoted: splits into words
@@ -504,7 +549,7 @@ done
 
 <!-- pause -->
 
-```bash +exec
+```sh +exec
 files="file1.txt file2.txt file3.txt"
 
 # Quoted: treated as single string
@@ -540,9 +585,11 @@ This ensures predictable, safe scripts and easier debugging.
 <!-- column: 1 -->
 
 - `-x` : optional: show commands as e**x**ecuted, great for pipelines, debugging, ...
+  - Uses `PS4` environment variable as prompt
 - `-e` : **e**xit immediately on error
 - `-u` : error on **u**nset variables
-- `-o pipefail` : **pipe**line **fail**s if any command fails (only exists in bash)
+- `-o pipefail` : **pipe**line **fail**s if any command in the chain fails
+  - only exists in bash and newer versions of POSIX
 
 <!-- reset_layout-->
 

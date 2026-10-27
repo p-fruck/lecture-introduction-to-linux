@@ -26,3 +26,7 @@ snippet:
             commands:
               - ["gcc", "/tmp/mycmd-args.c", "-o", "/tmp/mycmd"]
               - ["/tmp/mycmd", "arg1", "arg2"]
+      sh:
+        filename: script.sh
+        commands:
+          - ["dash", "$pwd/script.sh"]
