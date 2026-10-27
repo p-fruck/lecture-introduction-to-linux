@@ -271,7 +271,7 @@ fi
 
 Use `=~` to match a POSIX extended regular expression (`man 7 regex`).
 
-`BASH_REMATCH` contains the matched text and capture groups.
+`BASH_REMATCH` is an array: `[0]` holds the whole match, `[1]`, `[2]`, ... the capture groups.
 
 ```bash +exec
 input=abc123
