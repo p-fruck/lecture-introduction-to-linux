@@ -37,7 +37,6 @@ POSIX vs Bash
 
 POSIX is a standard, Bash is a shell implementation
 
-- `/bin/sh` → POSIX-compliant shell
 - `/bin/sh` -> POSIX-compliant shell
 - `/bin/bash` -> Bash-specific features, not always POSIX
 
