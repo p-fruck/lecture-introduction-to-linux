@@ -589,7 +589,7 @@ This ensures predictable, safe scripts and easier debugging.
 - `-e` : **e**xit immediately on error
 - `-u` : error on **u**nset variables
 - `-o pipefail` : **pipe**line **fail**s if any command in the chain fails
-  - only exists in bash and newer version of POSIX
+  - only exists in bash and newer versions of POSIX
 
 <!-- reset_layout-->
 
