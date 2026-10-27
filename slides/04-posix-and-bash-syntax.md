@@ -121,7 +121,7 @@ POSIX Variables
 name=Alice
 fullname="Bob the builder"
 
-# Use a variable with $ or use brackets define the start and end of variables
+# Use a variable with $ or use brackets to define the start and end of variables
 echo "Hello $name"
 echo "${name}.lastname@example.com"
 
