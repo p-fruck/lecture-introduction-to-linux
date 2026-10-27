@@ -38,7 +38,8 @@ POSIX vs Bash
 POSIX is a standard, Bash is a shell implementation
 
 - `/bin/sh` → POSIX-compliant shell
-- `/bin/bash` → Bash-specific features, not always POSIX
+- `/bin/sh` -> POSIX-compliant shell
+- `/bin/bash` -> Bash-specific features, not always POSIX
 
 <!-- pause -->
 
@@ -105,7 +106,7 @@ Shebang
 
 <!-- pause -->
 
-> 💡 Tip: Using `/usr/bin/env` makes your script more portable across systems (`/bin/sh` is a special case as it is required by the POSIX standard). Use of `#!/bin/bash`, `#!/usr/bin/python` etc. are discouraged.
+> 💡 Tip: Using `/usr/bin/env` makes your script more portable across systems (`/bin/sh` is a special case as it is required by the POSIX standard). Use of `#!/bin/bash`, `#!/usr/bin/python` etc. is discouraged.
 
 <!-- end_slide -->
 
