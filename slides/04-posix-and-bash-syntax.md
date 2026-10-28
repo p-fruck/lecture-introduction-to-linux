@@ -107,6 +107,8 @@ Shebang
 
 > 💡 Tip: Using `/usr/bin/env` makes your script more portable across systems (`/bin/sh` is a special case as it is required by the POSIX standard). Use of `#!/bin/bash`, `#!/usr/bin/python` etc. is discouraged.
 
+> More advanced: Watch the first minutes of https://media.ccc.de/v/all-systems-go-2026-440-binfmtbpf (especially p. 13-14)
+
 <!-- end_slide -->
 
 POSIX Variables
