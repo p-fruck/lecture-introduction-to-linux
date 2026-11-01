@@ -1,5 +1,5 @@
 ---
-title: 'Introduction to Linux: **Scripting in Practice**'
+title: 'Introduction to Linux: **Scripting**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim_dark.yml
@@ -84,7 +84,34 @@ check_file ../README.md && echo Exists!
 
 <!-- end_slide -->
 
-Loops: for and while
+Asking for Input
+===
+
+<!-- column_layout: [3, 3] -->
+
+<!-- column: 0 -->
+
+Besides parameters, scripts can also ask the user questions at runtime:
+
+```bash
+#!/usr/bin/env bash
+read -r -p "Your name: " name
+echo "Hello, $name!"
+```
+
+<!-- column: 1 -->
+
+<!-- pause -->
+
+`read` stores a line of input in a variable:
+
+- `-p` : show a **p**rompt
+- `-r` : **r**aw, do not interpret backslashes (almost always what you want)
+- `-s` : **s**ilent, do not echo the input (e.g., for passwords)
+
+<!-- end_slide -->
+
+for Loop
 ===
 
 <!-- column_layout: [3, 3] -->
@@ -193,6 +220,51 @@ done
 
 <!-- end_slide -->
 
+Playing with Fire: Strings as Code
+===
+
+`eval` takes a string and executes it as a shell command:
+
+```bash +exec
+cmd="echo Hello from eval"
+eval "$cmd"
+```
+
+<!-- pause -->
+
+Imagine a script that asks for an IP address and pings it. Everything in the string is interpreted, including things you did not intend:
+
+<!-- column_layout: [3, 3] -->
+
+<!-- column: 0 -->
+
+```bash +exec
+# Intended use
+ip="127.0.0.1"
+eval "ping -c 1 -q $ip"
+```
+
+<!-- column: 1 -->
+
+<!-- pause -->
+
+```bash +exec
+# "Creative" user input
+ip="127.0.0.1; whoami; hostname"
+eval "ping -c 1 -q $ip"
+```
+
+<!-- reset_layout-->
+
+<!-- pause -->
+
+> eval is evil!
+
+- Never use `eval` with user input or any data you do not fully control
+- In most cases there is a safer alternative (arrays, functions, `"$@"`, ...)
+
+<!-- end_slide -->
+
 Error Handling
 ===
 
@@ -227,15 +299,31 @@ This ensures predictable, safe scripts and easier debugging.
 
 <!-- end_slide -->
 
-TODO
+Temporary Files
 ===
 
-- Useful commands:
-  - `read` (`-p`) for interactive stuff
-  - Tempfiles with `mktmp`
-  - `trap`?? -> For Trap, explain signals first (dedicated slides, reference Ctrl+C)
-  - `env` command -> should be in variables section (last slide) already
-  - Show use of `eval` -> Note that `eval` is evil
+<!-- column_layout: [3, 3] -->
+
+<!-- column: 0 -->
+
+Scripts often need a place for intermediate results. `mktemp` creates one safely:
+
+```bash +exec
+tmp=$(mktemp)
+echo "scratch data" > "$tmp"
+echo "Created $tmp"
+cat "$tmp"
+rm "$tmp"
+```
+
+<!-- column: 1 -->
+
+<!-- pause -->
+
+- Creates a file with a unique, unpredictable name (default in `/tmp`)
+- `mktemp -d` creates a temporary **d**irectory
+- Never hardcode names like `/tmp/myscript.tmp`: collisions and security issues
+- Remember to clean up afterwards, more on that in a moment
 
 <!-- end_slide -->
 
@@ -288,6 +376,58 @@ long_running_task
 $ fg %3
 other_task
 ```
+
+<!-- end_slide -->
+
+Signals
+===
+
+Signals are small messages the kernel (or other processes) send to a process.
+
+When you press `Ctrl+C` or `Ctrl+Z`, the terminal sends a signal to the running process.
+
+| Signal    | Nr. | Typical trigger / use                   | Default action              |
+| --------- | --- | --------------------------------------- | --------------------------- |
+| `SIGINT`  | 2   | `Ctrl+C`                                | Terminate                   |
+| `SIGTSTP` | 20  | `Ctrl+Z` (used by job control)          | Stop (suspend)              |
+| `SIGCONT` | 18  | `bg` / `fg`                             | Continue a stopped process  |
+| `SIGHUP`  | 1   | Terminal was closed                     | Terminate                   |
+| `SIGTERM` | 15  | `kill PID` (default), polite "please quit" | Terminate                |
+| `SIGKILL` | 9   | `kill -9 PID`                           | Terminate, cannot be caught |
+
+<!-- pause -->
+
+```bash
+$ kill -l            # list all signals
+$ kill -TERM 12345   # ask process 12345 to terminate
+$ kill -9 12345      # force kill, process gets no chance to clean up
+```
+
+<!-- end_slide -->
+
+Cleaning Up on Exit
+===
+
+`trap` runs a command when the shell receives a signal, so a script can react to e.g., `Ctrl+C`:
+
+```bash +exec
+#!/usr/bin/env bash
+tmp=$(mktemp)
+
+# EXIT: special pseudo-signal, runs whenever the script ends
+trap 'echo "Cleaning up $tmp"; rm -f "$tmp"' EXIT
+# INT: Ctrl+C
+trap 'echo "Interrupted!"; exit 130' INT
+
+echo "working..." > "$tmp"
+cat "$tmp"
+```
+
+<!-- pause -->
+
+- Typical use: remove temporary files, release locks, stop child processes
+- `SIGKILL` (and `SIGSTOP`) cannot be trapped
+- `trap - INT` resets a trap to the default behaviour
 
 <!-- end_slide -->
 
