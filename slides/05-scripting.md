@@ -45,7 +45,7 @@ Functions in Bash
 - Parameters passed to a function or script are accessed via `$1`, `$2`, ...
   - `$0` is the invoked executable (remember C's `argv[0]`?)
   - `$#` shows the parameter count
-  - `$@` shows all parameters
+  - `$@` shows all parameters (starting at `$1`)
   - `shift` drops the first n parameters (by default 1)
 
 ```sh +exec
@@ -62,6 +62,8 @@ myfunc foo bar
 
 <!-- pause -->
 
+# Function return values
+
 ```bash {3-10|13-17|1-99} +exec +line_numbers
 #!/usr/bin/env bash
 
@@ -76,7 +78,7 @@ echo "Sum = $sum"
 
 # And functions can return status codes
 check_file() {
-    [ -f "$1" ]
+    [ -f "$1" ] # same as return 0/1/255
 }
 
 check_file ../README.md && echo Exists!
@@ -87,7 +89,7 @@ check_file ../README.md && echo Exists!
 Asking for Input
 ===
 
-<!-- column_layout: [3, 3] -->
+<!-- column_layout: [3, 4] -->
 
 <!-- column: 0 -->
 
@@ -106,12 +108,12 @@ echo "Hello, $name!"
 `read` stores a line of input in a variable:
 
 - `-p` : show a **p**rompt
-- `-r` : **r**aw, do not interpret backslashes (almost always what you want)
+- `-r` : **r**aw, do not interpret backslash as an escape character
 - `-s` : **s**ilent, do not echo the input (e.g., for passwords)
 
 <!-- end_slide -->
 
-for Loop
+For Loop
 ===
 
 <!-- column_layout: [3, 3] -->
@@ -463,5 +465,7 @@ Thank you!
 Thank you for your attention!
 
 Don't forget the feedback in Moodle please!
+
+## Sources
 
 [^1]: https://pubs.opengroup.org/onlinepubs/9799919799/utilities/V3_chap02.html#tag_19_08_01
