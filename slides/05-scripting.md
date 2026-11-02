@@ -223,6 +223,10 @@ done
 Playing with Fire: Strings as Code
 ===
 
+<!-- column_layout: [4, 3] -->
+
+<!-- column: 0 -->
+
 `eval` takes a string and executes it as a shell command:
 
 ```bash +exec
@@ -232,29 +236,25 @@ eval "$cmd"
 
 <!-- pause -->
 
-Imagine a script that asks for an IP address and pings it. Everything in the string is interpreted, including things you did not intend:
-
-<!-- column_layout: [3, 3] -->
-
-<!-- column: 0 -->
+Imagine a script that asks for an IP address and pings it.
 
 ```bash +exec
 # Intended use
 ip="127.0.0.1"
-eval "ping -c 1 -q $ip"
+eval "ping -c 1 -q $ip" | tail -3
 ```
 
 <!-- column: 1 -->
 
 <!-- pause -->
 
+Everything in the string is interpreted, including things you did not intend:
+
 ```bash +exec
 # "Creative" user input
 ip="127.0.0.1; whoami; hostname"
-eval "ping -c 1 -q $ip"
+eval "ping -c 1 -q $ip" | tail -3
 ```
-
-<!-- reset_layout-->
 
 <!-- pause -->
 
@@ -340,6 +340,8 @@ Processes and Job Control
 | `fg`     | Bring a background job to the foreground | `fg %3` (foreground job 3)             |
 | `jobs`   | List all background jobs                 | `jobs`                                 |
 
+<!-- pause -->
+
 # Examples
 
 <!-- column_layout: [3, 3] -->
@@ -386,22 +388,28 @@ Signals are small messages the kernel (or other processes) send to a process.
 
 When you press `Ctrl+C` or `Ctrl+Z`, the terminal sends a signal to the running process.
 
-| Signal    | Nr. | Typical trigger / use                   | Default action              |
-| --------- | --- | --------------------------------------- | --------------------------- |
-| `SIGINT`  | 2   | `Ctrl+C`                                | Terminate                   |
-| `SIGTSTP` | 20  | `Ctrl+Z` (used by job control)          | Stop (suspend)              |
-| `SIGCONT` | 18  | `bg` / `fg`                             | Continue a stopped process  |
-| `SIGHUP`  | 1   | Terminal was closed                     | Terminate                   |
-| `SIGTERM` | 15  | `kill PID` (default), polite "please quit" | Terminate                |
-| `SIGKILL` | 9   | `kill -9 PID`                           | Terminate, cannot be caught |
+| Signal    | Nr. | Typical trigger / use                      | Default action              |
+| --------- | --- | ------------------------------------------ | --------------------------- |
+| `SIGHUP`  | 1   | Terminal was closed                        | Terminate                   |
+| `SIGINT`  | 2   | `Ctrl+C`                                   | Terminate                   |
+| `SIGKILL` | 9   | `kill -9 PID`                              | Terminate, cannot be caught |
+| `SIGTERM` | 15  | `kill PID` (default), polite "please quit" | Terminate                   |
+| `SIGCONT` | 18  | `bg` / `fg`                                | Continue a stopped process  |
+| `SIGTSTP` | 20  | `Ctrl+Z` (used by job control)             | Stop (suspend)              |
 
 <!-- pause -->
+
+`kill` lets you send signals to processes via their process ID (PID):
 
 ```bash
 $ kill -l            # list all signals
 $ kill -TERM 12345   # ask process 12345 to terminate
 $ kill -9 12345      # force kill, process gets no chance to clean up
 ```
+
+<!-- pause -->
+
+`pkill` lets you kill processes by name instead of PID: `pkill -9 firefox`
 
 <!-- end_slide -->
 
@@ -410,8 +418,12 @@ Cleaning Up on Exit
 
 `trap` runs a command when the shell receives a signal, so a script can react to e.g., `Ctrl+C`:
 
-```bash +exec
-#!/usr/bin/env bash
+<!-- column_layout: [3, 3] -->
+
+<!-- column: 0 -->
+
+```sh +exec
+#!/bin/sh
 tmp=$(mktemp)
 
 # EXIT: special pseudo-signal, runs whenever the script ends
@@ -425,9 +437,22 @@ cat "$tmp"
 
 <!-- pause -->
 
+<!-- column: 1 -->
+
 - Typical use: remove temporary files, release locks, stop child processes
 - `SIGKILL` (and `SIGSTOP`) cannot be trapped
-- `trap - INT` resets a trap to the default behaviour
+- To restore the default `trap` behavior, use `-`:
+  - `trap - EXIT` or `trap - INT`
+- For complex cleanup procedures, trap a function
+
+```sh
+cleanup() {
+    echo "Clean up"
+    rm -rf "$tmp"
+    ...
+}
+trap cleanup EXIT
+```
 
 <!-- end_slide -->
 
