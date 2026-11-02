@@ -93,8 +93,8 @@ Asking for Input
 
 Besides parameters, scripts can also ask the user questions at runtime:
 
-```bash
-#!/usr/bin/env bash
+```sh
+#!/bin/sh
 read -r -p "Your name: " name
 echo "Hello, $name!"
 ```
@@ -229,7 +229,7 @@ Playing with Fire: Strings as Code
 
 `eval` takes a string and executes it as a shell command:
 
-```bash +exec
+```sh +exec
 cmd="echo Hello from eval"
 eval "$cmd"
 ```
@@ -238,7 +238,7 @@ eval "$cmd"
 
 Imagine a script that asks for an IP address and pings it.
 
-```bash +exec
+```sh +exec
 # Intended use
 ip="127.0.0.1"
 eval "ping -c 1 -q $ip" | tail -3
@@ -250,7 +250,7 @@ eval "ping -c 1 -q $ip" | tail -3
 
 Everything in the string is interpreted, including things you did not intend:
 
-```bash +exec
+```sh +exec
 # "Creative" user input
 ip="127.0.0.1; whoami; hostname"
 eval "ping -c 1 -q $ip" | tail -3
@@ -308,7 +308,7 @@ Temporary Files
 
 Scripts often need a place for intermediate results. `mktemp` creates one safely:
 
-```bash +exec
+```sh +exec
 tmp=$(mktemp)
 echo "scratch data" > "$tmp"
 echo "Created $tmp"
@@ -348,7 +348,7 @@ Processes and Job Control
 
 <!-- column: 0 -->
 
-```bash
+```sh
 # Run a command in the background
 $ long_running_task &
 [1] 12345  # Job 1, PID 12345
@@ -365,7 +365,7 @@ $ jobs
 
 <!-- column: 1 -->
 
-```bash
+```sh
 # Move the suspended process to the background
 $ bg
 [1]+ 12345 long_running_task &
@@ -401,7 +401,7 @@ When you press `Ctrl+C` or `Ctrl+Z`, the terminal sends a signal to the running 
 
 `kill` lets you send signals to processes via their process ID (PID):
 
-```bash
+```sh
 $ kill -l            # list all signals
 $ kill -TERM 12345   # ask process 12345 to terminate
 $ kill -9 12345      # force kill, process gets no chance to clean up
