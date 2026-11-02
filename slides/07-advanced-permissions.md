@@ -31,11 +31,13 @@ Elevating Privileges
 |                    |                              | `sudo !!` runs the last command with sudo |
 | `run0`             | Like `sudo` but uses Polkit  |                                           |
 
-> The `/etc/sudoers` file contains the configuration and the behaviour of the `sudo` command
+> The `/etc/sudoers` file contains the configuration and the behavior of the `sudo` command
 > Use `sudo visudo` to make changes (syntax check and lock of the sudoers file)
 
 > `run0` allows enhanced system protection
 > `run0 --property=ProtectSystem=strict --property=ReadWritePaths=/tmp touch /tmp/1`
+
+TODO partly presented earlier
 
 <!-- end_slide -->
 

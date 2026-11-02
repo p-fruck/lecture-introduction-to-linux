@@ -20,6 +20,23 @@ Users and Permissions
 
 <!-- end_slide -->
 
+Switching users
+===
+
+| Command | Description                       | Useful Flags / Examples               |
+| ------- | --------------------------------- | ------------------------------------- |
+| `su`    | Switch shell to another user      |                                       |
+| `sudo`  | **Su**peruser **do**...           | `sudo -i` open interactive root shell |
+|         | **S**ubstitute **u**ser **do**... | `sudo -u sshd id`                     |
+
+In most cases you will want to become the root user.
+
+Many ways to elevate: `sudo -i`, `sudo su`, `su root`.
+
+> Note: `su root` requires your root password while `sudo -i` requires your sudo password!
+
+<!-- end_slide -->
+
 Group Management
 ===
 
@@ -29,6 +46,8 @@ Group Management
 | `groups`                | Show groups you belong to |                               |
 | `groupadd` / `groupdel` | Add/delete a group        | `groupadd --system groupname` |
 | `groupmod`              | Modify a group            |                               |
+
+TODO user vs system group ids (and root)
 
 <!-- end_slide -->
 
@@ -46,6 +65,10 @@ User Management
 
 > Relevant system files:
 > `/etc/passwd`, `/etc/shadow`, `/etc/group`
+
+TODO: more details on files, man 5
+
+- Example nologin, `sudo su sshd` vs `sudo -u sshd bash`
 
 <!-- end_slide -->
 
@@ -144,6 +167,8 @@ chmod 2775 shared/   # setgid on directory
 chmod 1777 /tmp      # sticky bit
 ```
 
+TODO more description
+
 <!-- end_slide -->
 
 Managing File Permissions & Ownership
@@ -157,6 +182,8 @@ Managing File Permissions & Ownership
 | `umask` | Show/set default permission mask | `umask 0077` (default `0022`)              |
 
 Permissions refresher: `r`=read, `w`=write, `x`=execute, `r=4`, `w=2`, `x=1`
+
+TODO: More umask examples
 
 <!-- end_slide -->
 
@@ -209,6 +236,8 @@ Check how the `/etc/shadow`, `/etc/passwd` and `/etc/groups` change!
 <!-- column: 1 -->
 
 **Time: 10 minutes**
+
+TODO: Attach exercises to respective slides
 
 <!-- end_slide -->
 
