@@ -15,3 +15,6 @@ systemd-boot
 Toolpak
 Winget
 Globbing
+GECOS
+Setgid
+Setuid

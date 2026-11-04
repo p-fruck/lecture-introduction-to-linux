@@ -32,7 +32,7 @@ Scripting
 
 <!-- end_slide -->
 
-Functions in Bash
+Functions in POSIX / Bash
 ===
 
 <!-- column_layout: [3, 2] -->
