@@ -285,7 +285,7 @@ run0 setcap -r /usr/bin/arping
 `capsh` can interactively set/drop permissions
 
 ```sh
-run0 capsh --add=cap_net_bind_service -- \
+run0 capsh --drop=cap_net_bind_service -- \
     -c 'python3 -m http.server 80'
 ```
 
