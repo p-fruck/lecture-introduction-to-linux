@@ -18,3 +18,11 @@ Globbing
 GECOS
 Setgid
 Setuid
+journalctl
+ProxyJump
+Netplan
+NetworkManager
+systemd-networkd
+Cron
+syscalls
+seccomp
