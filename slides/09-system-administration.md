@@ -10,7 +10,7 @@ System Administration
 
 # Goal of this Lecture
 
-- How storage is organized: partitions, filesystems and mounting
+- How storage is organized: partitions, file systems and mounting
 - How to protect data at rest: LUKS, TPM2 and measured boot
 - How to snapshot, update and roll back a system
 - Mandatory access control and firewalls as additional layers
@@ -25,7 +25,7 @@ System Administration
 
 <!-- end_slide -->
 
-Block Devices, Partitions and Filesystems
+Block Devices, Partitions and File systems
 ===
 
 <!-- column_layout: [1, 1] -->
@@ -47,7 +47,7 @@ Layers (bottom to top)
 1. Disk (`/dev/nvme0n1`)
 2. Partition table (GPT) and partitions
 3. Optional: LUKS, LVM, RAID
-4. Filesystem
+4. File system
 5. Mount point
 
 <!-- column: 1 -->
@@ -66,21 +66,21 @@ Typical UEFI layout
 
 <!-- pause -->
 
-> Always refer to disks by **UUID** or **label**: `/dev/sdX` names can change between boots.
+> Always refer to disks by **UUID** or **label**: `/dev/sdX` names can change.
 
 <!-- end_slide -->
 
-Common Filesystems
+Common File systems
 ===
 
-| Filesystem | Typical use                  | Notable features                              |
-| ---------- | ---------------------------- | --------------------------------------------- |
-| **ext4**   | Default on Debian/Ubuntu     | Stable, simple, journaling                    |
-| **xfs**    | Default on RHEL, large files | High performance, cannot be shrunk            |
-| **btrfs**  | Fedora, openSUSE             | Snapshots, subvolumes, checksums, compression |
-| **zfs**    | Storage servers, BSD         | Snapshots, RAID, out-of-tree on Linux         |
-| **vfat**   | ESP, USB sticks              | No permissions, universal compatibility       |
-| **tmpfs**  | `/tmp`, `/run`               | Lives in RAM                                  |
+| File system | Typical use                  | Notable features                              |
+| ----------- | ---------------------------- | --------------------------------------------- |
+| **ext4**    | Default on Debian/Ubuntu     | Stable, simple, journaling                    |
+| **xfs**     | Default on RHEL, large files | High performance, cannot be shrunk            |
+| **btrfs**   | Fedora, openSUSE             | Snapshots, subvolumes, checksums, compression |
+| **zfs**     | Storage servers, BSD         | Snapshots, RAID, out-of-tree on Linux         |
+| **vfat**    | ESP, USB sticks              | No permissions, universal compatibility       |
+| **tmpfs**   | `/tmp`, `/run`               | Lives in RAM                                  |
 
 <!-- pause -->
 
@@ -101,7 +101,7 @@ Mounting at Boot: `/etc/fstab`
 
 ## What is `/etc/fstab`
 
-- Plain text configuration file defining **filesystems to mount at boot**
+- Plain text configuration file defining **file systems to mount at boot**
 
 ```dotenv
 # <device>   <mount> <type> <options>  <dump> <fsck>
@@ -124,12 +124,12 @@ sudo systemctl daemon-reload
 
 ## How systemd uses `/etc/fstab`
 
-- Systemd **generates mount units** for every entry
+- `systemd` **generates mount units** for every entry
   - `/boot` → `boot.mount`
   - `/mnt/data` → `mnt-data.mount`
 - Benefits:
   - Parallelized mounting (faster)
-  - Dependency tracking, e.g. network filesystems
+  - Dependency tracking, e.g. network file systems
 
 <!-- reset_layout -->
 
@@ -153,7 +153,8 @@ Full Disk Encryption: LUKS
 <!-- pause -->
 
 ```bash
-sudo cryptsetup luksFormat /dev/sdb1   # ⚠️ wipes data
+# ⚠️ wipes data
+sudo cryptsetup luksFormat /dev/sdb1
 sudo cryptsetup open /dev/sdb1 secret
 sudo mkfs.ext4 /dev/mapper/secret
 sudo mount /dev/mapper/secret /mnt
@@ -184,7 +185,7 @@ Then use `/dev/mapper/secret` in `/etc/fstab`
 TPM2 and Measured Boot
 ===
 
-<!-- column_layout: [1,1] -->
+<!-- column_layout: [4,3] -->
 
 <!-- column: 0-->
 
@@ -201,6 +202,10 @@ TPM2 and Measured Boot
 1. Firmware → PCR 0, 2
 2. Secure Boot state and keys → PCR 7
 3. Boot loader / kernel (UKI) → PCR 4, 11
+
+> The TPM only releases the key if the PCR values match -> modified boot chain = no automatic unlock.
+
+> Unified Kernel Images (UKIs) provide support for measured boot: Look them up if interested!
 
 <!-- column: 1-->
 
@@ -220,56 +225,13 @@ Enroll the TPM as an additional LUKS key
 
 ```bash
 sudo systemd-cryptenroll \
-    --tpm2-device=auto --tpm2-pcrs=7 /dev/nvme0n1p3
+    --tpm2-device=auto --tpm2-pcrs=0+2+7 \
+    /dev/nvme0n1p3
 ```
 
 ```dotenv
 # /etc/crypttab
 root UUID=… none tpm2-device=auto
-```
-
-<!-- reset_layout -->
-
-<!-- pause -->
-
-> The TPM only releases the key if the PCR values match → modified boot chain = no automatic unlock.
-
-<!-- end_slide -->
-
-systemd-pcrlock
-===
-
-**Problem**: Binding to PCR 7 only trusts the Secure Boot *keys*. Binding to PCR 4 directly breaks on every kernel or bootloader update.
-
-<!-- pause -->
-
-**Solution**: `systemd-pcrlock` builds a **policy** from the boot event log and known-good components.
-
-<!-- column_layout: [1,1] -->
-
-<!-- column: 0-->
-
-```bash
-# show measured events
-systemd-pcrlock log
-# create/update the policy
-sudo systemd-pcrlock make-policy
-# use the policy for a LUKS volume
-sudo systemd-cryptenroll /dev/nvme0n1p3 \
-    --tpm2-device=auto \
-    --tpm2-pcrlock=/var/lib/systemd/pcrlock.json
-```
-
-<!-- column: 1-->
-
-<!-- pause -->
-
-- Policy is stored in the TPM (NV index), not only on disk
-- Updates re-generate the policy (`systemd-pcrlock.service`)
-- Always keep a **recovery key**:
-
-```bash
-sudo systemd-cryptenroll --recovery-key /dev/nvme0n1p3
 ```
 
 <!-- reset_layout -->
@@ -303,7 +265,8 @@ sudo btrfs subvolume create /data
 # read-only snapshot
 sudo btrfs subvolume snapshot -r \
     /home /.snapshots/home-$(date +%F)
-sudo btrfs subvolume delete /.snapshots/home-2026-11-17
+sudo btrfs subvolume delete \
+    /.snapshots/home-2026-11-17
 ```
 
 <!-- column: 1-->
@@ -326,8 +289,6 @@ Tooling
 - `btrfs send | btrfs receive`: incremental backups
 - `cp --reflink`: instant file copies
 
-<!-- reset_layout -->
-
 <!-- pause -->
 
 > ⚠️ Snapshots on the same disk are **not a backup**.
@@ -337,23 +298,26 @@ Tooling
 System Updates
 ===
 
-<!-- column_layout: [1,1] -->
+<!-- column_layout: [3,4] -->
 
 <!-- column: 0-->
 
 # Packages
 
 ```bash
-sudo apt update && sudo apt upgrade     # Debian/Ubuntu
-sudo dnf upgrade --refresh              # Fedora/RHEL
-sudo pacman -Syu                        # Arch
+# Debian/Ubuntu
+sudo apt update && sudo apt upgrade
+# Fedora/RHEL
+sudo dnf upgrade --refresh
+# Arch
+sudo pacman -Syu
 ```
 
 <!-- pause -->
 
 # Firmware: LVFS
 
-**Linux Vendor Firmware Service**: vendors publish firmware (BIOS, SSD, docking stations) which `fwupd` installs.
+**Linux Vendor Firmware Service**: vendors publish firmware (BIOS, SSD, docking stations) which `fwupd` installs (your device must be supported).
 
 ```bash
 fwupdmgr refresh
@@ -366,6 +330,14 @@ fwupdmgr update
 
 <!-- pause -->
 
+# Applications
+
+Don't forget Flatpak/AppImage or custom applications!
+
+Same for stuff installed via `pip`, `npm` and the like.
+
+<!-- pause -->
+
 # Safer update strategies
 
 - **Snapshot first**, then update, roll back on failure
@@ -373,8 +345,6 @@ fwupdmgr update
   - Fedora Atomic/Silverblue: `rpm-ostree`, `bootc`
   - NixOS: `nixos-rebuild switch --rollback`
 - Boot menu keeps the previous version
-
-<!-- reset_layout -->
 
 <!-- pause -->
 
@@ -419,11 +389,11 @@ sudo semanage port -l
 
 <!-- pause -->
 
-> SELinux denies access → Check logs with `sudo journalctl -t setroubleshoot` or use `audit2allow`
+> SELinux denies access -> Check logs with `sudo journalctl -t setroubleshoot` or use `audit2allow`
 
 <!-- pause -->
 
-> If you see `setenforce 0` in installation instructions, choose a different product
+> If you see `setenforce 0` in installation instructions, choose a different product. Disabling SELinux is not a proper solution.
 
 <!-- end_slide -->
 
@@ -495,7 +465,7 @@ Alternative init systems
 
 <!-- pause -->
 
-- SysVinit is the traditional runlevel-based init using shell scripts
+- SysVinit is the traditional runlevel based init using shell scripts
 - BusyBox init is a minimal SysV-style variant for embedded systems
 - OpenRC is a modern dependency-aware script-based init with parallel startup
 - runit is a fast three-stage init with built-in service supervision
