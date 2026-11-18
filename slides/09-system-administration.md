@@ -99,7 +99,7 @@ Mounting at Boot: `/etc/fstab`
 
 <!-- column: 0-->
 
-## What is `/etc/fstab`
+# What is `/etc/fstab`
 
 - Plain text configuration file defining **file systems to mount at boot**
 
@@ -122,11 +122,11 @@ sudo systemctl daemon-reload
 
 <!-- pause -->
 
-## How systemd uses `/etc/fstab`
+# How systemd uses `/etc/fstab`
 
 - `systemd` **generates mount units** for every entry
-  - `/boot` → `boot.mount`
-  - `/mnt/data` → `mnt-data.mount`
+  - `/boot` -> `boot.mount`
+  - `/mnt/data` -> `mnt-data.mount`
 - Benefits:
   - Parallelized mounting (faster)
   - Dependency tracking, e.g. network file systems
@@ -199,9 +199,9 @@ TPM2 and Measured Boot
 
 **Measured boot**: every stage measures the next one before running it
 
-1. Firmware → PCR 0, 2
-2. Secure Boot state and keys → PCR 7
-3. Boot loader / kernel (UKI) → PCR 4, 11
+1. Firmware -> PCR 0, 2
+2. Secure Boot state and keys -> PCR 7
+3. Boot loader / kernel (UKI) -> PCR 4, 11
 
 > The TPM only releases the key if the PCR values match -> modified boot chain = no automatic unlock.
 
@@ -348,7 +348,7 @@ Same for stuff installed via `pip`, `npm` and the like.
 
 <!-- pause -->
 
-> Firmware updates can change TPM measurements → re-seal (`systemd-pcrlock make-policy`) or have the recovery key ready.
+> Firmware updates can change TPM measurements -> re-seal (`systemd-pcrlock make-policy`) or have the recovery key ready.
 
 <!-- end_slide -->
 
