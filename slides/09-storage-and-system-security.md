@@ -1,5 +1,5 @@
 ---
-title: 'Introduction to Linux: **System Administration**'
+title: 'Introduction to Linux: **Storage and System Security**'
 author: Philipp Fruck & Pius Walter
 theme:
   path: ../themes/dhbw_mannheim_dark.yml
