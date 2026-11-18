@@ -110,8 +110,8 @@ User=appuser
 [Install]
 #WantedBy=graphical.target    # GUI ready
 #WantedBy=multi-user.target   # CLI ready
-WantedBy=default.target      # GUI or CLI
-#WantedBy=network.target  # network ready
+WantedBy=default.target       # GUI or CLI
+#WantedBy=network.target      # network ready
 ```
 
 <!-- column: 1 -->
