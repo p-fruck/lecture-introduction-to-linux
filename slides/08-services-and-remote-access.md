@@ -549,6 +549,12 @@ systemd-analyze security sshd.service
 - ✓ = restricted, ✗ = exposed
 - The score is a hint, not a guarantee: e.g. `sshd` legitimately needs a lot of access
 
+<!-- pause -->
+
+An analysis of `NowNewPrivileges` for Debian packages:
+
+> https://media.ccc.de/v/all-systems-go-2026-400-the-state-of-systemd-sandboxing-in-debian
+
 <!-- end_slide -->
 
 Hardening Services: Directives
